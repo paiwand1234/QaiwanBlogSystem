@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Contact Us Form in Html Css</title>
+    <link rel="stylesheet" href="contact.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="#" class="logo">Your Logo</a>
+                <ul class="nav-links">
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="Activity.html">Activity</a></li>
+                    <li><a href="Department.html">Department</a></li>
+                    <li><a href="Project.html">Project</a></li>
+                    <li><a href="Contactus.html">Contact Us</a></li>
+                    <li><a href="Login.html">Login</a></li>
+                </ul>
+                <form class="search-form">
+                    <input type="text" placeholder="Search...">
+                    <button type="submit">Search</button>
+                </form>
+                <div class="burger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="contact-form">
+        <h1>Contact Us</h1>
+        <div class="container">
+            <div class="main">
+                <div class="content">
+                    <h2>Contact Us</h2>
+                    <form action="#" method="post">
+                        <input type="text" name="name" placeholder="Enter Your Name">
+
+                        <input type="email" name="name" placeholder="Enter Your Email">
+                        <input type="tel" name="name" placeholder="Enter Your Number">
+                        <textarea name="message" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn" id="btn">Send <i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+                <div class="form-img">
+                    <img src="image/Contact us-amico.svg" alt="contact">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const burger = document.querySelector('.burger');
+    const navLinks = document.querySelector('.nav-links');
+
+    burger.addEventListener('click', () => {
+        navLinks.classList.toggle('nav-active');
+        burger.classList.toggle('active');
+    });
+
+
+</script>
+
+</html>
