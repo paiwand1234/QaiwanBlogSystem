@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Department Cards</title>
+    <title>Activity Tiles</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Custom CSS -->
@@ -144,17 +144,16 @@
 </head>
 
 <body>
-
     <header>
         <nav class="navbar">
             <div class="container">
                 <a href="#" class="logo">Your Logo</a>
                 <ul class="nav-links">
-                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="Home.php">Home</a></li>
                     <li><a href="Activity.html">Activity</a></li>
-                    <li><a href="Department.html">Department</a></li>
-                    <li><a href="Project.html">Project</a></li>
-                    <li><a href="Contactus.html">Contact Us</a></li>
+                    <li><a href="Department.php">Department</a></li>
+                    <li><a href="Project.php">Project</a></li>
+                    <li><a href="Contactus.php">Contact Us</a></li>
                 </ul>
                 <form class="search-form">
                     <input type="text" placeholder="Search...">
@@ -168,44 +167,40 @@
             </div>
         </nav>
     </header>
-
     <div class="container mt-5">
-        <h2>Departments</h2>
+        <h2>Activities</h2>
         <div class="row">
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Department 1">
+                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Activity 1">
                     <div class="card-body">
-                        <h5 class="card-title">Department 1</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <h5 class="card-title">Activity 1</h5>
+                        <p class="card-text">Date: March 19, 2024</p>
                         <a href="#" class="btn btn-primary">More</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Department 2">
+                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Activity 2">
                     <div class="card-body">
-                        <h5 class="card-title">Department 2</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <h5 class="card-title">Activity 2</h5>
+                        <p class="card-text">Date: March 20, 2024</p>
                         <a href="#" class="btn btn-primary">More</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Department 3">
+                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Activity 3">
                     <div class="card-body">
-                        <h5 class="card-title">Department 3</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <h5 class="card-title">Activity 3</h5>
+                        <p class="card-text">Date: March 21, 2024</p>
                         <a href="#" class="btn btn-primary">More</a>
                     </div>
                 </div>
             </div>
-            <!-- Add more department cards here -->
+            <!-- Add more activity tiles here -->
         </div>
     </div>
 

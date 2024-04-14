@@ -7,24 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parallax Scrolling Website | Codehal</title>
     <link rel="stylesheet" href="../stylesheets/home.css">
-    <link rel="stylesheet" href="Contactus.html">
+    <link rel="stylesheet" href="Contactus.php">
 </head>
 
 
 <body>
 
-    <header>
-        <h2 class="logo">Logo</h2>
-        <nav class="navigation">
-            <a href="Home.html" class="active">Home<span></span></a>
-            <a href="Activity.html">Activity<span></span></a>
-            <a href="Department.html">Department<span></span></a>
-            <a href="Project.html">Project<span></span></a>
-            <a href="Contactus.html">Contact Us<span></span></a>
-            <!-- <input type="text" placeholder="Search.."> -->
-
-        </nav>
-    </header>
+    <?php include 'Header.html'; ?>
 
     <section class="parallax">
         <h2 id="text">Qaiwan Blog System</h2>

@@ -232,11 +232,11 @@
         <div class="container">
             <a href="#" class="logo">Your Logo</a>
             <ul class="nav-links">
-                <li><a href="Home.html">Home</a></li>
-                <li><a href="Activity.html">Activity</a></li>
-                <li><a href="Department.html">Department</a></li>
+                <li><a href="Home.php">Home</a></li>
+                <li><a href="Activity.php">Activity</a></li>
+                <li><a href="Department.php">Department</a></li>
                 <li><a href="Project.html">Project</a></li>
-                <li><a href="Contactus.html">Contact Us</a></li>
+                <li><a href="Contactus.php">Contact Us</a></li>
             </ul>
             <form class="search-form">
                 <input type="text" placeholder="Search...">
