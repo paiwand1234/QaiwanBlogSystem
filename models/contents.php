@@ -1,17 +1,16 @@
 <?php
 
-class Content {
+class Contents {
     private $db;
 
     public function __construct(Database $db) {
         $this->db = $db;
     }
 
-    public function create($postId, $contentType, $content) {
+    public function create($contentType, $content) {
         try {
             return $this->db->create('content', [
-                'postID' => $postId,
-                'contentType' => $contentType,
+                'content_type' => $contentType,
                 'content' => $content
             ]);
         } catch (PDOException $e) {
@@ -43,5 +42,6 @@ class Content {
         }
     }
 }
+
 
 

@@ -10,9 +10,9 @@ class Posts {
     public function create($userId, $title, $contentId) {
         try {
             return $this->db->create('posts', [
-                'UserID' => $userId,
-                'Title' => $title,
-                'ContentID' => $contentId
+                'user_id' => $userId,
+                'title' => $title,
+                'content_id' => $contentId
             ]);
         } catch (PDOException $e) {
             throw new Exception("Error creating post: " . $e->getMessage());
@@ -43,3 +43,4 @@ class Posts {
         }
     }
 }
+
