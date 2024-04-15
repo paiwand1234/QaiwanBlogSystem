@@ -4,7 +4,7 @@ class Database {
     private $dbname = 'qaiwan_blog_system';
     private $username = 'root';
     private $password = '';
-    private $pdo;
+    public $pdo;
 
     public function __construct() {
         try {
