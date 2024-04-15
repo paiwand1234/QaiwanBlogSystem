@@ -1,9 +1,9 @@
 <?php
 class Database {
     private $host = 'localhost';
-    private $dbname = 'your_database_name';
-    private $username = 'your_username';
-    private $password = 'your_password';
+    private $dbname = 'qaiwan_blog_system';
+    private $username = 'root';
+    private $password = '';
     private $pdo;
 
     public function __construct() {
@@ -51,22 +51,6 @@ class Database {
         $stmt->execute([$id]);
         return $stmt->rowCount();
     }
-}
-$host = 'localhost';
-$dbname = 'qaiwan_blog_system';
-$username = 'root';
-$password = '';
-
-try {
-    // Create a PDO instance
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     
-    // Set PDO attributes (optional)
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    echo "Connected successfully";
-} catch (PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
 }
-
 
