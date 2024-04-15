@@ -1,5 +1,13 @@
 <?php
 
+class ContentTypes{
+    const TEXT = "text";
+    const FILE = "file";
+    const VIDEO = "video";
+    const IMAGE = "image";
+    
+}
+
 class Contents {
     private $db;
 
