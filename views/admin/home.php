@@ -24,37 +24,37 @@
 <div class="container-fluid">
     <div class="row">
         <!-- Sidebar -->
-        <div class="col-1 sidebar bg-dark rounded m-5 shadow">
-            <ul class="nav flex-column p-4">
+        <div class="sidebar bg-dark rounded mx-4 mt-2 shadow">
+            <ul class="nav flex-column ">
                 <li class="nav-item my-5">
-                    <a class="nav-link active" href="#"><img src="../../assets/svg/house-chimney-solid.svg" alt=""></a>
+                    <a class="nav-link " href="#"><img src="../../assets/svg/house-chimney-solid.svg" alt="" width="25px !important"></a>
                 </li>
                 <li class="nav-item my-5">
-                <a class="nav-link active" href="#"><img src="../../assets/svg/user-solid.svg" alt=""></a>
+                <a class="nav-link " href="#"><img src="../../assets/svg/user-solid.svg" alt=""></a>
                 </li>
                 <li class="nav-item my-5">
-                <a class="nav-link active" href="#"><img src="../../assets/svg/house-chimney-solid.svg" alt=""></a>
+                <a class="nav-link " href="#"><img src="../../assets/svg/house-chimney-solid.svg" alt=""></a>
                 </li>
             </ul>
         </div>
         <!-- Content -->
         <div class="col-md-10  ">
         <div class="row   mt-5 ">
-            <div class="col-3 mx-3 shadow rounded bg">
+            <div class="col-3 mx-3 shadow rounded bg-dark">
                 <h1 class="text-center text-light">Users</h1>
                 <h1 class="text-center my-3 text-light">250</h1>
                 <div class="col-4 text-center  mx-auto">
                     <img src="../../assets/svg/users-solid.svg" alt="" >
                 </div>
             </div>
-            <div class="col-3 mx-3 shadow rounded bg">
+            <div class="col-3 mx-3 shadow rounded bg-dark">
                 <h1 class="text-center text-light">Post</h1>
                 <h1 class="text-center my-3 text-light">250</h1>
                 <div class="col-3 text-center  mx-auto">
                     <img src="../../assets/svg/circle-plus-solid.svg" alt="" >
                 </div>
             </div>
-            <div class="col-3 mx-3 shadow rounded bg">
+            <div class="col-3 mx-3 shadow rounded bg-dark">
                 <h1 class="text-center text-light">Head</h1>
                 <h1 class="text-center my-3 text-light">250</h1>
                 <div class="col-4 text-center  mx-auto">
@@ -70,7 +70,7 @@
                             <img src="../../assets/image/istockphoto-517188688-612x612.jpg" class="card-img-top" alt="User Image">
                             <div class="card-body">
                                 <h5 class="card-title">John Doe</h5>
-                                <p class="card-text">Role: Administrator</p>
+                                <p class="card-text">Role: User</p>
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                             <img src="../../assets/image/istockphoto-517188688-612x612.jpg" class="card-img-top" alt="User Image">
                             <div class="card-body">
                                 <h5 class="card-title">John Doe</h5>
-                                <p class="card-text">Role: Administrator</p>
+                                <p class="card-text">Role: Head Of Department</p>
                             </div>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                             <img src="../../assets/image/istockphoto-517188688-612x612.jpg" class="card-img-top" alt="User Image">
                             <div class="card-body">
                                 <h5 class="card-title">John Doe</h5>
-                                <p class="card-text">Role: Administrator</p>
+                                <p class="card-text">Role: Head Of Department</p>
                             </div>
                         </div>
                     </div>
@@ -97,25 +97,29 @@
                             <img src="../../assets/image/istockphoto-517188688-612x612.jpg" class="card-img-top" alt="User Image">
                             <div class="card-body">
                                 <h5 class="card-title">John Doe</h5>
-                                <p class="card-text">Role: Administrator</p>
+                                <p class="card-text">Role: User</p>
                             </div>
                         </div>
                     </div>
                     <!-- Add more user cards here -->
                 </div>
             
-        <h1 class="mt-5">New Psot</h1>
+        <h1 class="mt-5">New Post</h1>
         <hr class="">
         <div class="row">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <img src="istockphoto-517188688-612x612.jpg" class="card-img-top" alt="User Image">
-                            <div class="card-body">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="card-text">Role: Administrator</p>
+        <div class="col-md-3">
+                    <div class="card">
+                        <img src="../../assets/image/istockphoto-517188688-612x612.jpg" class="card-img-top" alt="User Image">
+                        <div class="card-body">
+                            <h5 class="card-title">John Doe</h5>
+                            <p class="card-text">Role: Administrator</p>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-danger" type="button">Delete</button>
+                                <button class="btn btn-success" type="button">Accept</button>
                             </div>
                         </div>
                     </div>
+                </div>
                     <!-- Add more user cards here -->
                 </div>
             </div>
