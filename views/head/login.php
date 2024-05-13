@@ -28,7 +28,7 @@
                     <h2 class="text-center mb-4">Login</h2>
                     <form action="../../controllers/adminLogin.php" method="post">
                         <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
+                            <label for="username" class="form-label">Username or Email</label>
                             <input type="text" class="form-control" id="username" name="username" required>
                         </div>
                         <div class="mb-3">
