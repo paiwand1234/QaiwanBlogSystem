@@ -3,7 +3,7 @@ class Database {
     private $host = 'localhost';
     private $dbname = 'qaiwan_blog_system';
     private $username = 'root';
-    private $password = '';
+    private $password = 'root';
     public $pdo;
 
     public function __construct() {
