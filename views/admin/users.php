@@ -96,7 +96,7 @@
             <div>
               <h5 class="card-title">Alan Ali</h5>
               <p class="card-text">Department: IT</p>
-              <p class="card-text">Role: Head Of Department</p>
+              <p class="card-text">Role: Head Of Department</p>\
             </div>
           </div>
           <div class="card-footer">
