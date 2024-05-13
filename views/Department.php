@@ -156,51 +156,187 @@
             </div>
         </nav>
 
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col-4   shadow  mb-5 bg-dark rounded">
-                    <div class="row ">
+     <div class="container mt-5">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <div class="card shadow p-3 bg-light rounded border-0">
+                <div class="row">
                     <div class="col-3">
-                    <img src="../assets/svg/laptop-solid.svg" alt="">
+                        <img src="../assets/svg/laptop-solid.svg" alt="">
                     </div>
-                    <div class="col-9 my-auto text-light">
-                    <h4>Software Engineering</h4>
-                    </div>
-                    <div class="col-12 my-auto text-center text-success">
-                    <h6>See More</h6>
-                    </div>
+                    <div class="col-9 my-auto">
+                        <h4>Software Engineering</h4>
+                        <h6 class="col-12 my-auto text-primary">See More</h6>
                     </div>
                 </div>
-                <!-- new card  -->
-                <div class="col-4 mx-1  shadow  mb-5 bg-dark rounded">
-                    <div class="row ">
-                    <div class="col-3">
-                    <img src="../assets/svg/laptop-solid.svg" alt="">
-                    </div>
-                    <div class="col-9 my-auto text-light">
-                    <h4>Software Engineering</h4>
-                    </div>
-                    <div class="col-12 my-auto text-center text-success">
-                    <h6>See More</h6>
-                    </div>
-                    </div>
-                </div>
-                <div class="col-4 shadow  mb-5 bg-dark rounded">
-                    <div class="row ">
-                    <div class="col-3">
-                    <img src="../assets/svg/laptop-solid.svg" alt="">
-                    </div>
-                    <div class="col-9 my-auto text-light">
-                    <h4>Software Engineering</h4>
-                    </div>
-                    <div class="col-12 my-auto text-center text-success">
-                    <h6>See More</h6>
-                    </div>
-                    </div>
-                </div>
-                
             </div>
         </div>
+        <!-- new card  -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow p-3 bg-light rounded border-0">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="../assets/svg/laptop-solid.svg" alt="">
+                    </div>
+                    <div class="col-9 my-auto">
+                        <h4>Dentistry</h4>
+                        <h6 class="col-12 my-auto text-primary">See More</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <!-- new card  -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow p-3 bg-light rounded border-0">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="../assets/svg/laptop-solid.svg" alt="">
+                    </div>
+                    <div class="col-9 my-auto">
+                        <h4>Pharmacy</h4>
+                        <h6 class="col-12 my-auto text-primary">See More</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-5">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <div class="card shadow p-3 bg-light rounded border-0">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="../assets/svg/radiology.png"  width="60px" alt="">
+                    </div>
+                    <div class="col-9 my-auto">
+                        <h4>Medical Imaging</h4>
+                        <h6 class="col-12 my-auto text-primary">See More</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- new card  -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow p-3 bg-light rounded border-0">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="../assets/svg/laptop-solid.svg" alt="">
+                    </div>
+                    <div class="col-9 my-auto">
+                        <h4>M L T</h4>
+                        <h6 class="col-12 my-auto text-primary">See More</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <!-- new card  -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow p-3 bg-light rounded border-0">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="../assets/svg/computer.png" width="60px" alt="">
+                    </div>
+                    <div class="col-9 my-auto">
+                        <h4>Information Technology</h4>
+                        <h6 class="col-12 my-auto text-primary">See More</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-5">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <div class="card shadow p-3 bg-light rounded border-0">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="../assets/svg/ophtalmology.png" width="60px" alt="">
+                    </div>
+                    <div class="col-9 my-auto">
+                        <h4>Optometry</h4>
+                        <h6 class="col-12 my-auto text-primary">See More</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- new card  -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow p-3 bg-light rounded border-0">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="../assets/svg/genetic.png"width="60px" alt="">
+                    </div>
+                    <div class="col-9 my-auto">
+                        <h4>Biomedical Engineering</h4>
+                        <h6 class="col-12 my-auto text-primary">See More</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <!-- new card  -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow p-3 bg-light rounded border-0">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="../assets/svg/cyber-security.png" width="60px" alt="">
+                    </div>
+                    <div class="col-9 my-auto">
+                        <h4>Network Security</h4>
+                        <h6 class="col-12 my-auto text-primary">See More</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-5">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <div class="card shadow p-3 bg-light rounded border-0">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="../assets/svg/laboratory.png"width="60px" alt="">
+                    </div>
+                    <div class="col-9 my-auto">
+                        <h4>Medical Laboratory</h4>
+                        <h6 class="col-12 my-auto text-primary">See More</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- new card  -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow p-3 bg-light rounded border-0">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="../assets/svg/agreement.png" width="60px" alt="">
+                    </div>
+                    <div class="col-9 my-auto">
+                        <h4>International Business</h4>
+                        <h6 class="col-12 my-auto text-primary">See More</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <!-- new card  -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow p-3 bg-light rounded border-0">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="../assets/svg/staffing.png" width="60px" alt="">
+                    </div>
+                    <div class="col-9 my-auto">
+                        <h4>Human Resource</h4>
+                        <h6 class="col-12 my-auto text-primary">See More</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
 </body>
 <script>
     const burger = document.querySelector('.burger');
