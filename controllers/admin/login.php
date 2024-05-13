@@ -1,6 +1,6 @@
 <?php
-include "./database.php";
-include "./tables/users.php";
+include "../database.php";
+include "../tables/users.php";
 
 $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
@@ -20,11 +20,11 @@ try {
     // Verify password
     if ($user && password_verify($password, $user['password'])) {
         // Password is correct
-        header("Location: ../views/Home.php?$queryString");
+        header("Location: ../../views/admin/home.php?$queryString");
         // Redirect or perform other actions
     } else {
         // Password is incorrect or user not found
-        header("Location: ../views/admin/AdminLogin.php?login=0");
+        header("Location: ../../views/admin/login.php?login=0");
     }
 } catch (PDOException $e) {
     // Handle database errors
