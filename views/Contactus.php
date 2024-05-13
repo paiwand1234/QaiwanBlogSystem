@@ -8,20 +8,151 @@
     <title>Contact Us Form in Html Css</title>
     <link rel="stylesheet" href="../stylesheets/contact.css">
 </head>
+<style>
+    * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #000000;
+            padding: 15px 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-right: 20px;
+        }
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #3465ba;
+        }
+
+        .search-form {
+            display: none;
+        }
+
+        .burger {
+            display: none;
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .search-form {
+                display: block;
+                margin-right: auto;
+            }
+
+            .nav-active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                background-color: #90C5F9;
+                width: 50%;
+                padding: 10px;
+                border-radius: 5px;
+                z-index: 99;
+                animation: navSlide 0.5s ease forwards;
+            }
+
+            @keyframes navSlide {
+                from {
+                    opacity: 0;
+                    transform: translateY(-50px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .nav-active li {
+                opacity: 0;
+            }
+
+            .nav-active li a {
+                color: #fff;
+                text-decoration: none;
+                margin: 10px 0;
+                opacity: 1;
+                transition: opacity 0.5s ease;
+            }
+
+            .burger {
+                display: block;
+                cursor: pointer;
+            }
+
+            .burger .line {
+                width: 25px;
+                height: 3px;
+                background-color: #fff;
+                margin: 5px;
+                transition: all 0.3s ease;
+            }
+
+            .burger.active .line:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .burger.active .line:nth-child(2) {
+                opacity: 0;
+            }
+
+            .burger.active .line:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+        }
+</style>
 <body>
     <!-- Navbar -->
     <header>
-        <nav class="navbar">
+    <nav class="navbar">
             <div class="container">
                 <a href="#" class="logo">Your Logo</a>
                 <ul class="nav-links">
                     <li><a href="Home.php">Home</a></li>
-                    <li><a href="Activity.php">Activity</a></li>
+                    <li><a href="Activity.html">Activity</a></li>
                     <li><a href="Department.php">Department</a></li>
                     <li><a href="Project.php">Project</a></li>
-                    <li><a href="Contactus.html">Contact Us</a></li>
-                    <li><a href="Login.php">Login</a></li>
+                    <li><a href="Contactus.php">Contact Us</a></li>
                 </ul>
                 <form class="search-form">
                     <input type="text" placeholder="Search...">
@@ -51,7 +182,7 @@
                     </form>
                 </div>
                 <div class="form-img">
-                    <img src="../assets/image/Contact%20us-amico.svg" alt="contact">
+                    <img src="../assets/svg/Contact%20us-amico.svg" alt="contact">
                 </div>
             </div>
         </div>
