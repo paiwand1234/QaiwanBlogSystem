@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <title>Contact Us Form in Html Css</title>
+    <title>Contact Us</title>
     <link rel="stylesheet" href="../stylesheets/contact.css">
 </head>
 <style>
@@ -20,8 +20,9 @@
         }
 
         .navbar {
-            background-color: #000000;
+            background-color: #90C5F9;
             padding: 15px 0;
+            border:2px solid #fff;
         }
 
         .container {
