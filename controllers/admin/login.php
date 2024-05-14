@@ -9,7 +9,7 @@ $db = new Database();
 
 try {
     // Hash the password
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // Fetch user from database
     $sql = "SELECT * FROM users WHERE username = ?";

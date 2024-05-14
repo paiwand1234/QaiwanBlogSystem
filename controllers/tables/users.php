@@ -13,13 +13,14 @@ class Users {
         $this->db = $db;
     }
 
-    public function create($username, $password, $email, $role) {
+    public function create($username, $password, $email, $role, $student_id) {
         try {
             return $this->db->create('users', [
                 'username' => $username,
                 'password' => password_hash($password, PASSWORD_DEFAULT), // Hash the password
                 'email' => $email,
-                'role' => $role
+                'role' => $role,
+                'student_id' => $student_id
             ]);
         } catch (PDOException $e) {
             throw new Exception("Error creating user: " . $e->getMessage());
