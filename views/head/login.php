@@ -26,7 +26,7 @@
             <div class="col-md-6 offset-md-3 d-flex justify-content-center align-items-center">
                 <div class="login-container">
                     <h2 class="text-center mb-4">Login</h2>
-                    <form action="../../controllers/adminLogin.php" method="post">
+                    <form action="../../controllers/head/login.php" method="post">
                         <div class="mb-3">
                             <label for="username" class="form-label">Username or Email</label>
                             <input type="text" class="form-control" id="username" name="username" required>
