@@ -26,6 +26,14 @@ class StudentIds {
         }
     }
 
+    public function readOneRow($columnname, $value) {
+        try {
+            return $this->db->readOneRow('student_ids', $columnname, $value);
+        } catch (PDOException $e) {
+            throw new Exception("Error reading post: " . $e->getMessage());
+        }
+    }
+
     public function update($id, $data) {
         try {
             return $this->db->update('student_ids', $id, $data);
