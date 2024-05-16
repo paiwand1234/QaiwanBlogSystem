@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Contact Us</title>
-    <link rel="stylesheet" href="../stylesheets/contact.css">
+    <link rel="stylesheet" href="/stylesheets/contact.css">
 </head>
 <style>
     * {
-            box-sizing: border-box;
+           
             margin: 0;
             padding: 0;
         }
@@ -22,7 +24,7 @@
         .navbar {
             background-color: #90C5F9;
             padding: 15px 0;
-            border:2px solid #fff;
+           
         }
 
         .container {
@@ -141,11 +143,45 @@
                 transform: rotate(45deg) translate(-5px, -6px);
             }
         }
+        .card-container {
+            position: relative;
+            text-align: center;
+            color: white;
+            height: 100%;
+        }
+        .card-text {
+            position: absolute;
+            top: 90%;
+            left: 20%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8); /* Optional: to make the text more readable */
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .card-text1 {
+            position: absolute;
+            top: 90%;
+            right: 20%;
+            transform: translate(-50%, -50%);
+            padding: 10px;
+            border-radius: 5px;
+        }
+       
+        .card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .card img {
+            flex-grow: 1;
+            object-fit: cover;
+            height: 300px;
+        }
 </style>
 <body>
     <!-- Navbar -->
-    <header>
-    <nav class="navbar">
+ 
+    <nav class="navbar ">
             <div class="container">
                 <a href="#" class="logo">Your Logo</a>
                 <ul class="nav-links">
@@ -166,29 +202,87 @@
                 </div>
             </div>
         </nav>
-    </header>
-    <div class="contact-form">
-        <h1>Contact Us</h1>
-        <div class="container">
-            <div class="main">
-                <div class="content">
-                    <h2>Contact Us</h2>
-                    <form action="#" method="post">
-                        <input type="text" name="name" placeholder="Enter Your Name">
+   
+   
+    <div class="container m-5">
+        <div class="row">
+            <div class="col-12 rounded ">
+               <h1>Club's Activity </h1>
+            </div>
+        </div>
+    </div>
+    <hr class="mx-5">
 
-                        <input type="email" name="name" placeholder="Enter Your Email">
-                        <input type="tel" name="name" placeholder="Enter Your Number">
-                        <textarea name="message" placeholder="Your Message"></textarea>
-                        <button type="submit" class="btn" id="btn">Send <i class="fas fa-paper-plane"></i></button>
-                    </form>
+    <div class="container  my-4">
+        <div class="row">
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card  shadow-lg border-0">
+                    <div class="card-container ">
+                        <img src="/assets/image/spart-club.jpg" class="img-fluid rounded" alt="">
+                        <div class="card-text">Text Overlay 1</div>
+                        <button type="button" class="btn btn-danger card-text1">Delete</button>
+                    </div>
                 </div>
-                <div class="form-img">
-                    <img src="../assets/svg/Contact%20us-amico.svg" alt="contact">
+            </div>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card shadow-lg border-0">
+                    <div class="card-container ">
+                        <img src="../assets/image/art club.jpg" class="img-fluid rounded" alt="">
+                        <div class="card-text">Text Overlay 2</div>
+                        <button type="button" class="btn btn-danger card-text1">Delete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card  shadow-lg border-0">
+                    <div class="card-container">
+                        <img src="../assets/image/images.jpeg" class="img-fluid rounded" alt="">
+                        <div class="card-text">Text Overlay 3</div>
+                        <button type="button" class="btn btn-danger card-text1">Delete</button>
+                        
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="container  my-4">
+        <div class="row">
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card  shadow-lg border-0">
+                    <div class="card-container ">
+                        <img src="../assets/image/spart-club.jpg" class="img-fluid rounded" alt="">
+                        <div class="card-text">Text Overlay 1</div>
+                        <button type="button" class="btn btn-danger card-text1">Delete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card shadow-lg border-0">
+                    <div class="card-container ">
+                        <img src="../assets/image/art club.jpg" class="img-fluid rounded" alt="">
+                        <div class="card-text">Text Overlay 2</div>
+                        <button type="button" class="btn btn-danger card-text1">Delete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card  shadow-lg border-0">
+                    <div class="card-container">
+                        <img src="../assets/image/images.jpeg" class="img-fluid rounded" alt="">
+                        <div class="card-text">Text Overlay 3</div>
+                        <button type="button" class="btn btn-danger card-text1">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+      
+ 
+   
+    
 </body>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 <script>
     const burger = document.querySelector('.burger');
     const navLinks = document.querySelector('.nav-links');
