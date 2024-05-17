@@ -35,10 +35,10 @@ try {
 
     echo "Result: " . print_r($result, true). "\n";
 
-    if ($result && $result['is_active'] != 1) {
+    if ($result && $result['head_is_active'] != 1) {
         echo "reached here\n";
         // Student ID exists, proceed to create user
-        $result['is_active'] = 1;
+        $result['head_is_active'] = 1;
         $studentIds->update($result['id'], $result);
         echo "reached here after the student id update\n";
         $user->create(
