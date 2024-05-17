@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
     rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Contact Us</title>
-    <link rel="stylesheet" href="../stylesheets/contact.css">
+    <!-- <link rel="stylesheet" href="../stylesheets/contact.css"> -->
 </head>
 <style>
     * {
@@ -151,13 +151,14 @@
         }
         .card-text {
             position: absolute;
-            top: 90%;
+            top: 80%;
             left: 20%;
             transform: translate(-50%, -50%);
             background-color: rgba(0, 0, 0, 0.8); /* Optional: to make the text more readable */
             padding: 10px;
             border-radius: 5px;
         }
+       
         .card {
             height: 100%;
             display: flex;
@@ -177,7 +178,7 @@
                 <a href="#" class="logo">Your Logo</a>
                 <ul class="nav-links">
                     <li><a href="Home.php">Home</a></li>
-                    <li><a href="Activity.html">Activity</a></li>
+                    <li><a href="Activity.php">Activity</a></li>
                     <li><a href="Department.php">Department</a></li>
                     <li><a href="Project.php">Project</a></li>
                     <li><a href="Contactus.php">Contact Us</a></li>
@@ -210,7 +211,8 @@
                 <div class="card  shadow-lg border-0">
                     <div class="card-container ">
                         <img src="../assets/image/spart-club.jpg" class="img-fluid rounded" alt="">
-                        <div class="card-text">Text Overlay 1</div>
+                        <!-- <div class="card-text">Text Overlay 1</div> -->
+                        <a class="btn btn-dark col-12 rounded" href="sport-club.html" role="button">View</a>
                     </div>
                 </div>
             </div>
@@ -218,7 +220,8 @@
                 <div class="card shadow-lg border-0">
                     <div class="card-container ">
                         <img src="../assets/image/art club.jpg" class="img-fluid rounded" alt="">
-                        <div class="card-text">Text Overlay 2</div>
+                        <!-- <div class="card-text">Text Overlay 2</div> -->
+                        <a class="btn btn-dark col-12 rounded" href="sport-club.html" role="button">View</a>
                     </div>
                 </div>
             </div>
@@ -226,7 +229,8 @@
                 <div class="card  shadow-lg border-0">
                     <div class="card-container">
                         <img src="../assets/image/images.jpeg" class="img-fluid rounded" alt="">
-                        <div class="card-text">Text Overlay 3</div>
+                        <!-- <div class="card-text">Text Overlay 3</div> -->
+                        <a class="btn btn-dark col-12 rounded" href="sport-club.html" role="button">View</a>
                     </div>
                 </div>
             </div>
@@ -238,7 +242,8 @@
                 <div class="card  shadow-lg border-0">
                     <div class="card-container ">
                         <img src="../assets/image/spart-club.jpg" class="img-fluid rounded" alt="">
-                        <div class="card-text">Text Overlay 1</div>
+                        <!-- <div class="card-text">Text Overlay 1</div> -->
+                        <a class="btn btn-dark col-12 rounded" href="sport-club.html" role="button">View</a>
                     </div>
                 </div>
             </div>
@@ -246,7 +251,8 @@
                 <div class="card shadow-lg border-0">
                     <div class="card-container ">
                         <img src="../assets/image/art club.jpg" class="img-fluid rounded" alt="">
-                        <div class="card-text">Text Overlay 2</div>
+                        <!-- <div class="card-text">Text Overlay 2</div> -->
+                        <a class="btn btn-dark col-12 rounded" href="sport-club.html" role="button">View</a>
                     </div>
                 </div>
             </div>
@@ -254,16 +260,16 @@
                 <div class="card  shadow-lg border-0">
                     <div class="card-container">
                         <img src="../assets/image/images.jpeg" class="img-fluid rounded" alt="">
-                        <div class="card-text">Text Overlay 3</div>
+                        <!-- <div class="card-text">Text Overlay 3</div> -->
+                        <a class="btn btn-dark col-12 rounded" href="sport-club.html" role="button">View</a>
+                       
                     </div>
                 </div>
             </div>
         </div>
     </div>
     
-        <div class="col-12 text-end ">
-            <img src="../assets/svg/plus-solid (1).svg" class="bg-dark rounded-circle p-2 m-3" width="70px" alt="">
-        </div>
+      
  
    
     
