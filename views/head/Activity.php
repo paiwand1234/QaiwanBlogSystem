@@ -169,6 +169,7 @@
             object-fit: cover;
             height: 300px;
         }
+       
 </style>
 <body>
     <!-- Navbar -->
@@ -209,50 +210,77 @@
         <div class="row">
             <div class="col-12 col-md-4 mb-4">
                 <div class="card  shadow-lg border-0">
-                    <div class="card-container bg-light">
+                    <div class="card-container ">
                         <img src="../../assets/image/art club.jpg" class="img-fluid rounded" alt="">
-                        <!-- <div class="card-text">Text Overlay 3</div> -->
-                        <a class="btn btn-dark col-5 rounded" href="sport-club.html" role="button">View</a>
+                        <!-- <div class="card-text">Text Overlay 1</div> -->
+                        <a class="btn btn-dark col-5 rounded my-2" href="sport-club.html" role="button">View</a>
+                        <a class="btn btn-danger col-5 rounded" href="sport-club.html" role="button">Delete</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card shadow-lg border-0">
+                    <div class="card-container ">
+                        <img src="../../assets/image/art club.jpg" class="img-fluid rounded" alt="">
+                        <!-- <div class="card-text">Text Overlay 2</div> -->
+                        <a class="btn btn-dark col-5 rounded my-2" href="sport-club.html" role="button">View</a>
                         <a class="btn btn-danger col-5 rounded" href="sport-club.html" role="button">Delete</a>
                     </div>
                 </div>
             </div>
             <div class="col-12 col-md-4 mb-4">
                 <div class="card  shadow-lg border-0">
-                    <div class="card-container bg-light">
+                    <div class="card-container">
                         <img src="../../assets/image/art club.jpg" class="img-fluid rounded" alt="">
                         <!-- <div class="card-text">Text Overlay 3</div> -->
-                        <a class="btn btn-dark col-5 rounded" href="sport-club.html" role="button">View</a>
-                        <a class="btn btn-danger col-5 rounded" href="sport-club.html" role="button">Delete</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card  shadow-lg border-0">
-                    <div class="card-container bg-light">
-                        <img src="../../assets/image/art club.jpg" class="img-fluid rounded" alt="">
-                        <!-- <div class="card-text">Text Overlay 3</div> -->
-                        <a class="btn btn-dark col-5 rounded" href="sport-club.html" role="button">View</a>
+                        <a class="btn btn-dark col-5 rounded my-2" href="sport-club.html" role="button">View</a>
                         <a class="btn btn-danger col-5 rounded" href="sport-club.html" role="button">Delete</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
- 
+    <div class="container  my-4">
+        <div class="row">
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card  shadow-lg border-0">
+                    <div class="card-container ">
+                        <img src="../../assets/image/art club.jpg" class="img-fluid rounded" alt="">
+                        <!-- <div class="card-text">Text Overlay 1</div> -->
+                        <a class="btn btn-dark col-5 rounded my-2" href="sport-club.html" role="button">View</a>
+                        <a class="btn btn-danger col-5 rounded" href="sport-club.html" role="button">Delete</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card shadow-lg border-0">
+                    <div class="card-container ">
+                        <img src="../../assets/image/art club.jpg" class="img-fluid rounded" alt="">
+                        <!-- <div class="card-text">Text Overlay 2</div> -->
+                        <a class="btn btn-dark col-5 rounded my-2" href="sport-club.html" role="button">View</a>
+                        <a class="btn btn-danger col-5 rounded" href="sport-club.html" role="button">Delete</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card  shadow-lg border-0">
+                    <div class="card-container">
+                        <img src="../../assets/image/art club.jpg" class="img-fluid rounded" alt="">
+                        <!-- <div class="card-text">Text Overlay 3</div> -->
+                        <a class="btn btn-dark col-5 rounded my-2" href="sport-club.html" role="button">View</a>
+                        <a class="btn btn-danger col-5 rounded" href="sport-club.html" role="button">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+   
       
  
    
-    <div class="container-fliud">
-        <div class="row text-end">
-            <div class="col-12 ">
-                <div class="col-7 bg-dark">
-                    <img src="../../assets/svg/plus-solid (1).svg"style="width: 70px; "  class="rounded" alt="">
-                </div>
-               
-            </div>
-        </div>
-    </div>
+    
 </body>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 <script>
