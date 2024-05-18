@@ -17,7 +17,7 @@ class Users {
         try {
             return $this->db->create('users', [
                 'username' => $username,
-                'password' => password_hash($password, PASSWORD_DEFAULT), // Hash the password
+                'password' => $password, // Hash the password
                 'email' => $email,
                 'role' => $role,
                 'student_id' => $student_id
