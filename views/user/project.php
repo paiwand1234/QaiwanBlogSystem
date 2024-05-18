@@ -163,7 +163,7 @@
             <form>
                  <div class="mb-3">
                    <label for="Name-Project" class="form-label">Project Name</label>
-                   <input type="text" class="form-control" id="Name-Project" aria-describedby="emailHelp">
+                   <input type="text" class="form-control" id="Name-Project" aria-describedby="emailHelp" name="project_name">
                  </div>
                  <div class="mb-3">
                    <label for="Description" class="form-label">Description</label>
