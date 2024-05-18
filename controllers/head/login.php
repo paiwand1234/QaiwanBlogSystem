@@ -20,15 +20,14 @@ try {
         $stmt = $db->pdo->prepare($sql);
         $stmt->execute([$username_or_email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        echo "it was an email \n\n";
+        echo "it was an email \n";
     } else {
         // Handle the input as a username
         $sql = "SELECT * FROM users WHERE username = ?";
         $stmt = $db->pdo->prepare($sql);
         $stmt->execute([$username_or_email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-        echo "it was a username \n\n";
-        
+        echo "it was a username \n";
 
     }
 
