@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-     rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Project Management</title>
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="../../stylesheets/contact.css">
 </head>
 <style>
-     * {
-            
+    * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
@@ -21,9 +22,17 @@
         .navbar {
             background-color: #90C5F9;
             padding: 15px 0;
+            border:2px solid #fff;
         }
 
-     
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
         .logo {
             color: #fff;
@@ -132,11 +141,11 @@
                 transform: rotate(45deg) translate(-5px, -6px);
             }
         }
-
 </style>
-
 <body>
-<nav class="navbar">
+    <!-- Navbar -->
+    <header>
+    <nav class="navbar">
             <div class="container">
                 <a href="#" class="logo">Your Logo</a>
                 <ul class="nav-links">
@@ -158,70 +167,27 @@
             </div>
         </nav>
     </header>
+    <div class="contact-form">
+        <h1>Contact Us</h1>
+        <div class="container">
+            <div class="main">
+                <div class="content">
+                    <h2>Contact Us</h2>
+                    <form action="#" method="post">
+                        <input type="text" name="name" placeholder="Enter Your Name">
 
-    <div class="container">
-        <div class="row  mt-5">
-            <div class="col-5 mx-auto my-auto">
-            <h1>Add Project </h1>
-            <form>
-                 <div class="mb-3">
-                   <label for="Name-Project" class="form-label">Name Project</label>
-                   <input type="text" class="form-control" id="Name-Project" aria-describedby="emailHelp">
-                 </div>
-                 <div class="mb-3">
-                   <label for="Description" class="form-label">Description</label>
-                   <input type="text" class="form-control" id="Description">
-                 </div>
-                 <div class="mb-3">
-                     <label for="formFile" class="form-label">Date</label>
-                    <input class="form-control" type="date" id="formFile">
+                        <input type="email" name="name" placeholder="Enter Your Email">
+                        <input type="tel" name="name" placeholder="Enter Your Number">
+                        <textarea name="message" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn" id="btn">Send <i class="fas fa-paper-plane"></i></button>
+                    </form>
                 </div>
-                 <div class="mb-3">
-                     <label for="formFile" class="form-label">Default file input example</label>
-                    <input class="form-control" type="file" id="formFile">
+                <div class="form-img">
+                    <img src="../../assets/svg/Contact%20us-amico.svg" alt="contact">
                 </div>
-                
-                 <button type="submit" class="btn btn-primary col-12 mt-3">Submit</button>
-            </form>
-            </div>
-            <div class="col-5 mx-auto">
-                <img src="../../assets/svg/Work time-amico.svg" alt="">
             </div>
         </div>
     </div>
-    <div class="container mt-5">
-        <div class="row">
-        <h1>Show Project</h1>
-            <div class="col-3">
-            <div class="card my-5" style="width: 18rem;">
-             <img src="../../assets/image/istockphoto-517188688-612x612.jpg" class="card-img-top" alt="...">
-                     <div class="card-body">
-                       <h5 class="card-title">Name Project</h5>
-                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                       <div class="col">
-                         <a href="#" class="btn btn-danger col-5">delete</a>
-                         <a href="#" class="btn btn-primary col-6">download</a>
-                      </div>
-                    </div>
-             </div>
-            </div>
-            <!-- new card -->
-            <div class="col-3">
-            <div class="card my-5" style="width: 18rem;">
-             <img src="../../assets/image/istockphoto-517188688-612x612.jpg" class="card-img-top" alt="...">
-                     <div class="card-body">
-                       <h5 class="card-title">Name Project</h5>
-                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                       <div class="col">
-                         <a href="#" class="btn btn-danger col-5">delete</a>
-                         <a href="#" class="btn btn-primary col-6">download</a>
-                      </div>
-                    </div>
-             </div>
-            </div>
-        </div>
-    </div>
- 
 </body>
 <script>
     const burger = document.querySelector('.burger');
