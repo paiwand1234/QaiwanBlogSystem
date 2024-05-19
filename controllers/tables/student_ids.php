@@ -7,12 +7,12 @@ class StudentIds {
         $this->db = $db;
     }
 
-    public function create($id, $student_id, $is_active) {
+    public function create($id, $student_id, $user_is_active, $head_is_active) {
         try {
             return $this->db->create('student_ids', [
-                'id' => $id,
                 'student_id' => $student_id,
-                'is_active' => $is_active
+                'user_is_active' => $user_is_active,
+                'head_is_active' => $head_is_active
             ]);
         } catch (PDOException $e) {
             throw new Exception("Error creating post: " . $e->getMessage());

@@ -8,7 +8,7 @@ class ContentTypes{
     
 }
 
-class Contents {
+class PostContents {
     private $db;
 
     public function __construct(Database $db) {
