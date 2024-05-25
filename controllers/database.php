@@ -4,6 +4,7 @@ class Database {
     private $dbname = 'qaiwan_blog_system';
     private $username = 'root';
     private $password = 'root';
+    private $port = 8889;
     private $options = [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // Enable exceptions for errors
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC // Set default fetch mode
@@ -12,7 +13,7 @@ class Database {
 
     public function __construct() {
         try {
-            $this->pdo = new PDO("mysql:host={$this->host};dbname={$this->dbname}", $this->username, $this->password, $this->options);
+            $this->pdo = new PDO("mysql:host={$this->host}:{$this->port};dbname={$this->dbname}", $this->username, $this->password, $this->options);
         } catch (PDOException $e) {
             die("Connection failed: " . $e->getMessage());
         }

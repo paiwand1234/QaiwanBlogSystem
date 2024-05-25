@@ -15,11 +15,14 @@ class PostContents {
         $this->db = $db;
     }
 
-    public function create($contentType, $content) {
+    public function create($project_id, $file_name, $file_dir, $file_type, $file_size) {
         try {
             return $this->db->create('content', [
-                'content_type' => $contentType,
-                'content' => $content
+                'project_id' => $project_id,
+                'file_name' => $file_name,
+                'file_dir' => $file_dir,
+                'file_type' => $file_type,
+                'file_size' => $file_size,
             ]);
         } catch (PDOException $e) {
             throw new Exception("Error creating content: " . $e->getMessage());

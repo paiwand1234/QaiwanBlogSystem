@@ -76,36 +76,74 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
             echo $file_uploaded . "<br>" . $image_uploaded;
 
             if ($image_uploaded && $file_uploaded) {
-                echo "reached here after the file uploading was right \n";
+                echo "Reached here after the file uploading was successful\n";
                 try {
-                    echo "reached here in try catch";
+                    echo "Reached here in try-catch block\n";
+
                     $user_id = $_SESSION['user_id'];
                     $project_name = filter_input(INPUT_POST, 'project_name', FILTER_SANITIZE_SPECIAL_CHARS);
                     $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_SPECIAL_CHARS);
+            
+                    echo "User ID: $user_id, Project Name: $project_name, Description: $description\n";
+            
+                    $db = new Database();
+                    $pdo = $db->pdo;
 
-                    $db = new Database();             
-                    $pdo = $db->pdo;    
+                    if ($pdo) {
+                        echo "Database connection successful\n";
+                    } else {
+                        die("Database connection failed\n");
+                    }
+
+                    // Check if the PDO supports transactions
+                    if ($pdo->getAttribute(PDO::ATTR_DRIVER_NAME) == 'mysql') {
+                        echo "PDO driver is MySQL and supports transactions\n";
+                    } else {
+                        echo "PDO driver does not support transactions\n";
+                    }
+
                     $project = new Projects($db);
                     $project_contents = new ProjectContent($db);
-       
-                
-                    $pdo->beginTransaction();
-                    echo "reached here for transaction beginning \n";
-                    
-                    $result = $project->create($user_id, $project_name, $description);
+            
+                    echo "Initialized database and project instances\n";
 
-                    $project_contents->create($result, $file_name, $file_dir, $file_type, $file_size);
-                    $project_contents->create($result, $image_name, $image_dir, $image_type, $image_size);
-                    
-                    echo "reached here for committing \n";
+                    // Ensure autocommit is off
+                    $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
+                    echo "Autocommit disabled\n";
+            
+                    $pdo->beginTransaction();
+                    echo "\nTransaction started\n";
+            
+                    // Creating project and retrieving the ID
+                    $result = $project->create($user_id, $project_name, $description);
+                    echo "\nProject created with ID: $result\n";
+            
+                    // Creating project contents
+                    // $project_contents->create($result, $file_name, $file_dir, $file_type, $file_size);
+                    echo "\nProject file content created\n";
+            
+                    // $project_contents->create($result, $image_name, $image_dir, $image_type, $image_size);
+                    echo "\nProject image content created\n";
+            
                     $pdo->commit();
+                    echo "\nTransaction committed successfully\n";
 
                 } catch (PDOException $e) {
-                    $pdo->rollBack();
+                    if ($pdo->inTransaction()) {
+                        $pdo->rollBack();
+                        echo "Transaction rolled back due to PDOException\n";
+                    }
                     die("Transaction failed: " . $e->getMessage());
                 } catch (Exception $e) {
-                    $pdo->rollBack();
+                    if ($pdo->inTransaction()) {
+                        $pdo->rollBack();
+                        echo "Transaction rolled back due to Exception\n";
+                    }
                     die("Transaction failed: " . $e->getMessage());
+                } finally {
+                    // Ensure autocommit is back to normal
+                    $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
+                    echo "Autocommit re-enabled\n";
                 }
             } else {
                 die("Error: Sorry, there was an error while uploading the files.");
@@ -119,3 +157,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
 } else {
     die("Error: Invalid request method or user not authenticated.");
 }
+?>

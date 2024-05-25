@@ -211,37 +211,37 @@ if (!isset($_SESSION['user_id'])) {
     <div class="container mt-5">
         <div class="row">
         <h1>Show Project</h1>
-            <!-- <?php 
-                // THIS PART IS FOR ADDING THE FILES IN THE LIST
-                $file_array = array('application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-                $image_array = array('image/jpg', 'image/jpeg', 'image/png');
+            <?php 
+                // // THIS PART IS FOR ADDING THE FILES IN THE LIST
+                // $file_array = array('application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+                // $image_array = array('image/jpg', 'image/jpeg', 'image/png');
 
-                $db = new Database();
-                $project = new Projects($db);
-                $project_contents = new ProjectContent($db);
-                $projects = $project->readOneColumn("user_id", $user_id);
-                if(count($projects) != 0){
-                    // CREATING A 
-                    $projects_array = [count($projects)][3];
-                    foreach ($projects as $index_0 => $project){
-                        // FIRST ONE IS FOR ADDING THE PROJECT TO THE ARRAY
-                        $projects_array[$index_0][0] = $project;
-                        $contents_result = $project_contents->readOneColumn('project_id', $project['id']);
+                // $db = new Database();
+                // $project = new Projects($db);
+                // $project_contents = new ProjectContent($db);
+                // $projects = $project->readOneColumn("user_id", $user_id);
+                // if(count($projects) != 0){
+                //     // CREATING A 
+                //     $projects_array = [count($projects)][3];
+                //     foreach ($projects as $index_0 => $project){
+                //         // FIRST ONE IS FOR ADDING THE PROJECT TO THE ARRAY
+                //         $projects_array[$index_0][0] = $project;
+                //         $contents_result = $project_contents->readOneColumn('project_id', $project['id']);
 
-                        foreach($contents_result as $index_1 => $content){
-                            if(in_array($content["file_type"], $file_array)){
-                                // SECOND ONE IS FOR ADDING THE FILE TO THE ARRAY IF IT EXISTS
-                                $projects_array[$index_0][1] = $content; 
-                            }
-                            else if(in_array($content["file_type"], $image_array)){
-                                // THIRD ONE IS FOR ADDING THE IMAGE IF IT EXISTS
-                                $projects_array[$index_0][2] = $content;
-                            }
-                        }
-                    }
-                }
+                //         foreach($contents_result as $index_1 => $content){
+                //             if(in_array($content["file_type"], $file_array)){
+                //                 // SECOND ONE IS FOR ADDING THE FILE TO THE ARRAY IF IT EXISTS
+                //                 $projects_array[$index_0][1] = $content; 
+                //             }
+                //             else if(in_array($content["file_type"], $image_array)){
+                //                 // THIRD ONE IS FOR ADDING THE IMAGE IF IT EXISTS
+                //                 $projects_array[$index_0][2] = $content;
+                //             }
+                //         }
+                //     }
+                // }
 
-            ?> -->
+            ?>
 
             <div class="col-3">
             <div class="card my-5" style="width: 18rem;">
