@@ -31,7 +31,7 @@ try {
     $user = new Users($db);
 
     // Check if the student ID exists
-    $result = $db->readOneRow("student_ids", "student_id", $student_id);
+    $result = $db->readOneColumn("student_ids", "student_id", $student_id);
 
     echo "Result: " . print_r($result, true). "\n";
 

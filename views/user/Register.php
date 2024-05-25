@@ -63,11 +63,11 @@
                             <form action="../../controllers/users/login.php" method="POST">
                                 <div class="mb-3">
                                     <label for="usernameEmail" class="form-label">Username or Email</label>
-                                    <input type="text" class="form-control" id="usernameEmail" name="usernameEmail" required>
+                                    <input type="text" class="form-control" id="usernameEmail" name="username_email" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="passwordSignIn" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="passwordSignIn" name="passwordSignIn" required>
+                                    <input type="password" class="form-control" id="passwordSignIn" name="password_signin" required>
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Sign In</button>

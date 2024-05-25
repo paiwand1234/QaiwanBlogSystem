@@ -29,6 +29,15 @@ class ProjectContent {
         }
     }
 
+    public function readOneColumn($columnname, $value) {
+        try {
+            return $this->db->readOneColumn('project_contents', $columnname, $value);
+        } catch (PDOException $e) {
+            throw new Exception("Error reading post: " . $e->getMessage());
+        }
+    }
+
+
     public function update($project_content_id, $data) {
         try {
             return $this->db->update('project_content', $project_content_id, $data);

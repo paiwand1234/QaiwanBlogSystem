@@ -27,9 +27,9 @@ class StudentIds {
         }
     }
 
-    public function readOneRow($columnname, $value) {
+    public function readOneColumn($columnname, $value) {
         try {
-            return $this->db->readOneRow('student_ids', $columnname, $value);
+            return $this->db->readOneColumn('student_ids', $columnname, $value);
         } catch (PDOException $e) {
             throw new Exception("Error reading post: " . $e->getMessage());
         }

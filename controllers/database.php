@@ -35,7 +35,7 @@ class Database {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function readOneRow($table, $rowname, $value) {
+    public function readOneColumn($table, $rowname, $value) {
         $sql = "SELECT * FROM $table WHERE $rowname = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$value]);

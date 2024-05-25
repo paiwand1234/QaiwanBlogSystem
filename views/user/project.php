@@ -2,7 +2,23 @@
 <html lang="en">
 
 <?php
+// START THE SESSION
+session_start();
 
+$user_id = null;
+
+// CHECK IF THE USER IS LOGGED IN
+if (!isset($_SESSION['user_id'])) {
+    // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
+    header("Location: ./register.php");
+    exit();
+}else{
+    
+    $user_id = $_SESSION['user_id'];
+
+}
+
+    
 
 ?>
 
@@ -166,7 +182,7 @@
         <div class="row  mt-5">
             <div class="col-5 mx-auto my-auto">
             <h1>Add Project </h1>
-            <form>
+            <form action="../../controllers/users/add_projects.php" method="POST" enctype="multipart/form-data">
                  <div class="mb-3">
                    <label for="Name-Project" class="form-label">Project Name</label>
                    <input type="text" class="form-control" id="Name-Project" aria-describedby="emailHelp" name="project_name">
@@ -175,10 +191,6 @@
                    <label for="Description" class="form-label">Description</label>
                    <input type="text" class="form-control" id="Description" name="description">
                  </div>
-                 <div class="mb-3">
-                     <label for="date" class="form-label">Date</label>
-                    <input class="form-control" type="date" id="formFile" name="date">
-                </div>
                  <div class="mb-3">
                      <label for="formFile" class="form-label">Project Image</label>
                     <input class="form-control" type="file" id="project" name="image">
@@ -199,6 +211,38 @@
     <div class="container mt-5">
         <div class="row">
         <h1>Show Project</h1>
+            <!-- <?php 
+                // THIS PART IS FOR ADDING THE FILES IN THE LIST
+                $file_array = array('application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+                $image_array = array('image/jpg', 'image/jpeg', 'image/png');
+
+                $db = new Database();
+                $project = new Projects($db);
+                $project_contents = new ProjectContent($db);
+                $projects = $project->readOneColumn("user_id", $user_id);
+                if(count($projects) != 0){
+                    // CREATING A 
+                    $projects_array = [count($projects)][3];
+                    foreach ($projects as $index_0 => $project){
+                        // FIRST ONE IS FOR ADDING THE PROJECT TO THE ARRAY
+                        $projects_array[$index_0][0] = $project;
+                        $contents_result = $project_contents->readOneColumn('project_id', $project['id']);
+
+                        foreach($contents_result as $index_1 => $content){
+                            if(in_array($content["file_type"], $file_array)){
+                                // SECOND ONE IS FOR ADDING THE FILE TO THE ARRAY IF IT EXISTS
+                                $projects_array[$index_0][1] = $content; 
+                            }
+                            else if(in_array($content["file_type"], $image_array)){
+                                // THIRD ONE IS FOR ADDING THE IMAGE IF IT EXISTS
+                                $projects_array[$index_0][2] = $content;
+                            }
+                        }
+                    }
+                }
+
+            ?> -->
+
             <div class="col-3">
             <div class="card my-5" style="width: 18rem;">
              <img src="../assets/image/istockphoto-517188688-612x612.jpg" class="card-img-top" alt="...">
