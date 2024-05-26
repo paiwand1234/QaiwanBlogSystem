@@ -1,4 +1,5 @@
 <?php
+// include "../database.php";
 
 class UserRole{
     const ADMIN = "admin";
@@ -8,14 +9,14 @@ class UserRole{
 
 class Users {
     private $db;
-
+    private $table_name = 'users';
     public function __construct(Database $db) {
         $this->db = $db;
     }
 
     public function create($username, $password, $email, $role, $student_id) {
         try {
-            return $this->db->create('users', [
+            return $this->db->create($this->table_name, [
                 'username' => $username,
                 'password' => $password, // Hash the password
                 'email' => $email,
@@ -29,7 +30,7 @@ class Users {
 
     public function read($userId) {
         try {
-            return $this->db->read('users', $userId);
+            return $this->db->read($this->table_name, $userId);
         } catch (PDOException $e) {
             throw new Exception("Error reading user: " . $e->getMessage());
         }
@@ -41,7 +42,7 @@ class Users {
             if (isset($data['password'])) {
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
             }
-            return $this->db->update('users', $userId, $data);
+            return $this->db->update($this->table_name, $userId, $data);
         } catch (PDOException $e) {
             throw new Exception("Error updating user: " . $e->getMessage());
         }
@@ -49,7 +50,7 @@ class Users {
 
     public function delete($userId) {
         try {
-            return $this->db->delete('users', $userId);
+            return $this->db->delete($this->table_name, $userId);
         } catch (PDOException $e) {
             throw new Exception("Error deleting user: " . $e->getMessage());
         }

@@ -40,7 +40,7 @@ class Database {
         $sql = "SELECT * FROM $table WHERE $rowname = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$value]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 

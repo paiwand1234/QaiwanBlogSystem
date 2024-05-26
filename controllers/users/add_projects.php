@@ -1,8 +1,11 @@
 <?php
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+
 
 include "../tables/users.php";
 include "../tables/projects.php"; // Assuming you have this file
-include "../tables/project_content.php"; // Assuming you have this file
+include "../tables/project_contents.php"; // Assuming you have this file
 include "../database.php"; // Assuming you have this file
 
 session_start();
@@ -119,11 +122,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
                     echo "\nProject created with ID: $result\n";
             
                     // Creating project contents
-                    // $project_contents->create($result, $file_name, $file_dir, $file_type, $file_size);
-                    echo "\nProject file content created\n";
-            
-                    // $project_contents->create($result, $image_name, $image_dir, $image_type, $image_size);
-                    echo "\nProject image content created\n";
+                    try {
+                        $project_contents->create($result, $file_name, $file_dir, $file_type, $file_size);
+                        echo "\nProject file content created\n";
+
+                        $project_contents->create($result, $image_name, $image_dir, $image_type, $image_size);
+                        echo "\nProject image content created\n";
+                    } catch (Exception $e) {
+                        echo "Error in project contents creation: " . $e->getMessage() . "\n";
+                        throw $e;
+                    }
             
                     $pdo->commit();
                     echo "\nTransaction committed successfully\n";
@@ -157,4 +165,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
 } else {
     die("Error: Invalid request method or user not authenticated.");
 }
-?>

@@ -2,6 +2,14 @@
 <html lang="en">
 
 <?php
+
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+
+include "../../controllers/tables/projects.php";
+include "../../controllers/tables/project_contents.php";
+include "../../controllers/database.php";
+
 // START THE SESSION
 session_start();
 
@@ -18,6 +26,7 @@ if (!isset($_SESSION['user_id'])) {
 
 }
 
+
 ?>
 
 
@@ -30,9 +39,6 @@ if (!isset($_SESSION['user_id'])) {
     <title>Project Management</title>
 </head>
 <style>
-     * {
-            
-        }
 
         body {
             font-family: Arial, sans-serif;
@@ -183,62 +189,94 @@ if (!isset($_SESSION['user_id'])) {
         <div class="row  mt-5">
             <div class="col-5 mx-auto my-auto">
             <h1>Add Project </h1>
-            <form>
+            <form action="../../controllers/users/add_projects.php" method="POST" enctype="multipart/form-data">
                  <div class="mb-3">
-                   <label for="Name-Project" class="form-label">Name Project</label>
-                   <input type="text" class="form-control" id="Name-Project" aria-describedby="emailHelp">
+                   <label for="Name-Project" class="form-label">Project Name</label>
+                   <input type="text" class="form-control" id="Name-Project" aria-describedby="emailHelp" name="project_name">
                  </div>
                  <div class="mb-3">
                    <label for="Description" class="form-label">Description</label>
-                   <input type="text" class="form-control" id="Description">
+                   <input type="text" class="form-control" id="Description" name="description">
                  </div>
                  <div class="mb-3">
-                     <label for="formFile" class="form-label">Date</label>
-                    <input class="form-control" type="date" id="formFile">
+                     <label for="formFile" class="form-label">Project Image</label>
+                    <input class="form-control" type="file" id="project" name="image">
                 </div>
                  <div class="mb-3">
                      <label for="formFile" class="form-label">Default file input example</label>
-                    <input class="form-control" type="file" id="formFile">
+                    <input class="form-control" type="file" id="formFile" name="file">
                 </div>
                 
                  <button type="submit" class="btn btn-primary col-12 mt-3">Submit</button>
             </form>
             </div>
             <div class="col-5 mx-auto">
-                <img src="../../assets/svg/Work time-amico.svg" alt="">
+                <img src="../assets/svg/Work time-amico.svg" alt="">
             </div>
         </div>
     </div>
     <div class="container mt-5">
         <div class="row">
         <h1>Show Project</h1>
+            <?php 
+            // THIS PART IS FOR ADDING THE FILES IN THE LIST
+            $file_array = array('application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+            $image_array = array('image/jpg', 'image/jpeg', 'image/png');
+
+            $db = new Database();
+            $project = new Projects($db);
+            $project_contents = new ProjectContent($db);
+            $projects = $project->readOneColumn("user_id", $user_id);
+
+            if (count($projects) != 0) {
+                // CREATING THE PROJECTS ARRAY
+                $projects_array = array();
+
+                foreach ($projects as $index_0 => $project) {
+                    // INITIALIZE PROJECT ARRAY
+                    $projects_array[$index_0] = array();
+                    
+                    // FIRST ONE IS FOR ADDING THE PROJECT TO THE ARRAY
+                    $projects_array[$index_0][0] = $project;
+                    $contents_result = $project_contents->readOneColumn('project_id', $project['id']);
+
+                    foreach ($contents_result as $index_1 => $content) {
+                        if (in_array($content["file_type"], $file_array)) {
+                            // ADDING THE FILE TO THE ARRAY IF IT EXISTS
+                            $projects_array[$index_0][1] = $content;
+                        } else if (in_array($content["file_type"], $image_array)) {
+                            // ADDING THE IMAGE TO THE ARRAY IF IT EXISTS
+                            $projects_array[$index_0][2] = $content;
+                        }
+                    }
+                }
+
+                // DEBUG: PRINT THE PROJECTS ARRAY
+                // print_r($projects_array);
+            }
+            ?>
+            <!-- <div class=""><?php  print_r($projects_array); ?></div> -->
+            
+            <?php foreach ($projects_array as $index_0 => $project){ ?>
             <div class="col-3">
-            <div class="card my-5" style="width: 18rem;">
-             <img src="../../assets/image/istockphoto-517188688-612x612.jpg" class="card-img-top" alt="...">
-                     <div class="card-body">
-                       <h5 class="card-title">Name Project</h5>
-                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                       <div class="col">
-                         <a href="#" class="btn btn-danger col-5">delete</a>
-                         <a href="#" class="btn btn-primary col-6">download</a>
-                      </div>
+                <div class="card my-5" style="width: 18rem;">
+                    <img src="<?php echo $project[2]['file_dir'].$project[2]['file_name']; ?>" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $project[0]['name']; ?></h5>
+                        <p class="card-text"><?php echo $project[0]['description']; ?></p>
+                        <div class="col d-flex justify-content-around">
+                            <form action="delete_project.php" method="POST" class="delete-form">
+                                <input class="d-none" type="hidden" name="project_id" value="<?php echo $project[0]['id']; ?>">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                            <a href="<?php echo $project[1]['file_dir'].$project[1]['file_name']; ?>" class="btn btn-primary" download="<?php echo "project".$project[0]['id']; ?>">Download</a>
+                        </div>
                     </div>
-             </div>
+                </div>
             </div>
-            <!-- new card -->
-            <div class="col-3">
-            <div class="card my-5" style="width: 18rem;">
-             <img src="../../assets/image/istockphoto-517188688-612x612.jpg" class="card-img-top" alt="...">
-                     <div class="card-body">
-                       <h5 class="card-title">Name Project</h5>
-                       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                       <div class="col">
-                         <a href="#" class="btn btn-danger col-5">delete</a>
-                         <a href="#" class="btn btn-primary col-6">download</a>
-                      </div>
-                    </div>
-             </div>
-            </div>
+            <?php } ?>
+
+
         </div>
     </div>
  

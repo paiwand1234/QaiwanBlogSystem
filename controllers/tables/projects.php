@@ -1,15 +1,17 @@
 <?php
 
+// include "../database.php";
+
 class Projects {
     private $db;
-
+    private $table_name = 'projects';
     public function __construct(Database $db) {
         $this->db = $db;
     }
 
     public function create($user_id, $name, $description) {
         try {
-            return $this->db->create('projects', [
+            return $this->db->create($this->table_name, [
                 'user_id' => $user_id,
                 'name' => $name,
                 'description' => $description,
@@ -21,7 +23,7 @@ class Projects {
 
     public function read($project_id) {
         try {
-            return $this->db->read('projects', $project_id);
+            return $this->db->read($this->table_name, $project_id);
         } catch (PDOException $e) {
             throw new Exception("Error reading project: " . $e->getMessage());
         }
@@ -29,7 +31,7 @@ class Projects {
 
     public function readOneColumn($columnname, $value) {
         try {
-            return $this->db->readOneColumn('projects', $columnname, $value);
+            return $this->db->readOneColumn($this->table_name, $columnname, $value);
         } catch (PDOException $e) {
             throw new Exception("Error reading post: " . $e->getMessage());
         }
@@ -40,7 +42,7 @@ class Projects {
 
     public function update($project_id, $data) {
         try {
-            return $this->db->update('projects', $project_id, $data);
+            return $this->db->update($this->table_name, $project_id, $data);
         } catch (PDOException $e) {
             throw new Exception("Error updating project: " . $e->getMessage());
         }
