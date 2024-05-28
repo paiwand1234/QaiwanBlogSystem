@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Contact Us</title>
-    <link rel="stylesheet" href="../stylesheets/contact.css">
+    <link rel="stylesheet" href="../../stylesheets/contact.css">
 </head>
 <style>
     * {
@@ -144,29 +144,7 @@
 </style>
 <body>
     <!-- Navbar -->
-    <header>
-    <nav class="navbar">
-            <div class="container">
-                <a href="#" class="logo">Your Logo</a>
-                <ul class="nav-links">
-                    <li><a href="Home.php">Home</a></li>
-                    <li><a href="Activity.php">Activity</a></li>
-                    <li><a href="Department.php">Department</a></li>
-                    <li><a href="Project.php">Project</a></li>
-                    <li><a href="Contactus.php">Contact Us</a></li>
-                </ul>
-                <form class="search-form">
-                    <input type="text" placeholder="Search...">
-                    <button type="submit">Search</button>
-                </form>
-                <div class="burger">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                </div>
-            </div>
-        </nav>
-    </header>
+    <?php require 'nav.html'; ?>
     <div class="contact-form">
         <h1>Contact Us</h1>
         <div class="container">
@@ -183,7 +161,7 @@
                     </form>
                 </div>
                 <div class="form-img">
-                    <img src="../assets/svg/Contact%20us-amico.svg" alt="contact">
+                    <img src="../../assets/svg/Contact%20us-amico.svg" alt="contact">
                 </div>
             </div>
         </div>

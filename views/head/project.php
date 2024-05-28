@@ -38,6 +38,7 @@ if (!isset($_SESSION['user_id'])) {
      rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Project Management</title>
 </head>
+
 <style>
 
         body {
@@ -162,28 +163,7 @@ if (!isset($_SESSION['user_id'])) {
 </style>
 
 <body>
-<nav class="navbar">
-            <div class="container">
-                <a href="#" class="logo">Your Logo</a>
-                <ul class="nav-links">
-                    <li><a href="Home.php">Home</a></li>
-                    <li><a href="Activity.php">Activity</a></li>
-                    <li><a href="Department.php">Department</a></li>
-                    <li><a href="Project.php">Project</a></li>
-                    <li><a href="../contactus.php">Contact Us</a></li>
-                </ul>
-                <form class="search-form">
-                    <input type="text" placeholder="Search...">
-                    <button type="submit">Search</button>
-                </form>
-                <div class="burger">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                </div>
-            </div>
-        </nav>
-    </header>
+<?php require 'nav.html'; ?>
 
     <div class="container">
         <div class="row  mt-5">
