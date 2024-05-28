@@ -134,6 +134,7 @@
 
 </style>
 <body>
+    
 <?php require 'nav.html'; ?>
 
      <div class="container mt-5">

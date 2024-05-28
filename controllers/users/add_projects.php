@@ -135,11 +135,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
             
                     $pdo->commit();
                     echo "\nTransaction committed successfully\n";
+                    $success = "Transaction rolled back due to PDOException". $e->getMessage();
+                    header("Location: ../../views/user/project.php?success=".$success);
 
                 } catch (PDOException $e) {
                     if ($pdo->inTransaction()) {
                         $pdo->rollBack();
-                        echo "Transaction rolled back due to PDOException\n";
+                        $error = "Transaction rolled back due to PDOException". $e->getMessage();
+                        header("Location: ../../views/user/project.php?error=".$error);
                     }
                     die("Transaction failed: " . $e->getMessage());
                 } catch (Exception $e) {
@@ -147,21 +150,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
                         $pdo->rollBack();
                         echo "Transaction rolled back due to Exception\n";
                     }
-                    die("Transaction failed: " . $e->getMessage());
+                    $error = "Transaction failed: " . $e->getMessage();
+                    header("Location: ../../views/user/project.php?error=".$error);
                 } finally {
                     // Ensure autocommit is back to normal
                     $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
                     echo "Autocommit re-enabled\n";
+                    header("Location: ../../views/user/project.php?");
                 }
             } else {
-                die("Error: Sorry, there was an error while uploading the files.");
+                $error = "Error: Sorry, there was an error while uploading the files.";
+                header("Location: ../../views/user/project.php?error=".$error);
             }
         } else {
-            die("Error Uploading file: " . $_FILES['file']['error']);
+            $error = "Error Uploading file: " . $_FILES['file']['error'];
+            header("Location: ../../views/user/project.php?error=".$error);
         }
     } catch (Exception $e) {
-        die("Error reading project content: " . $e->getMessage());
+        $error = "Error reading project content: " . $e->getMessage();
+        header("Location: ../../views/user/project.php?error=".$error);
     }
 } else {
-    die("Error: Invalid request method or user not authenticated.");
+    $error = "Error: Invalid request method or user not authenticated.";
+    header("Location: ../../views/user/project.php?error=".$error);
 }

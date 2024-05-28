@@ -257,7 +257,9 @@ if (!isset($_SESSION['user_id'])) {
             ?>
             <!-- <div class=""><?php  print_r($projects_array); ?></div> -->
             
-            <?php foreach ($projects_array as $index_0 => $project){ ?>
+            <?php 
+            if(isset($projects_array)){
+            foreach ($projects_array as $index_0 => $project){ ?>
             <div class="col-3">
                 <div class="card my-5" style="width: 18rem;">
                     <img src="<?php echo $project[2]['file_dir'].$project[2]['file_name']; ?>" class="card-img-top" alt="...">
@@ -274,7 +276,7 @@ if (!isset($_SESSION['user_id'])) {
                     </div>
                 </div>
             </div>
-            <?php } ?>
+            <?php }} ?>
 
 
         </div>

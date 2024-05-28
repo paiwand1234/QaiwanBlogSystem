@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 19, 2024 at 07:51 AM
+-- Generation Time: May 28, 2024 at 09:00 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -38,10 +38,10 @@ CREATE TABLE `posts` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `post_content`
+-- Table structure for table `post_contents`
 --
 
-CREATE TABLE `post_content` (
+CREATE TABLE `post_contents` (
   `id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
   `content_type` enum('text','file','image','video') NOT NULL,
@@ -69,21 +69,40 @@ CREATE TABLE `projects` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `projects`
+--
+
+INSERT INTO `projects` (`id`, `user_id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 5, 'something', 'This is my test project description', '2024-05-26 11:15:44', '2024-05-26 11:15:44'),
+(2, 5, 'another project', 'another description', '2024-05-26 12:29:58', '2024-05-26 12:29:58');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `project_content`
+-- Table structure for table `project_contents`
 --
 
-CREATE TABLE `project_content` (
+CREATE TABLE `project_contents` (
   `id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
   `file_name` varchar(1024) NOT NULL,
   `file_dir` varchar(2048) NOT NULL,
   `file_type` varchar(256) NOT NULL,
+  `file_size` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `project_contents`
+--
+
+INSERT INTO `project_contents` (`id`, `project_id`, `file_name`, `file_dir`, `file_type`, `file_size`, `created_at`, `updated_at`) VALUES
+(1, 1, '20-2024 Master Program of Software Engineeringú¿Nankai Universityú⌐.pdf', '../../uploads/projects/files/', 'application/pdf', 258566, '2024-05-26 11:15:44', '2024-05-26 11:15:44'),
+(2, 1, '98696.jpg', '../../uploads/projects/images/', 'image/jpeg', 187218, '2024-05-26 11:15:44', '2024-05-26 11:15:44'),
+(3, 2, '20-2024_Master_Program_of_Software_EngineeringuNankai_Universityu_1.pdf', '../../uploads/projects/files/', 'application/pdf', 258566, '2024-05-26 12:29:58', '2024-05-26 12:29:58'),
+(4, 2, '72706.jpg', '../../uploads/projects/images/', 'image/jpeg', 562055, '2024-05-26 12:29:58', '2024-05-26 12:29:58');
 
 -- --------------------------------------------------------
 
@@ -143,9 +162,9 @@ ALTER TABLE `posts`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `post_content`
+-- Indexes for table `post_contents`
 --
-ALTER TABLE `post_content`
+ALTER TABLE `post_contents`
   ADD PRIMARY KEY (`id`),
   ADD KEY `content_ibfk_1` (`post_id`);
 
@@ -157,9 +176,9 @@ ALTER TABLE `projects`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `project_content`
+-- Indexes for table `project_contents`
 --
-ALTER TABLE `project_content`
+ALTER TABLE `project_contents`
   ADD PRIMARY KEY (`id`),
   ADD KEY `project_id` (`project_id`);
 
@@ -183,16 +202,22 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `post_content`
+-- AUTO_INCREMENT for table `post_contents`
 --
-ALTER TABLE `post_content`
+ALTER TABLE `post_contents`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `project_content`
+-- AUTO_INCREMENT for table `projects`
 --
-ALTER TABLE `project_content`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `projects`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `project_contents`
+--
+ALTER TABLE `project_contents`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -205,10 +230,10 @@ ALTER TABLE `posts`
   ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `post_content`
+-- Constraints for table `post_contents`
 --
-ALTER TABLE `post_content`
-  ADD CONSTRAINT `post_content_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`);
+ALTER TABLE `post_contents`
+  ADD CONSTRAINT `post_contents_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`);
 
 --
 -- Constraints for table `projects`
@@ -217,10 +242,10 @@ ALTER TABLE `projects`
   ADD CONSTRAINT `projects_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `project_content`
+-- Constraints for table `project_contents`
 --
-ALTER TABLE `project_content`
-  ADD CONSTRAINT `project_content_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `project_contents`
+  ADD CONSTRAINT `project_contents_ibfk_1` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `users`

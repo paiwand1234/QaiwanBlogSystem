@@ -151,11 +151,12 @@
             <div class="main">
                 <div class="content">
                     <h2>Contact Us</h2>
-                    <form action="#" method="post">
+                    <form action="../../controllers/contactus.php" method="POST">
                         <input type="text" name="name" placeholder="Enter Your Name">
 
-                        <input type="email" name="name" placeholder="Enter Your Email">
-                        <input type="tel" name="name" placeholder="Enter Your Number">
+                        <input type="email" name="email" placeholder="Enter Your Email">
+                        <input type="tel" name="phone_number" placeholder="Enter Your Number">
+                        <input type="text" name="subject" placeholder="Subject">
                         <textarea name="message" placeholder="Your Message"></textarea>
                         <button type="submit" class="btn" id="btn">Send <i class="fas fa-paper-plane"></i></button>
                     </form>

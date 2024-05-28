@@ -169,7 +169,7 @@ if (!isset($_SESSION['user_id'])) {
         <div class="row  mt-5">
             <div class="col-5 mx-auto my-auto">
             <h1>Add Project </h1>
-            <form action="../../controllers/users/add_projects.php" method="POST" enctype="multipart/form-data">
+            <form action="../../controllers/head/add_projects.php" method="POST" enctype="multipart/form-data">
                  <div class="mb-3">
                    <label for="Name-Project" class="form-label">Project Name</label>
                    <input type="text" class="form-control" id="Name-Project" aria-describedby="emailHelp" name="project_name">
@@ -237,7 +237,9 @@ if (!isset($_SESSION['user_id'])) {
             ?>
             <!-- <div class=""><?php  print_r($projects_array); ?></div> -->
             
-            <?php foreach ($projects_array as $index_0 => $project){ ?>
+            <?php 
+            if(isset($projects_array)){
+            foreach ($projects_array as $index_0 => $project){ ?>
             <div class="col-3">
                 <div class="card my-5" style="width: 18rem;">
                     <img src="<?php echo $project[2]['file_dir'].$project[2]['file_name']; ?>" class="card-img-top" alt="...">
@@ -254,7 +256,7 @@ if (!isset($_SESSION['user_id'])) {
                     </div>
                 </div>
             </div>
-            <?php } ?>
+            <?php }} ?>
 
 
         </div>

@@ -1,0 +1,7 @@
+{
+    "name": "sherlock/qaiwan-blog-system",
+    "type": "project",
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    }
+}
