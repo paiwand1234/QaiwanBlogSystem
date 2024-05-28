@@ -6,8 +6,8 @@
 // error_reporting(E_ALL);
 // ini_set('display_errors', 1);
 
-include "../../controllers/tables/projects.php";
-include "../../controllers/tables/project_contents.php";
+include "../../models/projects.php";
+include "../../models/project_contents.php";
 include "../../controllers/database.php";
 
 // START THE SESSION
@@ -170,7 +170,7 @@ if (!isset($_SESSION['user_id'])) {
                     <li><a href="Activity.php">Activity</a></li>
                     <li><a href="Department.php">Department</a></li>
                     <li><a href="Project.php">Project</a></li>
-                    <li><a href="Contactus.php">Contact Us</a></li>
+                    <li><a href="../contactus.php">Contact Us</a></li>
                 </ul>
                 <form class="search-form">
                     <input type="text" placeholder="Search...">
