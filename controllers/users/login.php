@@ -1,6 +1,6 @@
 <?php
 include "../database.php";
-include "../tables/users.php";
+include "../../models/users.php";
 session_start();
 
 $username_or_email = filter_input(INPUT_POST, 'username_email', FILTER_SANITIZE_SPECIAL_CHARS);

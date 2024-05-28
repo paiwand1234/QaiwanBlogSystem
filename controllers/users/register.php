@@ -1,8 +1,8 @@
 <?php
 
 include "../database.php";
-include "../tables/student_ids.php";
-include "../tables/users.php";
+include "../../models/student_ids.php";
+include "../../models/users.php";
 session_start();
 // Sanitize and validate inputs
 $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
