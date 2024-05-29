@@ -1,4 +1,12 @@
 <?php
+
+class Operators{
+    const OR = "OR";
+    const AND = "AND";
+}
+
+
+
 class Database {
     private $host = 'localhost';
     private $dbname = 'qaiwan_blog_system';
@@ -40,6 +48,20 @@ class Database {
         $sql = "SELECT * FROM $table WHERE $rowname = ?";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$value]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function readMultipleColumns($table, $conditions, $opderator) {
+        $query = "SELECT * FROM $table WHERE ";
+        $params = [];
+        $clauses = [];
+        foreach ($conditions as $column => $value) {
+            // THIS WILL AUTOMATICALLY ADD IT TO THE END OF THE ARRAY
+            $clauses[] = "$column = :$column";
+            $params[$column] = $value;
+        }
+        $query .= implode(' '.$opderator.' ', $clauses);
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 

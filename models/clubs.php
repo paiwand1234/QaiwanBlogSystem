@@ -35,11 +35,12 @@ class Clubs {
         }
     }
 
-    public function readMultipleColumns($conditions) {
+
+    public function readMultipleColumns($conditions, $operator) {
         try {
-            return $this->db->readMultipleColumns($this->table_name, $conditions);
+            return $this->db->readMultipleColumns($this->table_name, $conditions, $operator);
         } catch (PDOException $e) {
-            throw new Exception("Error reading clubs: " . $e->getMessage());
+            throw new Exception("Error reading club heads: " . $e->getMessage());
         }
     }
 

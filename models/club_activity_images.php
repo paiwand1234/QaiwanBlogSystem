@@ -36,14 +36,13 @@ class ClubActivityImages {
         }
     }
 
-    public function readMultipleColumns($conditions) {
+    public function readMultipleColumns($conditions, $operator) {
         try {
-            return $this->db->readMultipleColumns($this->table_name, $conditions);
+            return $this->db->readMultipleColumns($this->table_name, $conditions, $operator);
         } catch (PDOException $e) {
-            throw new Exception("Error reading club activity images: " . $e->getMessage());
+            throw new Exception("Error reading club heads: " . $e->getMessage());
         }
     }
-
     public function update($imageId, $data) {
         try {
             return $this->db->update($this->table_name, $imageId, $data);
