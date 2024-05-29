@@ -275,12 +275,7 @@ if (!isset($_SESSION['user_id'])) {
         </div>
     </div>
 
-   
-   
-      
- 
-   
-    
+
 </body>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 <script>
