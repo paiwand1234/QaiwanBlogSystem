@@ -4,8 +4,8 @@
 
 
 include "../../models/users.php";
-include "../../models/projects.php"; // Assuming you have this file
-include "../../models/project_contents.php"; // Assuming you have this file
+include "../../../models/projects.php"; // Assuming you have this file
+include "../../../models/project_contents.php"; // Assuming you have this file
 include "../database.php"; // Assuming you have this file
 
 session_start();

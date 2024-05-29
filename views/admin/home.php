@@ -1,5 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php 
+
+
+// START THE SESSION
+session_start();
+
+$user_id = null;
+
+// CHECK IF THE USER IS LOGGED IN
+if (!isset($_SESSION['user_id'])) {
+    // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
+    header("Location: ./register.php");
+    exit();
+}else{
+    
+    $user_id = $_SESSION['user_id'];
+
+}
+
+
+?>
+
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

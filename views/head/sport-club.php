@@ -111,10 +111,14 @@
         </div>
       </div>
     </div>
-
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col text-end m-3 ">
+              <img src="../../assets/svg/plus-solid (1).svg" width="70px" height="70px" class="bg-dark rounded-circle " alt="">
+          </div>
+      </div>
+  </div>
             
-            
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

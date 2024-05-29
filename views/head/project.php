@@ -6,8 +6,8 @@
 // error_reporting(E_ALL);
 // ini_set('display_errors', 1);
 
-include "../../models/projects.php";
-include "../../models/project_contents.php";
+include "../../../models/projects.php";
+include "../../../models/project_contents.php";
 include "../../controllers/database.php";
 
 // START THE SESSION
@@ -23,7 +23,7 @@ if (!isset($_SESSION['user_id'])) {
 }else{
     
     $user_id = $_SESSION['user_id'];
-
+    
 }
 
 
