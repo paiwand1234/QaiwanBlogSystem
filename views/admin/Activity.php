@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<form?php 
+<?php 
 
 
 // START THE SESSION
@@ -227,9 +227,9 @@ if (!isset($_SESSION['user_id'])) {
     </div>
     <hr class="mx-5">
 
-    <div class="container  my-4">
-        <div class="row">
-            <div class="col-4 mb-4 border border-danger">
+    <div class="container my-4">
+        <div class="row w-100">
+            <div class="col-4 mb-4 ">
                 <div class="card shadow-lg border-0">
                     <div class="card-container ">
                         <img src="../../assets/image/art club.jpg" class="img-fluid rounded" alt="">
@@ -266,17 +266,16 @@ if (!isset($_SESSION['user_id'])) {
       <div class="modal-body">
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label">Club Name:</label>
-            <input type="text" class="form-control" id="recipient-name" name="name">
+            <input type="text" class="form-control" id="recipient-name" name="name" required>
           </div>
           <label for="inputGroupFile02" class="col-form-label">Club Image:</label>
           <div class="input-group mb-3">
-            <input type="file" class="form-control" id="inputGroupFile02" name="">
-            <!-- <label class="input-group-text" for="inputGroupFile02">Upload</label> -->
+            <input type="file" class="form-control" id="inputGroupFile02" name="image" required>
         </div>
 
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Club Description:</label>
-            <textarea class="form-control" id="message-text" name=""></textarea>
+            <textarea class="form-control" id="message-text" name="description" required></textarea>
           </div>
       </div>
       <div class="modal-footer">
