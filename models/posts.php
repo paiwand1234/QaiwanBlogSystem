@@ -29,6 +29,15 @@ class Posts {
         }
     }
 
+
+    public function readOneColumn($columnname, $value) {
+        try {
+            return $this->db->readOneColumn($this->table_name, $columnname, $value);
+        } catch (PDOException $e) {
+            throw new Exception("Error reading posts: " . $e->getMessage());
+        }
+    }
+
     public function update($postId, $data) {
         try {
             return $this->db->update($this->table_name, $postId, $data);

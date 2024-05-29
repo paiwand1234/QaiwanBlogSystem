@@ -15,7 +15,7 @@ class StudentIds {
                 'head_is_active' => $head_is_active
             ]);
         } catch (PDOException $e) {
-            throw new Exception("Error creating post: " . $e->getMessage());
+            throw new Exception("Error creating student_id: " . $e->getMessage());
         }
     }
 
@@ -23,7 +23,7 @@ class StudentIds {
         try {
             return $this->db->read($this->table_name, $id);
         } catch (PDOException $e) {
-            throw new Exception("Error reading post: " . $e->getMessage());
+            throw new Exception("Error reading student_id: " . $e->getMessage());
         }
     }
 
@@ -31,7 +31,7 @@ class StudentIds {
         try {
             return $this->db->readOneColumn($this->table_name, $columnname, $value);
         } catch (PDOException $e) {
-            throw new Exception("Error reading post: " . $e->getMessage());
+            throw new Exception("Error reading student_id: " . $e->getMessage());
         }
     }
 
@@ -39,7 +39,7 @@ class StudentIds {
         try {
             return $this->db->update($this->table_name, $id, $data);
         } catch (PDOException $e) {
-            throw new Exception("Error updating post: " . $e->getMessage());
+            throw new Exception("Error updating student_id: " . $e->getMessage());
         }
     }
 
@@ -47,7 +47,7 @@ class StudentIds {
         try {
             return $this->db->delete($this->table_name, $id);
         } catch (PDOException $e) {
-            throw new Exception("Error deleting post: " . $e->getMessage());
+            throw new Exception("Error deleting student_id: " . $e->getMessage());
         }
     }
 }

@@ -38,6 +38,14 @@ class PostContents {
         }
     }
 
+    public function readOneColumn($columnname, $value) {
+        try {
+            return $this->db->readOneColumn($this->table_name, $columnname, $value);
+        } catch (PDOException $e) {
+            throw new Exception("Error reading post_content: " . $e->getMessage());
+        }
+    }
+
     public function update($contentId, $data) {
         try {
             return $this->db->update($this->table_name, $contentId, $data);

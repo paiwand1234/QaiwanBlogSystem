@@ -36,6 +36,14 @@ class Users {
         }
     }
 
+    public function readOneColumn($columnname, $value) {
+        try {
+            return $this->db->readOneColumn($this->table_name, $columnname, $value);
+        } catch (PDOException $e) {
+            throw new Exception("Error reading user: " . $e->getMessage());
+        }
+    }
+
     public function update($userId, $data) {
         try {
             // Check if password needs to be hashed before updating

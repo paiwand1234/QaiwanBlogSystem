@@ -27,7 +27,7 @@ if (!$name || !$email || !$phone_number || !$message_content) {
 try {
     // Server settings
     $mail->isSMTP();
-    $mail->Host = 'smtp.example.com';
+    $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
     $mail->Username = 'your_email@example.com';
     $mail->Password = 'your_password';

@@ -34,7 +34,7 @@ class ProjectContent {
         try {
             return $this->db->readOneColumn($this->table_name, $columnname, $value);
         } catch (PDOException $e) {
-            throw new Exception("Error reading post: " . $e->getMessage());
+            throw new Exception("Error reading post_content: " . $e->getMessage());
         }
     }
 
