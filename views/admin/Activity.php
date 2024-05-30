@@ -258,7 +258,7 @@ if (!isset($_SESSION['user_id'])) {
       
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <form class="modal-content" action="../../controllers/admin/clubs/add_club.php" method="POST">
+    <form class="modal-content" action="../../controllers/admin/clubs/add_club.php" method="POST" enctype="multipart/form-data">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="staticBackdropLabel">Adding Clubs</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

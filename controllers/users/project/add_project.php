@@ -7,6 +7,7 @@ include "../../models/users.php";
 include "../../../models/projects.php"; // Assuming you have this file
 include "../../../models/project_contents.php"; // Assuming you have this file
 include "../database.php"; // Assuming you have this file
+include "../../utils/utils.php";
 
 session_start();
 
@@ -58,21 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
                 die("Error: Invalid image type.");
             }
 
-            // Function to handle file uploads
-            function handle_file_upload($file, $dir) {
-                if (file_exists($dir . $file['name'])) {
-                    echo $file['name'] . " already exists.<br>";
-                    return false;
-                }
-                if (move_uploaded_file($file['tmp_name'], $dir . $file['name'])) {
-                    echo "Your " . $file['name'] . " was uploaded successfully.<br>";
-                    return true;
-                } else {
-                    echo "Error uploading " . $file['name'] . ".<br>";
-                    return false;
-                }
-            }
-
             // Handle file and image uploads
             $file_uploaded = handle_file_upload($_FILES['file'], $file_dir);
             $image_uploaded = handle_file_upload($_FILES['image'], $image_dir);
@@ -105,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
                         echo "PDO driver does not support transactions\n";
                     }
 
-                    $project = new Projects($db);
+                    $club = new Projects($db);
                     $project_contents = new ProjectContent($db);
             
                     echo "Initialized database and project instances\n";
@@ -118,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
                     echo "\nTransaction started\n";
             
                     // Creating project and retrieving the ID
-                    $result = $project->create($user_id, $project_name, $description);
+                    $result = $club->create($user_id, $project_name, $description);
                     echo "\nProject created with ID: $result\n";
             
                     // Creating project contents

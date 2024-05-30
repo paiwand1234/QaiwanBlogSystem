@@ -8,11 +8,12 @@ class Clubs {
         $this->db = $db;
     }
 
-    public function create($name, $image) {
+    public function create($name, $description, $image) {
         try {
             return $this->db->create($this->table_name, [
                 'name' => $name,
-                'image' => $image
+                'image' => $image,
+                'description' => $description
             ]);
         } catch (PDOException $e) {
             throw new Exception("Error creating club: " . $e->getMessage());
