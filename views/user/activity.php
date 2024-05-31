@@ -1,33 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php 
-
-
-// START THE SESSION
-session_start();
-
-$user_id = null;
-
-// CHECK IF THE USER IS LOGGED IN
-if (!isset($_SESSION['user_id'])) {
-    // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
-    header("Location: ./register.php");
-    exit();
-}else{
-    
-    $user_id = $_SESSION['user_id'];
-
-}
-
-
-?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Contact Us</title>
     <!-- <link rel="stylesheet" href="../stylesheets/contact.css"> -->
 </head>
@@ -190,33 +169,11 @@ if (!isset($_SESSION['user_id'])) {
             object-fit: cover;
             height: 300px;
         }
-       
 </style>
 <body>
     <!-- Navbar -->
  
-    <nav class="navbar ">
-            <div class="container">
-                <a href="#" class="logo">Your Logo</a>
-                <ul class="nav-links">
-                    <li><a href="Home.php">Home</a></li>
-                    <li><a href="Activity.php">Activity</a></li>
-                    <li><a href="Department.php">Department</a></li>
-                    <li><a href="Project.php">Project</a></li>
-                    <li><a href="Contactus.php">Contact Us</a></li>
-                </ul>
-                <form class="search-form">
-                    <input type="text" placeholder="Search...">
-                    <button type="submit">Search</button>
-                </form>
-                <div class="burger">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                </div>
-            </div>
-        </nav>
-   
+    <?php require 'nav.html'; ?>
    
     <div class="container m-5">
         <div class="row">
@@ -226,91 +183,77 @@ if (!isset($_SESSION['user_id'])) {
         </div>
     </div>
     <hr class="mx-5">
-    <?php 
 
-
-$db = new Database();
-$club = new Clubs($db);
-
-
-
-echo '<div class="container my-4">';
-$row_open = false;
-
-for ($i = 0; $i < count($items); $i++) {
-    if ($i % 3 == 0) {
-        if ($row_open) {
-            echo '</div>'; // Close previous row
-        }
-        echo '<div class="row w-100">'; // Open new row
-        $row_open = true;
-    }
-
-    echo '
-        <div class="col-4 mb-4">
-            <div class="card shadow-lg border-0">
-                <div class="card-container">
-                    <img src="' . $items[$i]['src'] . '" class="img-fluid rounded" alt="">
-                    <a class="btn btn-dark col-5 rounded my-2" href="' . $items[$i]['view_link'] . '" role="button">View</a>
-                    <a class="btn btn-danger col-5 rounded" href="' . $items[$i]['delete_link'] . '" role="button">Delete</a>
+    <div class="container  my-4">
+        <div class="row">
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card  shadow-lg border-0">
+                    <div class="card-container ">
+                        <img src="../../assets/image/spart-club.jpg" class="img-fluid rounded" alt="">
+                        <!-- <div class="card-text">Text Overlay 1</div> -->
+                        <a class="btn btn-dark col-12 rounded" href="sport-club.php" role="button">View</a>
+                    </div>
                 </div>
             </div>
-        </div>';
-}
-
-if ($row_open) {
-    echo '</div>'; // Close last row if it's open
-}
-echo '</div>'; 
-
-
-?>
-   
-
-    <div class="text-end m-3 position-fixed " style="bottom: 0px; right: 0px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        <img src="../../assets/svg/plus-solid (1).svg" style="padding: 5px;" width="60px" height="60px" class="bg-dark rounded-circle " alt="">
-    </div>
-
-      
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <form class="modal-content" action="../../controllers/admin/clubs/add_club.php" method="POST" enctype="multipart/form-data">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Adding Clubs</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Club Name:</label>
-            <input type="text" class="form-control" id="recipient-name" name="name" required>
-          </div>
-          <label for="inputGroupFile02" class="col-form-label">Club Image:</label>
-          <div class="input-group mb-3">
-            <input type="file" class="form-control" id="inputGroupFile02" name="image" required>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card shadow-lg border-0">
+                    <div class="card-container ">
+                        <img src="../../assets/image/art club.jpg" class="img-fluid rounded" alt="">
+                        <!-- <div class="card-text">Text Overlay 2</div> -->
+                        <a class="btn btn-dark col-12 rounded" href="sport-club.php" role="button">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card  shadow-lg border-0">
+                    <div class="card-container">
+                        <img src="../../assets/image/images.jpeg" class="img-fluid rounded" alt="">
+                        <!-- <div class="card-text">Text Overlay 3</div> -->
+                        <a class="btn btn-dark col-12 rounded" href="sport-club.php" role="button">View</a>
+                    </div>
+                </div>
+            </div>
         </div>
-
-          <div class="mb-3">
-            <label for="message-text" class="col-form-label">Club Description:</label>
-            <textarea class="form-control" id="message-text" name="description" required></textarea>
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </form>
-  </div>
-</div>
+    </div>
+    <div class="container  my-4">
+        <div class="row">
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card  shadow-lg border-0">
+                    <div class="card-container ">
+                        <img src="../../assets/image/spart-club.jpg" class="img-fluid rounded" alt="">
+                        <!-- <div class="card-text">Text Overlay 1</div> -->
+                        <a class="btn btn-dark col-12 rounded" href="sport-club.php" role="button">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card shadow-lg border-0">
+                    <div class="card-container ">
+                        <img src="../../assets/image/art club.jpg" class="img-fluid rounded" alt="">
+                        <!-- <div class="card-text">Text Overlay 2</div> -->
+                        <a class="btn btn-dark col-12 rounded" href="sport-club.php" role="button">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card  shadow-lg border-0">
+                    <div class="card-container">
+                        <img src="../../assets/image/images.jpeg" class="img-fluid rounded" alt="">
+                        <!-- <div class="card-text">Text Overlay 3</div> -->
+                        <a class="btn btn-dark col-12 rounded" href="sport-club.php" role="button">View</a>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
+      
+ 
+   
     
 </body>
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 <script>
     const burger = document.querySelector('.burger');
     const navLinks = document.querySelector('.nav-links');

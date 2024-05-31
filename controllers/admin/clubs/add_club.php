@@ -13,7 +13,7 @@ $user_id = $_SESSION['user_id'];
 $project_name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
 $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_SPECIAL_CHARS);
 
-$image_dir = "../../../uploads/clubs/";
+$image_dir = "../../uploads/clubs/";
 $allowed_image_ext = ['jpg', 'jpeg', 'png']; // Allowed image extensions
 $allowed_image_mimes = ['image/jpeg', 'image/png', 'image/jpg']; // Allowed MIME types
 $max_file_size = 8 * 1024 * 1024; // 8MB
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
                 // exit();
             }
 
-            $image_uploaded = handle_file_upload($_FILES['image'], $image_dir);
+            $image_uploaded = handle_file_upload($_FILES['image'], "../".$image_dir.$image_name);
             $db = new Database();
             $pdo = $db->pdo;
             if ($image_uploaded) {

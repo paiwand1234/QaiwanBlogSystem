@@ -1,12 +1,12 @@
 <?php
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 
-include "../../models/users.php";
+include "../../../models/users.php";
 include "../../../models/projects.php"; // Assuming you have this file
 include "../../../models/project_contents.php"; // Assuming you have this file
-include "../database.php"; // Assuming you have this file
+include "../../database.php"; // Assuming you have this file
 include "../../utils/utils.php";
 
 session_start();
@@ -60,8 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
             }
 
             // Handle file and image uploads
-            $file_uploaded = handle_file_upload($_FILES['file'], $file_dir);
-            $image_uploaded = handle_file_upload($_FILES['image'], $image_dir);
+            $file_uploaded = handle_file_upload($_FILES['file'], "../".$file_dir);
+            $image_uploaded = handle_file_upload($_FILES['image'], "../".$image_dir);
             echo $file_uploaded . "<br>" . $image_uploaded;
 
             if ($image_uploaded && $file_uploaded) {
@@ -122,13 +122,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
                     $pdo->commit();
                     echo "\nTransaction committed successfully\n";
                     $success = "Transaction rolled back due to PDOException". $e->getMessage();
-                    header("Location: ../../views/user/project.php?success=".$success);
+                    header("Location: ../../../views/user/project.php?success=".$success);
 
                 } catch (PDOException $e) {
                     if ($pdo->inTransaction()) {
                         $pdo->rollBack();
                         $error = "Transaction rolled back due to PDOException". $e->getMessage();
-                        header("Location: ../../views/user/project.php?error=".$error);
+                        header("Location: ../../../views/user/project.php?error=".$error);
                     }
                     die("Transaction failed: " . $e->getMessage());
                 } catch (Exception $e) {
@@ -137,26 +137,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
                         echo "Transaction rolled back due to Exception\n";
                     }
                     $error = "Transaction failed: " . $e->getMessage();
-                    header("Location: ../../views/user/project.php?error=".$error);
+                    header("Location: ../../../views/user/project.php?error=".$error);
                 } finally {
                     // Ensure autocommit is back to normal
                     $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
                     echo "Autocommit re-enabled\n";
-                    header("Location: ../../views/user/project.php?");
+                    header("Location: ../../../views/user/project.php?");
                 }
             } else {
                 $error = "Error: Sorry, there was an error while uploading the files.";
-                header("Location: ../../views/user/project.php?error=".$error);
+                header("Location: ../../../views/user/project.php?error=".$error);
             }
         } else {
             $error = "Error Uploading file: " . $_FILES['file']['error'];
-            header("Location: ../../views/user/project.php?error=".$error);
+            header("Location: ../../../views/user/project.php?error=".$error);
         }
     } catch (Exception $e) {
         $error = "Error reading project content: " . $e->getMessage();
-        header("Location: ../../views/user/project.php?error=".$error);
+        header("Location: ../../../views/user/project.php?error=".$error);
     }
 } else {
     $error = "Error: Invalid request method or user not authenticated.";
-    header("Location: ../../views/user/project.php?error=".$error);
+    header("Location: ../../../views/user/project.php?error=".$error);
 }
