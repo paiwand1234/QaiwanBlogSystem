@@ -36,6 +36,12 @@ class Database {
         $stmt->execute(array_values($data));
         return $this->pdo->lastInsertId();
     }
+    public function readAll($table) {
+        $sql = "SELECT * FROM $table";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function read($table, $id) {
         $sql = "SELECT * FROM $table WHERE id = ?";
