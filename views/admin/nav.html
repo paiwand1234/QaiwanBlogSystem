@@ -3,7 +3,16 @@
         <a href="#" class="logo">Your Logo</a>
         <ul class="nav-links">
             <li><a href="home.php">Home</a></li>
-            <li><a href="clubs.php">Activity</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="activity.php" id="activityDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Activity
+                </a>
+                <div class="dropdown-menu" aria-labelledby="activityDropdown">
+                    <a class="dropdown-item" href="">Add Club</a>
+                    <a class="dropdown-item" href="">Accept Post</a>
+                   
+                </div>
+            </li>
             <li><a href="department.php">Department</a></li>
             <li><a href="project.php">Project</a></li>
             <li><a href="contactus.php">Contact Us</a></li>

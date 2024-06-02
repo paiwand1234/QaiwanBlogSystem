@@ -1,0 +1,81 @@
+/* PARALLAX STYLES */
+.parallax {
+    height: 100vh;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+#parallax1 {
+    background-image: url('../assets/image/morining.webp');
+}
+
+#parallax2 {
+    background-image: url('../assets/image/class.webp');
+}
+
+#parallax3 {
+    background-image: url('../assets/image/night.webp');
+}
+
+#parallax4 {
+    background-image: url('../assets/image/activity.webp');
+}
+
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.content-section {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+}
+
+@media (max-width: 768px) {
+    .text-overlay h1 {
+        font-size: 1.5rem;
+    }
+
+    .text-overlay p {
+        font-size: 1rem;
+    }
+}
+
+/* FOOTER STYLES */
+footer {
+    color: #ffffff;
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #f8f9fa;
+    text-decoration: underline;
+}
+
+footer h5 {
+    margin-bottom: 1rem;
+}
+
+footer .bg-secondary {
+    background-color: #343a40 !important;
+}
+
+footer .fa-facebook-f:hover,
+footer .fa-twitter:hover,
+footer .fa-instagram:hover,
+footer .fa-linkedin-in:hover,
+footer .fa-envelope:hover,
+footer .fa-phone:hover {
+    color: #adb5bd;
+}
