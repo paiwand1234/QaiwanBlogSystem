@@ -19,7 +19,13 @@ class Clubs {
             throw new Exception("Error creating club: " . $e->getMessage());
         }
     }
-
+    public function readAll() {
+        try {
+            return $this->db->readAll($this->table_name);
+        } catch (PDOException $e) {
+            throw new Exception("Error reading club: " . $e->getMessage());
+        }
+    }
     public function read($clubId) {
         try {
             return $this->db->read($this->table_name, $clubId);

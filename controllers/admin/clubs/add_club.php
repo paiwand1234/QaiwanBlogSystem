@@ -4,8 +4,8 @@ include "../../database.php"; // Assuming you have this file
 include "../../utils/utils.php";
 include "../../../models/clubs.php";
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 
 session_start();
 
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
                 // exit();
             }
 
-            $image_uploaded = handle_file_upload($_FILES['image'], "../".$image_dir.$image_name);
+            $image_uploaded = handle_file_upload($_FILES['image'], "../".$image_dir);
             $db = new Database();
             $pdo = $db->pdo;
             if ($image_uploaded) {
@@ -67,13 +67,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
                     $pdo->commit();
                     echo "\nTransaction committed successfully\n";
                     $success = "Transaction was successful";
-                    header("Location: ../../../views/admin/activity.php?success=" . urlencode($success));
+                    header("Location: ../../../views/admin/clubs.php?success=" . urlencode($success));
                 } catch (PDOException $e) {
                     if ($pdo->inTransaction()) {
                         $pdo->rollBack();
                         $error = "Transaction rolled back due to PDOException: " . $e->getMessage();
                         echo "Transaction rolled back due to PDOException: " . $e->getMessage();
-                        header("Location: ../../../views/admin/activity.php?error=" . urlencode($error));
+                        header("Location: ../../../views/admin/clubs.php?error=" . urlencode($error));
                     }
                     die("Transaction failed: " . $e->getMessage());
                 } catch (Exception $e) {
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
                     }
                     $error = "Transaction failed: " . $e->getMessage();
                     echo "Transaction failed: " . $e->getMessage();
-                    header("Location: ../../../views/admin/activity.php?error=" . urlencode($error));
+                    header("Location: ../../../views/admin/clubs.php?error=" . urlencode($error));
                 } finally {
                     // Ensure autocommit is back to normal
                     $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
@@ -92,16 +92,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
             } else {
                 $error = "Error: Sorry, there was an error while uploading the file.";
                 echo "Error: Sorry, there was an error while uploading the file.";
-                header("Location: ../../../views/admin/activity.php?error=" . urlencode($error));
+                header("Location: ../../../views/admin/clubs.php?error=" . urlencode($error));
             }
         } else {
             $error = "Error Uploading file: " . $_FILES['image']['error'];
             echo "Error Uploading file: " . $_FILES['image']['error'];
-            header("Location: ../../../views/admin/activity.php?error=" . urlencode($error));
+            header("Location: ../../../views/admin/clubs.php?error=" . urlencode($error));
         }
     } catch (Exception $e) {
         $error = "Error reading project content: " . $e->getMessage();
         echo "Error reading project content: " . $e->getMessage();
-        header("Location: ../../../views/admin/activity.php?error=" . urlencode($error));
+        header("Location: ../../../views/admin/clubs.php?error=" . urlencode($error));
     }
 }

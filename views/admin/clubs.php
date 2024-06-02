@@ -3,6 +3,9 @@
 
 <?php 
 
+include "../../models/clubs.php";
+include "../../controllers/database.php";
+
 
 // START THE SESSION
 session_start();
@@ -195,28 +198,7 @@ if (!isset($_SESSION['user_id'])) {
 <body>
     <!-- Navbar -->
  
-    <nav class="navbar ">
-            <div class="container">
-                <a href="#" class="logo">Your Logo</a>
-                <ul class="nav-links">
-                    <li><a href="Home.php">Home</a></li>
-                    <li><a href="Activity.php">Activity</a></li>
-                    <li><a href="Department.php">Department</a></li>
-                    <li><a href="Project.php">Project</a></li>
-                    <li><a href="Contactus.php">Contact Us</a></li>
-                </ul>
-                <form class="search-form">
-                    <input type="text" placeholder="Search...">
-                    <button type="submit">Search</button>
-                </form>
-                <div class="burger">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                </div>
-            </div>
-        </nav>
-   
+    <?php include "nav.html" ?>
    
     <div class="container m-5">
         <div class="row">
@@ -226,47 +208,50 @@ if (!isset($_SESSION['user_id'])) {
         </div>
     </div>
     <hr class="mx-5">
-    <?php 
 
+<?php
 
 $db = new Database();
-$club = new Clubs($db);
+$clubs = new Clubs($db);
 
+$club_results = $clubs->readAll();
 
-
-echo '<div class="container my-4">';
-$row_open = false;
-
-for ($i = 0; $i < count($items); $i++) {
+echo '<div class="container d-flex flex-column my-4">';
+for ($i = 0; $i < count($club_results); $i++) {
     if ($i % 3 == 0) {
-        if ($row_open) {
-            echo '</div>'; // Close previous row
+        if ($i > 0) {
+            echo '</div>'; // Close previous row if not the first item
         }
-        echo '<div class="row w-100">'; // Open new row
-        $row_open = true;
+        echo '<div class="row w-100">'; // Start a new row
     }
-
-    echo '
-        <div class="col-4 mb-4">
-            <div class="card shadow-lg border-0">
-                <div class="card-container">
-                    <img src="' . $items[$i]['src'] . '" class="img-fluid rounded" alt="">
-                    <a class="btn btn-dark col-5 rounded my-2" href="' . $items[$i]['view_link'] . '" role="button">View</a>
-                    <a class="btn btn-danger col-5 rounded" href="' . $items[$i]['delete_link'] . '" role="button">Delete</a>
-                </div>
+    echo '<div class="col-4 mb-4">
+    <div class="card shadow-lg border-0">
+        <div class="card-container">
+            <img src="' . $club_results[$i]['image'] . '" class="img-fluid rounded" alt="">
+            <div class="d-flex justify-content-between">
+                <a class="btn btn-dark col-5 rounded my-2" href="./club_activities.php?club_id=' . $club_results[$i]['id'] . '" role="button">View</a>
+                
+                <!-- Delete Form -->
+                <form action="delete_club.php" method="POST" class="col-5 p-0 my-2">
+                    <input type="hidden" name="club_id" value="' . $club_results[$i]['id'] . '">
+                    <button type="submit" class="btn btn-danger col-12 rounded">Delete</button>
+                </form>
             </div>
-        </div>';
+        </div>
+    </div>
+</div>';
+
+
 }
 
-if ($row_open) {
-    echo '</div>'; // Close last row if it's open
-}
-echo '</div>'; 
-
-
+// Close the last row
+echo '</div>';
+echo '</div>';
 ?>
-   
 
+
+    
+   
     <div class="text-end m-3 position-fixed " style="bottom: 0px; right: 0px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         <img src="../../assets/svg/plus-solid (1).svg" style="padding: 5px;" width="60px" height="60px" class="bg-dark rounded-circle " alt="">
     </div>

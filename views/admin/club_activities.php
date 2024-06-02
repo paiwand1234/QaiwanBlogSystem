@@ -1,5 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<?php 
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+session_abort();
+
+$user_id = null;
+
+// CHECK IF THE USER IS LOGGED IN
+if (!isset($_SESSION['user_id'])) {
+    // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
+    header("Location: ./register.php");
+    exit();
+}else{
+
+    // if()
+    $user_id = $_SESSION['user_id'];
+
+}
+
+
+
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,27 +45,7 @@
             <h1>sport club</h1>
         </div>
         <div class="container-fliud border ">
-            <nav class="navbar ">
-                <div class="container">
-                    <a href="#" class="logo">Your Logo</a>
-                    <ul class="nav-links">
-                        <li><a href="Home.php">Home</a></li>
-                        <li><a href="Activity.php">Activity</a></li>
-                        <li><a href="Department.php">Department</a></li>
-                        <li><a href="Project.php">Project</a></li>
-                        <li><a href="Contactus.php">Contact Us</a></li>
-                    </ul>
-                    <form class="search-form">
-                        <input type="text" placeholder="Search...">
-                        <button type="submit">Search</button>
-                    </form>
-                    <div class="burger">
-                        <div class="line"></div>
-                        <div class="line"></div>
-                        <div class="line"></div>
-                    </div>
-                </div>
-            </nav>
+          <?php include "nav.html" ?>
       </div>
     </div>
     <div class="container mt-3">
