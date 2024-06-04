@@ -18,7 +18,7 @@ $allowed_image_ext = ['jpg', 'jpeg', 'png']; // Allowed image extensions
 $allowed_image_mimes = ['image/jpeg', 'image/png', 'image/jpg']; // Allowed MIME types
 $max_file_size = 8 * 1024 * 1024; // 8MB
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($user_id)) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
     try {
         if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
             $image_name = $_FILES['image']['name'];

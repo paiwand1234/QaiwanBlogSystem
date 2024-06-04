@@ -172,11 +172,11 @@ body {
     <div class="container">
         <nav class="sidebar">
             <ul>
-                <li><a href="/views/admin/home.html"><i class="fa-solid fa-house"></i> Home</a></li>
-                <li><a href="/views/admin/Activity.php"><i class="fa-solid fa-medal"></i> Activity</a></li>
-                <li><a href="/views/admin/department.php"><i class="fa-solid fa-building"></i> Department</a></li>
-                <li><a href="/views/admin/clubs.php"><i class="fa-solid fa-people-group"></i> Club</a></li>
-                <li><a href="/views/admin/login.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
+                <li><a href="home.php"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="Activity.php"><i class="fa-solid fa-medal"></i> Activity</a></li>
+                <li><a href="department.php"><i class="fa-solid fa-building"></i> Department</a></li>
+                <li><a href="clubs.php"><i class="fa-solid fa-people-group"></i> Club</a></li>
+                <li><a href="login.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
             </ul>
         </nav>
         <main class="content">

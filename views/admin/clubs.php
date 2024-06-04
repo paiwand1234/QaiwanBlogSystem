@@ -268,13 +268,12 @@ if (!isset($_SESSION['user_id'])) {
 
     <div class="modal fade" id="addClubModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addClubModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <form class="modal-content" action="../../controllers/admin/clubs/add_head.php" method="POST" enctype="multipart/form-data">
+            <form class="modal-content" action="../../controllers/admin/clubs/add_club.php" method="POST" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Adding Clubs</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" name="club_id" value="0">
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Club Name:</label>
                         <input type="text" class="form-control" id="recipient-name" name="name" required>
@@ -299,7 +298,7 @@ if (!isset($_SESSION['user_id'])) {
 
     <div class="modal fade" id="headModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <form class="modal-content" action="../../controllers/admin/clubs/add_club.php" method="POST" enctype="multipart/form-data">
+            <form class="modal-content" action="../../controllers/admin/clubs/add_headq.php" method="POST" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Head</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
