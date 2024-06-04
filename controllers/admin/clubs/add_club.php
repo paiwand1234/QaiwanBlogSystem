@@ -29,22 +29,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
             if (!in_array($image_ext, $allowed_image_ext)) {
                 $error = "Error: Please select a valid image format.";
                 echo "Error: Please select a valid image format.";
-                // header("Location: ../../../views/admin/activity.php?error=" . urlencode($error));
-                // exit();
+                header("Location: ../../../views/admin/activity.php?error=" . urlencode($error));
+                exit();
             }
 
             if ($image_size > $max_file_size) {
                 $error = "Error: Image size is larger than the allowed limit.";
                 echo "Error: Image size is larger than the allowed limit.";
-                // header("Location: ../../../views/admin/activity.php?error=" . urlencode($error));
-                // exit();
+                header("Location: ../../../views/admin/activity.php?error=" . urlencode($error));
+                exit();
             }
 
             if (!in_array($image_type, $allowed_image_mimes)) {
                 $error = "Error: Invalid image type.";
                 echo "Error: Invalid image type.";
-                // header("Location: ../../../views/admin/activity.php?error=" . urlencode($error));
-                // exit();
+                header("Location: ../../../views/admin/activity.php?error=" . urlencode($error));
+                exit();
             }
 
             $image_uploaded = handle_file_upload($_FILES['image'], "../".$image_dir);

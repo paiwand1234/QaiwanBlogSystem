@@ -11,7 +11,7 @@ $user_id = null;
 // CHECK IF THE USER IS LOGGED IN
 if (!isset($_SESSION['user_id'])) {
     // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
-    header("Location: ./register.php");
+    header("Location: ./login.php");
     exit();
 }else{
     

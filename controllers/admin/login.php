@@ -22,7 +22,7 @@ try {
 
         $_SESSION['user_id'] = $user['id'];
         // Password is correct
-        header("Location: ../../views/admin/home.php?$queryString");
+        header("Location: ../../views/admin/home.php?");
         // Redirect or perform other actions
     } else {
         // Password is incorrect or user not found
