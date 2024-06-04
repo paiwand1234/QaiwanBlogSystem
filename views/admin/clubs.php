@@ -243,7 +243,8 @@ if (!isset($_SESSION['user_id'])) {
                                 <button type="submit" class="btn btn-danger col-12 rounded">Delete</button>
                             </form>
                             
-                            <div class="btn btn-success col-3 rounded my-2" href="./club_activities.php?club_id=' . $club_results[$i]['id'] . '" role="button" data-bs-toggle="modal" data-bs-target="#headModal">
+                            <div class="head-buttons btn btn-success col-3 rounded my-2" href="./club_activities.php?club_id=' . $club_results[$i]['id'] . '" 
+                                data-club-id="' . $club_results[$i]['id'] . '"  role="button" data-bs-toggle="modal" data-bs-target="#headModal">
                                 head <i class="fa-solid fa-plus" style="width:15px; height: 15px"></i>
                             </div>
                             
@@ -298,24 +299,20 @@ if (!isset($_SESSION['user_id'])) {
 
     <div class="modal fade" id="headModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <form class="modal-content" action="../../controllers/admin/clubs/add_headq.php" method="POST" enctype="multipart/form-data">
+            <form class="modal-content" action="../../controllers/admin/clubs/add_head.php" method="POST" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Head</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <input type="hidden" name="head_exists" value="0" id="head-existence">
+                    <input type="hidden" name="club_id" value="0" id="head-club-id">
+                    <input type="hidden" name="head_id" value="0" id="head-id">
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Head Username:</label>
                         <input type="text" class="form-control" id="head-name" name="name" required>
                     </div>
-                    <label for="inputGroupFile02" class="col-form-label">Club Image:</label>
-                    <div class="input-group mb-3">
-                        <input type="file" class="form-control" id="inputGroupFile02" name="image" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Club Description:</label>
-                        <textarea class="form-control" id="message-text" name="description" required></textarea>
+                    <div id="head-name-alert" class="container px-0 w-100 ">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -343,12 +340,21 @@ if (!isset($_SESSION['user_id'])) {
     });
 
 
-    head_name = document.getElementById('head-name')
-    // SELECT THE INPUT ELEMENT
-    const headName = document.getElementById('head-name');
+    const head_name = document.getElementById('head-name');
+    const head_buttons = [...document.getElementsByClassName('head-buttons')];
+
+    head_buttons.forEach((button, index) => {
+
+        button.addEventListener('click', (event) => {
+            head_club_id =document.getElementById('head-club-id')
+            head_club_id.value = button.dataset.clubId
+        })
+
+    })
+    
 
     // ADD AN EVENT LISTENER FOR THE 'input' EVENT
-    headName.addEventListener('input', async (event) => {
+    head_name.addEventListener('input', async (event) => {
         // DEFINE THE URL OF THE API ENDPOINT
         const url = 'http://localhost:8888/QaiwanBlogSystem/controllers/admin/clubs/read_head.php';
 
@@ -379,7 +385,26 @@ if (!isset($_SESSION['user_id'])) {
 
             // RETURN THE RESPONSE AS JSON
             const data = await response.json();
-
+            head_name_alert = document.getElementById('head-name-alert')
+            head_existence = document.getElementById('head-existence')
+            head_id = document.getElementById('head-id')
+            console.log(data)
+            if(data.status == "error"){
+                head_name_alert.innerHTML = `
+                        <div class="alert alert-danger p-2 w-100" role="alert">
+                            User doesn't exist
+                        </div>
+                        `
+                head_existence.value = '0'
+            }else{
+                head_name_alert.innerHTML = `
+                        <div class="alert alert-primary p-2 w-100" role="alert">
+                            User exists!
+                        </div>
+                        `
+                head_existence.value = '1'
+                head_id.value = data.data[0].id
+            }
             // HANDLE THE DATA FROM THE RESPONSE
             console.log(data);
 
