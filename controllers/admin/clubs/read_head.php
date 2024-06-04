@@ -8,9 +8,9 @@ include "../../../models/users.php";
 session_start();
 
 // ENABLE ERROR REPORTING FOR DEBUGGING (REMOVE THIS IN PRODUCTION)
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 
 // SET THE HEADER TO RETURN JSON
@@ -21,8 +21,6 @@ $json = file_get_contents('php://input');
 
 // DECODE THE JSON DATA
 $data = json_decode($json, true);
-
-print_r($data);
 
 $user_id = $_SESSION['user_id'] ?? null;
 
