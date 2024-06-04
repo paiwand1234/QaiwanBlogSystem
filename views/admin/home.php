@@ -24,134 +24,138 @@ if (!isset($_SESSION['user_id'])) {
 
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Dashboard</title>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<style>
-
-.card-img-top {
-    height: 200px;
-    object-fit: cover;
-}
-.bg{
-    background-color: #90C5F9;
-}
-.card-1{
-    background-color: #3465ba;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+<style>
+   /* BASIC RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 60px;
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    width: 100%;
+}
+
+.sidebar ul li {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+}
+
+.sidebar ul li a:hover {
+    background-color: #555;
+}
+
+.icon-home::before,
+.icon-activate::before,
+.icon-department::before,
+.icon-club::before,
+.icon-logout::before {
+    content: '🏠';
+    /* ADD RELEVANT ICONS HERE */
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.cards {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    flex: 1;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+.card-activate {
+    background-color: #ff6b6b;
+}
+
+.card-department {
+    background-color: #4e89ff;
+}
+
+.card-club {
+    background-color: #4caf50;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    margin-bottom: 0;
+}
+ 
+</style>
 <body>
-
-<div class="container-fluid">
-    <div class="row">
-        <!-- Sidebar -->
-        <div class="sidebar bg-dark rounded mx-4 mt-2 shadow">
-            <ul class="nav flex-column ">
-                <li class="nav-item my-5">
-                    <a class="nav-link " href="#"><img src="../../assets/svg/house-chimney-solid.svg" alt="" width="25px !important"></a>
-                </li>
-                <li class="nav-item my-5">
-                <a class="nav-link " href="#"><img src="../../assets/svg/user-solid.svg" alt=""></a>
-                </li>
-                <li class="nav-item my-5">
-                <a class="nav-link " href="#"><img src="../../assets/svg/house-chimney-solid.svg" alt=""></a>
-                </li>
+    <div class="container">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#home"><i class="fa-solid fa-house" style="color: #74C0FC;"></i></a></li>
+                <li><a href="#activate"><i class="icon-activate"></i></a></li>
+                <li><a href="#department"><i class="icon-department"></i></a></li>
+                <li><a href="#club"><i class="icon-club"></i></a></li>
+                <li><a href="#logout"><i class="icon-logout"></i></a></li>
             </ul>
-        </div>
-        <!-- Content -->
-        <div class="col-md-10  ">
-        <div class="row   mt-5 ">
-            <div class="col-3 mx-3 shadow rounded bg-dark">
-                <h1 class="text-center text-light">Users</h1>
-                <h1 class="text-center my-3 text-light">250</h1>
-                <div class="col-4 text-center  mx-auto">
-                    <img src="../../assets/svg/users-solid.svg" alt="" >
+        </nav>
+        <main class="content">
+            <div class="cards">
+                <div class="card card-activate">
+                    <h3>Activate</h3>
+                    <p>Quick access to activation.</p>
+                </div>
+                <div class="card card-department">
+                    <h3>Department</h3>
+                    <p>Quick access to departments.</p>
+                </div>
+                <div class="card card-club">
+                    <h3>Club</h3>
+                    <p>Quick access to clubs.</p>
                 </div>
             </div>
-            <div class="col-3 mx-3 shadow rounded bg-dark">
-                <h1 class="text-center text-light">Post</h1>
-                <h1 class="text-center my-3 text-light">250</h1>
-                <div class="col-3 text-center  mx-auto">
-                    <img src="../../assets/svg/circle-plus-solid.svg" alt="" >
-                </div>
-            </div>
-            <div class="col-3 mx-3 shadow rounded bg-dark">
-                <h1 class="text-center text-light">Head</h1>
-                <h1 class="text-center my-3 text-light">250</h1>
-                <div class="col-4 text-center  mx-auto">
-                    <img src="../../assets/svg/users-solid.svg" alt="" >
-                </div>
-            </div>
-        </div>
-        <h1 class="mt-5">New Users</h1>
-        <hr class="">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <img src="../../assets/image/istockphoto-517188688-612x612.jpg" class="card-img-top" alt="User Image">
-                            <div class="card-body">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="card-text">Role: User</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <img src="../../assets/image/istockphoto-517188688-612x612.jpg" class="card-img-top" alt="User Image">
-                            <div class="card-body">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="card-text">Role: Head Of Department</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <img src="../../assets/image/istockphoto-517188688-612x612.jpg" class="card-img-top" alt="User Image">
-                            <div class="card-body">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="card-text">Role: Head Of Department</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <img src="../../assets/image/istockphoto-517188688-612x612.jpg" class="card-img-top" alt="User Image">
-                            <div class="card-body">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="card-text">Role: User</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Add more user cards here -->
-                </div>
-            
-        <h1 class="mt-5">New Post</h1>
-        <hr class="">
-        <div class="row">
-        <div class="col-md-3">
-                    <div class="card">
-                        <img src="../../assets/image/istockphoto-517188688-612x612.jpg" class="card-img-top" alt="User Image">
-                        <div class="card-body">
-                            <h5 class="card-title">John Doe</h5>
-                            <p class="card-text">Role: Administrator</p>
-                            <div class="d-grid gap-2">
-                                <button class="btn btn-danger" type="button">Delete</button>
-                                <button class="btn btn-success" type="button">Accept</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    <!-- Add more user cards here -->
-                </div>
-            </div>
-        
-              
-</div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        </main>
+    </div>
 </body>
 </html>
