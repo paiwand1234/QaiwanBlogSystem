@@ -43,7 +43,13 @@ class Users {
             throw new Exception("Error reading user: " . $e->getMessage());
         }
     }
-
+    public function readMultipleColumns($conditions, $operator) {
+        try {
+            return $this->db->readMultipleColumns($this->table_name, $conditions, $operator);
+        } catch (PDOException $e) {
+            throw new Exception("Error reading club heads: " . $e->getMessage());
+        }
+    }
     public function update($userId, $data) {
         try {
             // Check if password needs to be hashed before updating

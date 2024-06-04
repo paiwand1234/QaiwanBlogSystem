@@ -230,24 +230,27 @@ if (!isset($_SESSION['user_id'])) {
 
         $delete_file = "../../controllers/admin/clubs/delete_club.php";
         echo '<div class="col-4 mb-4">
-    <div class="card shadow-lg border-0">
-        <div class="card-container">
-            <img src="' . $club_results[$i]['image'] . '" class="img-fluid rounded" alt="">
-            <div class="d-flex justify-content-between">
-                <a class="btn btn-primary col-4 rounded my-2" href="./club_activities.php?club_id=' . $club_results[$i]['id'] . '" role="button">View</a>
-                <div class="btn btn-success col-4 rounded my-2" href="./club_activities.php?club_id=' . $club_results[$i]['id'] . '" role="button">
-                    head <i class="fa-solid fa-plus" style="width:15px; height: 15px">
+                <div class="card shadow-lg border-0">
+                    <div class="card-container">
+                        <img src="' . $club_results[$i]['image'] . '" class="img-fluid rounded" alt="">
+                        <div class="d-flex justify-content-around">
+                           
+                            <a class="btn btn-primary col-3 rounded my-2" href="./club_activities.php?club_id=' . $club_results[$i]['id'] . '" role="button">View</a>
+                            
+                            <!-- Delete Form -->
+                            <form action="' . $delete_file . '" method="POST" class="col-3 p-0 my-2">
+                                <input type="hidden" name="club_id" value="' . $club_results[$i]['id'] . '">
+                                <button type="submit" class="btn btn-danger col-12 rounded">Delete</button>
+                            </form>
+                            
+                            <div class="btn btn-success col-3 rounded my-2" href="./club_activities.php?club_id=' . $club_results[$i]['id'] . '" role="button" data-bs-toggle="modal" data-bs-target="#headModal">
+                                head <i class="fa-solid fa-plus" style="width:15px; height: 15px"></i>
+                            </div>
+                            
+                        </div>
+                    </div>
                 </div>
-                
-                <!-- Delete Form -->
-                <form action="' . $delete_file . '" method="POST" class="col-4 p-0 my-2">
-                    <input type="hidden" name="club_id" value="' . $club_results[$i]['id'] . '">
-                    <button type="submit" class="btn btn-danger col-12 rounded">Delete</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>';
+            </div>';
     }
 
     // Close the last row
@@ -258,19 +261,20 @@ if (!isset($_SESSION['user_id'])) {
 
 
 
-    <div class="text-end m-3 position-fixed " style="bottom: 0px; right: 0px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    <div class="text-end m-3 position-fixed " style="bottom: 0px; right: 0px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#addClubModal">
         <img src="../../assets/svg/plus-solid (1).svg" style="padding: 5px;" width="60px" height="60px" class="bg-dark rounded-circle " alt="">
     </div>
 
 
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="addClubModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addClubModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <form class="modal-content" action="../../controllers/admin/clubs/add_club.php" method="POST" enctype="multipart/form-data">
+            <form class="modal-content" action="../../controllers/admin/clubs/add_head.php" method="POST" enctype="multipart/form-data">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Adding Clubs</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <input type="hidden" name="club_id" value="0">
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Club Name:</label>
                         <input type="text" class="form-control" id="recipient-name" name="name" required>
@@ -293,6 +297,35 @@ if (!isset($_SESSION['user_id'])) {
         </div>
     </div>
 
+    <div class="modal fade" id="headModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <form class="modal-content" action="../../controllers/admin/clubs/add_club.php" method="POST" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Head</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Head Username:</label>
+                        <input type="text" class="form-control" id="head-name" name="name" required>
+                    </div>
+                    <label for="inputGroupFile02" class="col-form-label">Club Image:</label>
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" id="inputGroupFile02" name="image" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Club Description:</label>
+                        <textarea class="form-control" id="message-text" name="description" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
 </body>
 
@@ -309,6 +342,56 @@ if (!isset($_SESSION['user_id'])) {
         navLinks.classList.toggle('nav-active');
         burger.classList.toggle('active');
     });
+
+
+    head_name = document.getElementById('head-name')
+    // SELECT THE INPUT ELEMENT
+    const headName = document.getElementById('head-name');
+
+    // ADD AN EVENT LISTENER FOR THE 'input' EVENT
+    headName.addEventListener('input', async (event) => {
+        // DEFINE THE URL OF THE API ENDPOINT
+        const url = 'http://localhost:8888/QaiwanBlogSystem/controllers/admin/clubs/read_head.php';
+
+        // DEFINE THE PARAMETERS
+        const params = {
+            name: event.target.value,
+        };
+
+        // DEFINE THE REQUEST OPTIONS
+        const options = {
+            method: 'POST', // CAN BE 'GET', 'POST', 'PUT', 'DELETE', ETC.
+            headers: {
+            'Content-Type': 'application/json',
+            // ADD OTHER HEADERS HERE IF NEEDED
+            },
+            // IF MAKING A POST OR PUT REQUEST, INCLUDE THE BODY
+            body: JSON.stringify(params)
+        };
+
+        try {
+            // MAKE THE FETCH REQUEST
+            const response = await fetch(url, options);
+
+            // CHECK IF THE RESPONSE STATUS IS OK (STATUS CODE 200-299)
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+
+            // RETURN THE RESPONSE AS JSON
+            const data = await response.json();
+
+            // HANDLE THE DATA FROM THE RESPONSE
+            console.log(data);
+
+        } catch (error) {
+            // HANDLE ERRORS
+            console.error('There has been a problem with your fetch operation:', error);
+        }
+
+    });
+
+
 </script>
 
 </html>
