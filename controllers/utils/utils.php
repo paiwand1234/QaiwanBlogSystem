@@ -12,9 +12,10 @@ function handle_file_upload($file, $dir) {
         return false;
     }
 }
-function handle_file_delete($file_name, $dir) {
-    $file_path = $dir . $file_name;
+function handle_file_delete($dir, $file_name = null) {
     
+    $file_name ? $file_path = $dir . $file_name : $file_path = $dir;
+
     // Check if the file exists
     if (file_exists($file_path)) {
         // Try to delete the file

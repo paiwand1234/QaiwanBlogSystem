@@ -11,11 +11,10 @@ include "../../controllers/database.php";
 session_start();
 
 $user_id = null;
-
 // CHECK IF THE USER IS LOGGED IN
 if (!isset($_SESSION['user_id'])) {
     // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
-    header("Location: ./register.php");
+    header("Location: ./login.php");
     exit();
 }else{
     
@@ -224,15 +223,17 @@ for ($i = 0; $i < count($club_results); $i++) {
         }
         echo '<div class="row w-100">'; // Start a new row
     }
+
+    $delete_file = "../../controllers/admin/clubs/delete_club.php";
     echo '<div class="col-4 mb-4">
     <div class="card shadow-lg border-0">
         <div class="card-container">
             <img src="' . $club_results[$i]['image'] . '" class="img-fluid rounded" alt="">
             <div class="d-flex justify-content-between">
-                <a class="btn btn-dark col-5 rounded my-2" href="./club_activities.php?club_id=' . $club_results[$i]['id'] . '" role="button">View</a>
+                <a class="btn btn-primary col-5 rounded my-2" href="./club_activities.php?club_id=' . $club_results[$i]['id'] . '" role="button">View</a>
                 
                 <!-- Delete Form -->
-                <form action="delete_club.php" method="POST" class="col-5 p-0 my-2">
+                <form action="'.$delete_file.'" method="POST" class="col-5 p-0 my-2">
                     <input type="hidden" name="club_id" value="' . $club_results[$i]['id'] . '">
                     <button type="submit" class="btn btn-danger col-12 rounded">Delete</button>
                 </form>

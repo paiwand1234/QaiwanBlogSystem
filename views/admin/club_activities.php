@@ -2,27 +2,22 @@
 <html lang="en">
 
 <?php 
+include "../../controllers/database.php";
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-session_abort();
+session_start();
 
 $user_id = null;
 
 // CHECK IF THE USER IS LOGGED IN
 if (!isset($_SESSION['user_id'])) {
     // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
-    header("Location: ./register.php");
+    header("Location: ./login.php");
     exit();
 }else{
 
-    // if()
     $user_id = $_SESSION['user_id'];
 
 }
-
-
 
 ?>
 
