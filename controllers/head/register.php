@@ -38,15 +38,15 @@ try {
     if ($result && $result['head_is_active'] != 1) {
         echo "reached here\n";
         // Student ID exists, proceed to create user
-        $result['head_is_active'] = 1;
-        $studentIds->update($result['id'], $result);
+        $result[0]['head_is_active'] = 1;
+        $studentIds->update($result[0]['id'], $result[0]);
         echo "reached here after the student id update\n";
         $user->create(
         $username,        
             $hashed_password,
             $email,
             UserRole::HEAD,
-            $result['id']
+            $result[0]['id']
         );
 
         $pdo->commit(); // Commit before redirecting

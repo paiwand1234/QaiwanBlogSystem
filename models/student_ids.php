@@ -3,16 +3,14 @@
 class StudentIds {
     private $db;
     private $table_name = 'student_ids'; 
-    public function __construct(Database $db) {
+    public function __construct($db) {
         $this->db = $db;
     }
 
-    public function create($id, $student_id, $user_is_active, $head_is_active) {
+    public function create($student_id) {
         try {
             return $this->db->create($this->table_name, [
                 'student_id' => $student_id,
-                'user_is_active' => $user_is_active,
-                'head_is_active' => $head_is_active
             ]);
         } catch (PDOException $e) {
             throw new Exception("Error creating student_id: " . $e->getMessage());

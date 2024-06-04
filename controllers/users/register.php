@@ -31,22 +31,22 @@ try {
     $user = new Users($db);
 
     // Check if the student ID exists
-    $result = $db->readOneColumn("student_ids", "student_id", $student_id);
+    $result = $studentIds->readOneColumn("student_id", $student_id);
 
     echo "Result: " . print_r($result, true). "\n";
 
     if ($result && $result['user_is_active'] != 1) {
         echo "reached here\n";
         // Student ID exists, proceed to create user
-        $result['user_is_active'] = 1;
-        $studentIds->update($result['id'], $result);
+        $result[0]['user_is_active'] = 1;
+        $studentIds->update($result[0]['id'], $result[0]);
         echo "reached here after the student id update\n";
         $user->create(
-        $username,        
+            $username,        
             $hashed_password,
             $email,
             UserRole::USER,
-            $result['id']
+            $result[0]['id']
         );
 
         $pdo->commit(); // Commit before redirecting
