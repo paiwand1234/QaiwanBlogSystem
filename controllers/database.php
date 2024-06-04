@@ -11,8 +11,8 @@ class Database {
     private $host = 'localhost';
     private $dbname = 'qaiwan_blog_system';
     private $username = 'root';
-    private $password = 'root';
-    private $port = 8889;
+    private $password = '';
+    private $port = 3306;
     private $options = [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // Enable exceptions for errors
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC // Set default fetch mode

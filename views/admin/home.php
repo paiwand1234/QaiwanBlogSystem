@@ -173,9 +173,11 @@ body {
         <nav class="sidebar">
             <ul>
                 <li><a href="home.php"><i class="fa-solid fa-house"></i> Home</a></li>
-                <li><a href="Activity.php"><i class="fa-solid fa-medal"></i> Activity</a></li>
-                <li><a href="department.php"><i class="fa-solid fa-building"></i> Department</a></li>
+                <li><a href="club_activities.php"><i class="fa-solid fa-medal"></i> Activity</a></li>
+                <li><a href="post.php"><i class="fa-solid fa-building"></i>Psot control</a></li>
                 <li><a href="clubs.php"><i class="fa-solid fa-people-group"></i> Club</a></li>
+                <li><a href="users.php"><i class="fa-solid fa-user "></i> Users</a></li>
+                <li><a href="chat.php"><i class="fa-solid fa-user "></i> chat</a></li>
                 <li><a href="login.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
             </ul>
         </nav>
@@ -199,6 +201,13 @@ body {
                     <i class="fa-solid fa-users card-icon"></i>
                     <div>
                         <h3>Club</h3>
+                        <p>Quick access to clubs.</p>
+                    </div>
+                </div>
+                <div class="card card-club">
+                <i class="fa-solid fa-user card-icon" style="color: #ffffff;"></i>
+                    <div>
+                        <h3>Users Controls</h3>
                         <p>Quick access to clubs.</p>
                     </div>
                 </div>
