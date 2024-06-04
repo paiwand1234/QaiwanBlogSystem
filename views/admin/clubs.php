@@ -244,11 +244,6 @@ if (!isset($_SESSION['user_id'])) {
                     <input type="hidden" name="club_id" value="' . $club_results[$i]['id'] . '">
                     <button type="submit" class="btn btn-danger col-12 rounded">Delete</button>
                 </form>
-                <!-- add-club Form -->
-                <form action="'.$add-club.'" method="POST" class="col-5 p-0 my-2">
-                    <input type="hidden" name="club_id" value="' . $add-club [$i]['id'] . '">
-                    <button type="submit" class="btn btn-danger col-12 rounded">Add Head </button>
-                </form>
             </div>
         </div>
     </div>
