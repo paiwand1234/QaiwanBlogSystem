@@ -42,7 +42,7 @@ try {
         $studentIds->update($result[0]['id'], $result[0]);
         echo "reached here after the student id update\n";
         $user->create(
-        $username,        
+            $username,        
             $hashed_password,
             $email,
             UserRole::HEAD,
