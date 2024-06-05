@@ -11,7 +11,7 @@ $user_id = null;
 // CHECK IF THE USER IS LOGGED IN
 if (!isset($_SESSION['user_id'])) {
     // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
-    header("Location: ./register.php");
+    header("Location: ./login.php");
     exit();
 }else{
     
@@ -21,7 +21,6 @@ if (!isset($_SESSION['user_id'])) {
 
 
 ?>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +28,6 @@ if (!isset($_SESSION['user_id'])) {
     <title>Contact Us</title>
     <link rel="stylesheet" href="../../stylesheets/contact.css">
 </head>
-
 <style>
     * {
             box-sizing: border-box;
@@ -164,7 +162,6 @@ if (!isset($_SESSION['user_id'])) {
             }
         }
 </style>
-
 <body>
     <!-- Navbar -->
     <?php require 'nav.html'; ?>
@@ -174,12 +171,11 @@ if (!isset($_SESSION['user_id'])) {
             <div class="main">
                 <div class="content">
                     <h2>Contact Us</h2>
-                    <form action="../../controllers/contactus.php" method="POST">
+                    <form action="#" method="post">
                         <input type="text" name="name" placeholder="Enter Your Name">
 
-                        <input type="email" name="email" placeholder="Enter Your Email">
-                        <input type="tel" name="phone_number" placeholder="Enter Your Number">
-                        <input type="text" name="subject" placeholder="Subject">
+                        <input type="email" name="name" placeholder="Enter Your Email">
+                        <input type="tel" name="name" placeholder="Enter Your Number">
                         <textarea name="message" placeholder="Your Message"></textarea>
                         <button type="submit" class="btn" id="btn">Send <i class="fas fa-paper-plane"></i></button>
                     </form>
@@ -191,7 +187,6 @@ if (!isset($_SESSION['user_id'])) {
         </div>
     </div>
 </body>
-
 <script>
     const burger = document.querySelector('.burger');
     const navLinks = document.querySelector('.nav-links');
