@@ -39,7 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($user_id) && $data) {
         if ($user) {
             echo json_encode([
                 'status' => 'success',
-                'message' => "head exists"
+                'message' => "head exists",
+                'data' => $user
             ]);
         } else {
             echo json_encode([
