@@ -61,33 +61,11 @@ $club_head = $club_heads->readMultipleColumns($data, Operators::AND);
 
 <body>
   <div class="video-container">
-    <img src="<?php echo $project['image'] ?>" alt="" class="img">
-    <div class="video-text">
-      <h1><?php echo $project['name'] ?></h1>
-    </div>
-    <div class="container-fliud border ">
-      <nav class="navbar ">
-        <div class="container">
-          <a href="#" class="logo">Your Logo</a>
-          <ul class="nav-links">
-            <li><a href="Home.php">Home</a></li>
-            <li><a href="Activity.php">Activity</a></li>
-            <li><a href="Department.php">Department</a></li>
-            <li><a href="Project.php">Project</a></li>
-            <li><a href="Contactus.php">Contact Us</a></li>
-          </ul>
-          <form class="search-form">
-            <input type="text" placeholder="Search...">
-            <button type="submit">Search</button>
-          </form>
-          <div class="burger">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-          </div>
+  <img  src="<?php echo $club['image'] ?>" alt="" class="img">
+        <div class="video-text">
+            <h1><?php echo $club['name'] ?></h1>
         </div>
-      </nav>
-    </div>
+        <?php require 'nav.html'; ?>
   </div>
   <div class="container mt-3">
 
@@ -160,8 +138,9 @@ $club_head = $club_heads->readMultipleColumns($data, Operators::AND);
   </div>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
+ 
 </body>
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </html>

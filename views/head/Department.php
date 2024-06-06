@@ -134,51 +134,7 @@
     
 <?php require 'nav.html'; ?>
 
-     <div class="container mt-5">
-        <div class="row">
-          <div class="col-md-4 mb-4">
-            <div class="card shadow p-3 bg-light rounded border-0">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="../../assets/svg/laptop-solid.svg" width="60px" alt="">
-                    </div>
-                    <div class="col-9 my-auto">
-                        <h4>Software Engineering</h4>
-                        <h6 class="col-12 my-auto text-primary">See More</h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- new card  -->
-        <div class="col-md-4 mb-4">
-            <div class="card shadow p-3 bg-light rounded border-0">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="../../assets/svg/tooth-solid.svg" width="60px" alt="">
-                    </div>
-                    <div class="col-9 my-auto">
-                        <h4>Dentistry</h4>
-                        <h6 class="col-12 my-auto text-primary">See More</h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-         <!-- new card  -->
-        <div class="col-md-4 mb-4">
-            <div class="card shadow p-3 bg-light rounded border-0">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="../../assets/svg/prescription-bottle-medical-solid.svg" width="50px" alt="">
-                    </div>
-                    <div class="col-9 my-auto">
-                        <h4>Pharmacy</h4>
-                        <h6 class="col-12 my-auto text-primary">See More</h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <div class="container mt-5">
         <div class="row">
           <div class="col-md-4 mb-4">
