@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php 
+<?php
 
 include "../../controllers/database.php";
 include "../../models/clubs.php";
@@ -16,14 +16,12 @@ $user_id = null;
 
 // CHECK IF THE USER IS LOGGED IN
 if (!isset($_SESSION['user_id'])) {
-    // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
-    header("Location: ./register.php");
-    exit();
+  // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
+  header("Location: ./register.php");
+  exit();
+} else {
 
-}else{
-
-    $user_id = $_SESSION['user_id'];
-
+  $user_id = $_SESSION['user_id'];
 }
 
 
@@ -34,14 +32,15 @@ $db = new Database();
 $clubs = new Clubs($db);
 $club_heads = new ClubHeads($db);
 
-$club = $clubs->read($club_id);
+$project = $clubs->read($club_id);
 
 $data = array(
   "user_id" => $user_id,
-  "club_id" => $club['id']
+  "club_id" => $project['id']
 );
 
-$club_head = $club_heads->readMultipleColumns($data, Operators::AND); 
+$club_head = $club_heads->readMultipleColumns($data, Operators::AND);
+
 
 // print_r($club_head);
 
@@ -62,10 +61,10 @@ $club_head = $club_heads->readMultipleColumns($data, Operators::AND);
 
 <body>
   <div class="video-container">
-  <img  src="<?php echo $club['image'] ?>" alt="" class="img">
-        <div class="video-text">
-            <h1><?php echo $club['name'] ?></h1>
-        </div>
+    <img src="<?php echo $project['image'] ?>" alt="" class="img">
+    <div class="video-text">
+      <h1><?php echo $project['name'] ?></h1>
+    </div>
     <div class="container-fliud border ">
       <nav class="navbar ">
         <div class="container">
@@ -91,83 +90,44 @@ $club_head = $club_heads->readMultipleColumns($data, Operators::AND);
     </div>
   </div>
   <div class="container mt-3">
+
     <div class="row ">
-      <div class="col-6 ">
-        <div class="card mb-3" style="max-width: 640px;">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="../../assets/image/500x500.jpg" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <button type="button" class="btn btn-outline-success">Chat</button>
 
-              </div>
+      <div class="col-6">
+        <div class="card-body d-flex">
+          <!-- Image Column -->
+          <div class="me-3">
+            <img src="path/to/your/image.jpg" alt="Image" class="img-fluid" style="max-width: 150px;">
+          </div>
+          <!-- Content Column -->
+          <div>
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <div class="d-flex">
+              <button type="button" class="btn btn-outline-success me-2">Chat</button>
+              <form action="../../controllers/head/club_activity/delete_activity.php" method="POST" class="delete-form d-flex">
+                <input type="hidden" name="project_id" value="<?php echo ""; ?>">
+                <input class="d-none" type="hidden" name="project_id">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-6 ">
-        <div class="card mb-3" style="max-width: 640px;">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="../../assets/image/500x500.jpg" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <button type="button" class="btn btn-outline-success">Chat</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 ">
-        <div class="card mb-3" style="max-width: 640px;">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="../../assets/image/500x500.jpg" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <button type="button" class="btn btn-outline-success">Chat</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 ">
-        <div class="card mb-3" style="max-width: 640px;">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img src="../../assets/image/500x500.jpg" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <button type="button" class="btn btn-outline-success">Chat</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      
+
     </div>
+
   </div>
 
-  <?php 
-  
+  <?php if ($club_head) { ?>
 
-  
-  ?>
-  <div class="text-end m-3 position-fixed " style="bottom: 0px; right: 0px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-    <img src="../../assets/svg/plus-solid (1).svg" style="padding: 5px;" width="60px" height="60px" class="bg-dark rounded-circle " alt="">
-  </div>
+    <div class="text-end m-3 position-fixed " style="bottom: 0px; right: 0px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      <img src="../../assets/svg/plus-solid (1).svg" style="padding: 5px;" width="60px" height="60px" class="bg-dark rounded-circle " alt="">
+    </div>
+
+  <?php } ?>
+
 
 
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

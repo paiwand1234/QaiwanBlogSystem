@@ -28,7 +28,7 @@ $club_id = filter_input(INPUT_GET, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
 $db = new Database();
 $clubs = new Clubs($db);
 
-$club = $clubs->read($club_id);
+$project = $clubs->read($club_id);
 
 ?>
 
@@ -46,9 +46,9 @@ $club = $clubs->read($club_id);
 </style>
 <body>
     <div class="video-container">
-        <img  src="<?php echo $club['image'] ?>" alt="" class="img">
+        <img  src="<?php echo $project['image'] ?>" alt="" class="img">
         <div class="video-text">
-            <h1><?php echo $club['name'] ?></h1>
+            <h1><?php echo $project['name'] ?></h1>
         </div>
         <div class="container-fliud border ">
           <?php include "nav.html" ?>
