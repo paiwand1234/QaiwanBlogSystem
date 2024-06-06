@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php 
+
+include "../../models/clubs.php";
+include "../../controllers/database.php";
+
+
+// START THE SESSION
+session_start();
+
+$user_id = null;
+// CHECK IF THE USER IS LOGGED IN
+if (!isset($_SESSION['user_id'])) {
+    // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
+    header("Location: ./login.php");
+    exit();
+}else{
+    
+    $user_id = $_SESSION['user_id'];
+
+}
+
+
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Contact Us</title>
     <!-- <link rel="stylesheet" href="../stylesheets/contact.css"> -->
 </head>
@@ -169,11 +192,12 @@
             object-fit: cover;
             height: 300px;
         }
+       
 </style>
 <body>
     <!-- Navbar -->
  
-    <?php require 'nav.html'; ?>
+    <?php include "nav.html" ?>
    
     <div class="container m-5">
         <div class="row">
@@ -184,76 +208,89 @@
     </div>
     <hr class="mx-5">
 
-    <div class="container  my-4">
-        <div class="row">
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card  shadow-lg border-0">
-                    <div class="card-container ">
-                        <img src="../../assets/image/spart-club.jpg" class="img-fluid rounded" alt="">
-                        <!-- <div class="card-text">Text Overlay 1</div> -->
-                        <a class="btn btn-dark col-12 rounded" href="sport-club.php" role="button">View</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card shadow-lg border-0">
-                    <div class="card-container ">
-                        <img src="../../assets/image/art club.jpg" class="img-fluid rounded" alt="">
-                        <!-- <div class="card-text">Text Overlay 2</div> -->
-                        <a class="btn btn-dark col-12 rounded" href="sport-club.php" role="button">View</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card  shadow-lg border-0">
-                    <div class="card-container">
-                        <img src="../../assets/image/images.jpeg" class="img-fluid rounded" alt="">
-                        <!-- <div class="card-text">Text Overlay 3</div> -->
-                        <a class="btn btn-dark col-12 rounded" href="sport-club.php" role="button">View</a>
-                    </div>
-                </div>
+<?php
+
+$db = new Database();
+$clubs = new Clubs($db);
+
+$club_results = $clubs->readAll();
+
+echo '<div class="container d-flex flex-column my-4">';
+for ($i = 0; $i < count($club_results); $i++) {
+    if ($i % 3 == 0) {
+        if ($i > 0) {
+            echo '</div>'; // Close previous row if not the first item
+        }
+        echo '<div class="row w-100">'; // Start a new row
+    }
+
+    $delete_file = "../../controllers/head/clubs/delete_club.php";
+    echo '<div class="col-4 mb-4">
+    <div class="card shadow-lg border-0">
+        <div class="card-container">
+            <img src="' . $club_results[$i]['image'] . '" class="img-fluid rounded" alt="">
+            <div class="d-flex justify-content-center">
+                <a class="btn btn-primary col-5 rounded my-2" href="./club_activities.php?club_id=' . $club_results[$i]['id'] . '" role="button">View</a>
             </div>
         </div>
     </div>
-    <div class="container  my-4">
-        <div class="row">
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card  shadow-lg border-0">
-                    <div class="card-container ">
-                        <img src="../../assets/image/spart-club.jpg" class="img-fluid rounded" alt="">
-                        <!-- <div class="card-text">Text Overlay 1</div> -->
-                        <a class="btn btn-dark col-12 rounded" href="sport-club.php" role="button">View</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card shadow-lg border-0">
-                    <div class="card-container ">
-                        <img src="../../assets/image/art club.jpg" class="img-fluid rounded" alt="">
-                        <!-- <div class="card-text">Text Overlay 2</div> -->
-                        <a class="btn btn-dark col-12 rounded" href="sport-club.php" role="button">View</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-4 mb-4">
-                <div class="card  shadow-lg border-0">
-                    <div class="card-container">
-                        <img src="../../assets/image/images.jpeg" class="img-fluid rounded" alt="">
-                        <!-- <div class="card-text">Text Overlay 3</div> -->
-                        <a class="btn btn-dark col-12 rounded" href="sport-club.php" role="button">View</a>
-                       
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>';
+
+
+}
+
+// Close the last row
+echo '</div>';
+echo '</div>';
+?>
+
+
     
-      
- 
    
+    <div class="text-end m-3 position-fixed " style="bottom: 0px; right: 0px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <img src="../../assets/svg/plus-solid (1).svg" style="padding: 5px;" width="60px" height="60px" class="bg-dark rounded-circle " alt="">
+    </div>
+
+      
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form class="modal-content" action="../../controllers/head/clubs/add_club.php" method="POST" enctype="multipart/form-data">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Adding Clubs</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Club Name:</label>
+            <input type="text" class="form-control" id="recipient-name" name="name" required>
+          </div>
+          <label for="inputGroupFile02" class="col-form-label">Club Image:</label>
+          <div class="input-group mb-3">
+            <input type="file" class="form-control" id="inputGroupFile02" name="image" required>
+        </div>
+
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Club Description:</label>
+            <textarea class="form-control" id="message-text" name="description" required></textarea>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+    
     
 </body>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 <script>
     const burger = document.querySelector('.burger');
     const navLinks = document.querySelector('.nav-links');
