@@ -5,8 +5,6 @@ class Operators{
     const AND = "AND";
 }
 
-
-
 class Database {
     private $host = 'localhost';
     private $dbname = 'qaiwan_blog_system';
