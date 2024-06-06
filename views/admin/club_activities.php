@@ -3,6 +3,8 @@
 
 <?php 
 include "../../controllers/database.php";
+include "../../models/clubs.php";
+
 
 session_start();
 
@@ -18,6 +20,15 @@ if (!isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
 
 }
+
+
+$club_id = filter_input(INPUT_GET, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
+
+
+$db = new Database();
+$clubs = new Clubs($db);
+
+$club = $clubs->read($club_id);
 
 ?>
 
@@ -35,9 +46,9 @@ if (!isset($_SESSION['user_id'])) {
 </style>
 <body>
     <div class="video-container">
-        <img  src="../../assets/image/1.jpg" alt="" class="img">
+        <img  src="<?php echo $club['image'] ?>" alt="" class="img">
         <div class="video-text">
-            <h1>sport club</h1>
+            <h1><?php echo $club['name'] ?></h1>
         </div>
         <div class="container-fliud border ">
           <?php include "nav.html" ?>

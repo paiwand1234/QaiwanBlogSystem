@@ -1,6 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<?php 
+
+include "../../controllers/database.php";
+include "../../models/clubs.php";
+include "../../models/club_heads.php";
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+session_start();
+
+$user_id = null;
+
+// CHECK IF THE USER IS LOGGED IN
+if (!isset($_SESSION['user_id'])) {
+    // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
+    header("Location: ./register.php");
+    exit();
+
+}else{
+
+    $user_id = $_SESSION['user_id'];
+
+}
+
+
+$club_id = filter_input(INPUT_GET, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
+
+
+$db = new Database();
+$clubs = new Clubs($db);
+$club_heads = new ClubHeads($db);
+
+$club = $clubs->read($club_id);
+
+$data = array(
+  "user_id" => $user_id,
+  "club_id" => $club['id']
+);
+
+$club_head = $club_heads->readMultipleColumns($data, Operators::AND); 
+
+// print_r($club_head);
+
+?>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,10 +62,10 @@
 
 <body>
   <div class="video-container">
-    <img src="../../assets/image/1.jpg" alt="" class="img">
-    <div class="video-text">
-      <h1>sport club</h1>
-    </div>
+  <img  src="<?php echo $club['image'] ?>" alt="" class="img">
+        <div class="video-text">
+            <h1><?php echo $club['name'] ?></h1>
+        </div>
     <div class="container-fliud border ">
       <nav class="navbar ">
         <div class="container">
@@ -114,7 +160,11 @@
     </div>
   </div>
 
+  <?php 
+  
 
+  
+  ?>
   <div class="text-end m-3 position-fixed " style="bottom: 0px; right: 0px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
     <img src="../../assets/svg/plus-solid (1).svg" style="padding: 5px;" width="60px" height="60px" class="bg-dark rounded-circle " alt="">
   </div>
@@ -122,23 +172,22 @@
 
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <form class="modal-content" action="../../controllers/admin/clubs/add_club.php" method="POST" enctype="multipart/form-data">
+      <form class="modal-content" action="../../controllers/admin/head/add_activity.php" method="POST" enctype="multipart/form-data">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Adding Clubs</h1>
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Adding Club Activity</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Club Name:</label>
+            <label for="recipient-name" class="col-form-label">Activity Name:</label>
             <input type="text" class="form-control" id="recipient-name" name="name" required>
           </div>
-          <label for="inputGroupFile02" class="col-form-label">Club Image:</label>
+          <label for="inputGroupFile02" class="col-form-label">Activity Image:</label>
           <div class="input-group mb-3">
             <input type="file" class="form-control" id="inputGroupFile02" name="image" required>
           </div>
-
           <div class="mb-3">
-            <label for="message-text" class="col-form-label">Club Description:</label>
+            <label for="message-text" class="col-form-label">Activity Description:</label>
             <textarea class="form-control" id="message-text" name="description" required></textarea>
           </div>
         </div>
