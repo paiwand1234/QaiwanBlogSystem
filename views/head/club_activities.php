@@ -81,6 +81,7 @@ $club_head = $club_heads->readMultipleColumns($data, Operators::AND);
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                 <button type="button" class="btn btn-outline-success" onclick="window.location.href='chat.php'">Chat</button>
+                <button type="button" class="btn btn-outline-primary" onclick="window.location.href='view-club.php'">View</button>
 
               </div>
             </div>
@@ -98,6 +99,7 @@ $club_head = $club_heads->readMultipleColumns($data, Operators::AND);
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                 <button type="button" class="btn btn-outline-success" onclick="window.location.href='chat.php'">Chat</button>
+                <button type="button" class="btn btn-outline-primary" onclick="window.location.href='view-club.php'">View</button>
               </div>
             </div>
           </div>
@@ -114,6 +116,7 @@ $club_head = $club_heads->readMultipleColumns($data, Operators::AND);
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                 <button type="button" class="btn btn-outline-success" onclick="window.location.href='chat.php'">Chat</button>
+                <button type="button" class="btn btn-outline-primary" onclick="window.location.href='view-club.php'">View</button>
               </div>
             </div>
           </div>
@@ -130,6 +133,7 @@ $club_head = $club_heads->readMultipleColumns($data, Operators::AND);
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                 <button type="button" class="btn btn-outline-success" onclick="window.location.href='chat.php'">Chat</button>
+                <button type="button" class="btn btn-outline-primary" onclick="window.location.href='view-club.php'">View</button>
               </div>
             </div>
           </div>
