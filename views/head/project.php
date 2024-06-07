@@ -126,7 +126,7 @@ if (!isset($_SESSION['user_id'])) {
                         <h5 class="card-title"><?php echo $project[0]['name']; ?></h5>
                         <p class="card-text"><?php echo $project[0]['description']; ?></p>
                         <div class="col d-flex justify-content-around">
-                            <form action="../../delete_project.php" method="POST" class="delete-form">
+                            <form action="../../controllers/head/project/delete_project.php" method="POST" class="delete-form">
                                 <input type="hidden" name="project_id" value="<?php echo $project[0]['id']; ?>">
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
@@ -142,8 +142,7 @@ if (!isset($_SESSION['user_id'])) {
     </div>
  
 </body>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </html>

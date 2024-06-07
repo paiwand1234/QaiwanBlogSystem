@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
             
                     $pdo->commit();
                     echo "\nTransaction committed successfully\n";
-                    $success = "Transaction rolled back due to PDOException". $e->getMessage();
+                    $success = "Transaction was successful!";
                     header("Location: ../../../views/head/project.php?success=".$success);
 
                 } catch (PDOException $e) {
@@ -142,7 +142,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
                     // Ensure autocommit is back to normal
                     $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
                     echo "Autocommit re-enabled\n";
-                    header("Location: ../../../views/head/project.php?");
                 }
             } else {
                 $error = "Error: Sorry, there was an error while uploading the files.";
