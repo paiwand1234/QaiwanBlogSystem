@@ -10,6 +10,7 @@
     <title>Contact Us</title>
     <!-- <link rel="stylesheet" href="../stylesheets/contact.css"> -->
 </head>
+
 <style>
     * {
            
@@ -170,6 +171,7 @@
             height: 300px;
         }
 </style>
+
 <body>
     <!-- Navbar -->
  
@@ -269,8 +271,6 @@
         </div>
     </div>
     
-      
- 
    
     
 </body>
