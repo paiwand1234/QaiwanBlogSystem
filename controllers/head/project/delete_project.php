@@ -1,4 +1,6 @@
 <?php
+
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -59,25 +61,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
         $pdo->commit();
         echo "\nTransaction committed successfully\n";
         $success = "Transaction was successful!";
-        // header("Location: ../../../views/head/project.php?success=".$success);
+        header("Location: ../../../views/head/project.php?success=".$success);
     }catch(PDOException $e){
         $error = $e->getMessage();
         if ($pdo->inTransaction()) {
             $pdo->rollBack();
             $error = "Transaction rolled back due to PDOException". $e->getMessage();
         }    
-        // header("Location: ../../../views/head/project.php?error=".$error);
+        header("Location: ../../../views/head/project.php?error=".$error);
     }catch(Exception $e){
         if ($pdo->inTransaction()) {
             $pdo->rollBack();
             echo "Transaction rolled back due to Exception\n";
         }
         $error = "Transaction failed: " . $e->getMessage();
-        // header("Location: ../../../views/head/project.php?error=".$error);
+        header("Location: ../../../views/head/project.php?error=".$error);
     } finally{
         $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
         echo "Autocommit re-enabled\n";
-        // header("Location: ../../../views/head/project.php?");
+        header("Location: ../../../views/head/project.php?");
     }
 
 

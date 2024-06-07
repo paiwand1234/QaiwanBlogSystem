@@ -124,8 +124,8 @@ if (!isset($_SESSION['user_id'])) {
                         <h5 class="card-title"><?php echo $project[0]['name']; ?></h5>
                         <p class="card-text"><?php echo $project[0]['description']; ?></p>
                         <div class="col d-flex justify-content-around">
-                            <form action="delete_project.php" method="POST" class="delete-form">
-                                <input class="d-none" type="hidden" name="project_id" value="<?php echo $project[0]['id']; ?>">
+                        <form action="../../controllers/users/project/delete_project.php" method="POST" class="delete-form">
+                                <input type="hidden" name="project_id" value="<?php echo $project[0]['id']; ?>">
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
                             <a href="<?php echo $project[1]['file_dir'].$project[1]['file_name']; ?>" class="btn btn-primary" download="<?php echo "project".$project[0]['id']; ?>">Download</a>
