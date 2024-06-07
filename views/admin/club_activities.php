@@ -28,7 +28,7 @@ $club_id = filter_input(INPUT_GET, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
 $db = new Database();
 $clubs = new Clubs($db);
 
-$project = $clubs->read($club_id);
+$club = $clubs->read($club_id);
 
 ?>
 
@@ -46,81 +46,41 @@ $project = $clubs->read($club_id);
 </style>
 <body>
     <div class="video-container">
-        <img  src="<?php echo $project['image'] ?>" alt="" class="img">
+        <img  src="<?php echo $club['image'] ?>" alt="" class="img">
         <div class="video-text">
-            <h1><?php echo $project['name'] ?></h1>
+            <h1><?php echo $club['name'] ?></h1>
         </div>
         <div class="container-fliud border ">
           <?php include "nav.html" ?>
       </div>
     </div>
     <div class="container mt-3">
-      <div class="row ">
+      <div class="row w-100">
         <div class="col-6 ">
           <div class="card mb-3" style="max-width: 640px;">
             <div class="row g-0">
               <div class="col-md-4">
-                <img src="../../assets/image/500x500.jpg" class="img-fluid rounded-start" alt="...">
+                <img src="../../assets/image/500x500.jpg" class="img-fluid object-fit-cover rounded-start w-100 h-100" alt="...">
               </div>
               <div class="col-md-8">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <button type="button" class="btn btn-outline-success" onclick="window.location.href='chat.php'">Chat</button>
+                  <div class="w-100 d-flex justify-content-start align-content-center">
+                    <button type="button" class="btn btn-outline-success col-3 p-0 my-2 mx-1" onclick="window.location.href='chat.php'">Chat</button>
+                    <form action="' . $delete_file . '" method="POST" class="col-3 p-0 my-2 mx-1">
+                                <input type="hidden" name="club_id" value="' . $club_results[$i]['id'] . '">
+                                <button type="submit" class="btn btn-danger col-12 rounded">Delete</button>
+                    </form>
+
+                  </div>
                   
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-6 ">
-          <div class="card mb-3" style="max-width: 640px;">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="../../assets/image/500x500.jpg" class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <button type="button" class="btn btn-outline-success" onclick="window.location.href='chat.php'">Chat</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 ">
-          <div class="card mb-3" style="max-width: 640px;">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="../../assets/image/500x500.jpg" class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <button type="button" class="btn btn-outline-success" onclick="window.location.href='chat.php'">Chat</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 ">
-          <div class="card mb-3" style="max-width: 640px;">
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="../../assets/image/500x500.jpg" class="img-fluid rounded-start" alt="...">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <button type="button" class="btn btn-outline-success" onclick="window.location.href='chat.php'">Chat</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
 

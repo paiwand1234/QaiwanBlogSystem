@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
             if ($image_uploaded) {
                 try {
 
-                    $project = new Clubs($db);
+                    $club = new Clubs($db);
 
                     // Ensure autocommit is off
                     $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
                     $pdo->beginTransaction();
 
                     // Creating project and retrieving the ID
-                    $result = $project->create($project_name, $description, $image_dir . $image_name);
+                    $result = $club->create($project_name, $description, $image_dir . $image_name);
                     echo "\nProject created with ID: $result\n";
 
                     $pdo->commit();

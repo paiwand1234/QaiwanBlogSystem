@@ -81,21 +81,21 @@ if (!isset($_SESSION['user_id'])) {
             $image_array = array('image/jpg', 'image/jpeg', 'image/png');
 
             $db = new Database();
-            $project = new Projects($db);
+            $club = new Projects($db);
             $project_contents = new ProjectContent($db);
-            $projects = $project->readOneColumn("user_id", $user_id);
+            $projects = $club->readOneColumn("user_id", $user_id);
 
             if (count($projects) != 0) {
                 // CREATING THE PROJECTS ARRAY
                 $projects_array = array();
 
-                foreach ($projects as $index_0 => $project) {
+                foreach ($projects as $index_0 => $club) {
                     // INITIALIZE PROJECT ARRAY
                     $projects_array[$index_0] = array();
                     
                     // FIRST ONE IS FOR ADDING THE PROJECT TO THE ARRAY
-                    $projects_array[$index_0][0] = $project;
-                    $contents_result = $project_contents->readOneColumn('project_id', $project['id']);
+                    $projects_array[$index_0][0] = $club;
+                    $contents_result = $project_contents->readOneColumn('project_id', $club['id']);
 
                     foreach ($contents_result as $index_1 => $content) {
                         if (in_array($content["file_type"], $file_array)) {
@@ -116,19 +116,19 @@ if (!isset($_SESSION['user_id'])) {
             
             <?php 
             if(isset($projects_array)){
-            foreach ($projects_array as $index_0 => $project){ ?>
+            foreach ($projects_array as $index_0 => $club){ ?>
             <div class="col-3">
                 <div class="card my-5" style="width: 18rem;">
-                    <img src="<?php echo $project[2]['file_dir'].$project[2]['file_name']; ?>" class="card-img-top" alt="...">
+                    <img src="<?php echo $club[2]['file_dir'].$club[2]['file_name']; ?>" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $project[0]['name']; ?></h5>
-                        <p class="card-text"><?php echo $project[0]['description']; ?></p>
+                        <h5 class="card-title"><?php echo $club[0]['name']; ?></h5>
+                        <p class="card-text"><?php echo $club[0]['description']; ?></p>
                         <div class="col d-flex justify-content-around">
                         <form action="../../controllers/users/project/delete_project.php" method="POST" class="delete-form">
-                                <input type="hidden" name="project_id" value="<?php echo $project[0]['id']; ?>">
+                                <input type="hidden" name="project_id" value="<?php echo $club[0]['id']; ?>">
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
-                            <a href="<?php echo $project[1]['file_dir'].$project[1]['file_name']; ?>" class="btn btn-primary" download="<?php echo "project".$project[0]['id']; ?>">Download</a>
+                            <a href="<?php echo $club[1]['file_dir'].$club[1]['file_name']; ?>" class="btn btn-primary" download="<?php echo "project".$club[0]['id']; ?>">Download</a>
                         </div>
                     </div>
                 </div>
