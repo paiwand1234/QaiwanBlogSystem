@@ -3,6 +3,8 @@
 // DESTROY THE SESSION
 session_destroy();
 
-header("Location: ../../views/admin/login.php");
+header("Location: ../../views/head/register.php");
 exit();
+
+
 

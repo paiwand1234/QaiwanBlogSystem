@@ -1,62 +1,46 @@
-
--- Clubs table
-CREATE TABLE clubs (
-    id INT(11) NOT NULL AUTO_INCREMENT,
-    name VARCHAR(256) NOT NULL,
-    image VARCHAR(256), -- URL or path to the club image
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp when the record is created
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Timestamp when the record is updated
-    PRIMARY KEY (id)
+-- CREATE STUDENTS TABLE
+CREATE TABLE students (
+    student_id INT AUTO_INCREMENT PRIMARY KEY,
+    matrix_name VARCHAR(255),
+    email VARCHAR(255),
+    subject_id INT
 );
 
--- Club Heads table
-CREATE TABLE club_heads (
-    id INT(11) NOT NULL AUTO_INCREMENT,
-    club_id INT(11) NOT NULL,
-    user_id INT(11) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp when the record is created
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 
-   PRIMARY KEY (id),
-    UNIQUE KEY (club_id, user_id),
-    FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+-- CREATE SUBJECTS TABLE
+CREATE TABLE subjects (
+    subject_id INT AUTO_INCREMENT PRIMARY KEY,
+    course_name VARCHAR(255),
+    course_code VARCHAR(50),
+    session VARCHAR(50),
+    course_lecturer VARCHAR(255),
+    report_date DATE
 );
 
--- Club Activities table
-CREATE TABLE club_activities (
-    id INT(11) NOT NULL AUTO_INCREMENT,
-    club_id INT(11) NOT NULL,
-    name VARCHAR(256) NOT NULL,
-    image VARCHAR(256), -- URL or path to the club activity image
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp when the record is created
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Timestamp when the record is updated
-    PRIMARY KEY (id),
-    FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE
+-- CREATE CLOs TABLE
+CREATE TABLE clos (
+    clo_id INT AUTO_INCREMENT PRIMARY KEY,
+    clo_caption VARCHAR(255),
+    clo_description TEXT,
+    percentage DECIMAL(5, 2)
 );
 
--- Club Activity Chats table
-CREATE TABLE club_activity_chats (
-    id INT(11) NOT NULL AUTO_INCREMENT,
-    club_activity_id INT(11) NOT NULL,
-    club_id INT(11),
-    name VARCHAR(256) NOT NULL,
-    content TEXT NOT NULL, -- Chat content
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp when the record is created
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Timestamp when the record is updated
-    PRIMARY KEY (id),
-    FOREIGN KEY (club_activity_id) REFERENCES club_activities(id) ON DELETE CASCADE,
-    FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE
+-- CREATE GRADES TABLE
+CREATE TABLE grades (
+    grade_id INT AUTO_INCREMENT PRIMARY KEY,
+    activity_name VARCHAR(255),
+    percentage DECIMAL(5, 2),
+    student_id INT,
+    subject_id INT,
+    FOREIGN KEY (student_id) REFERENCES students(student_id),
+    FOREIGN KEY (subject_id) REFERENCES subjects(subject_id)
 );
 
--- Club Activity Images table
-CREATE TABLE club_activity_images (
-    id INT(11) NOT NULL AUTO_INCREMENT,
-    club_activity_id INT(11),
-    club_id INT(11),
-    image VARCHAR(256) NOT NULL, -- URL or path to the image
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp when the record is created
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Timestamp when the record is updated
-    PRIMARY KEY (id),
-    FOREIGN KEY (club_activity_id) REFERENCES club_activities(id) ON DELETE CASCADE,
-    FOREIGN KEY (club_id) REFERENCES clubs(id) ON DELETE CASCADE
+-- CREATE CLO_DETAILS TABLE
+CREATE TABLE clo_details (
+    clo_detail_id INT AUTO_INCREMENT PRIMARY KEY,
+    grade_id INT,
+    clo_id INT,
+    percentage DECIMAL(5, 2),
+    FOREIGN KEY (grade_id) REFERENCES grades(grade_id),
+    FOREIGN KEY (clo_id) REFERENCES clos(clo_id)
 );

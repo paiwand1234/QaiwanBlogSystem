@@ -35,12 +35,13 @@ $club = $clubs->read($club_id);
 
 $data = array(
     "user_id" => $user_id,
-    "club_id" => $club['id']
+    "club_id" => $club_id
 );
 
 $club_head = $club_heads->readMultipleColumns($data, Operators::AND);
 
 $club_activity = $club_activities->readOneColumn('club_id', $club_id);
+
 
 ?>
 
@@ -75,7 +76,7 @@ $club_activity = $club_activities->readOneColumn('club_id', $club_id);
                     <div class="card mb-3" style="max-width: 640px;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="../../assets/image/500x500.jpg" class="img-fluid object-fit-cover rounded-start w-100 h-100" alt="...">
+                                <img src="<?php echo $activity['image'];?>" class="img-fluid object-fit-cover rounded-start w-100 h-100" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
@@ -83,7 +84,7 @@ $club_activity = $club_activities->readOneColumn('club_id', $club_id);
                                     <p class="card-text"><?php echo $activity['description'] ?></p>
                                     <div class="w-100 d-flex justify-content-start align-content-center">
                                         <button type="button" class="btn btn-outline-success col-3 p-0 my-2 mx-1" onclick="window.location.href='chat.php?club_id=<?php echo $activity['club_id'] ?>&activity_id=<?php echo $activity['id'] ?>'">Chat</button>
-                                        <form action="../../controllers/admin/clubs/delete_club.php" method="POST" class="col-3 p-0 my-2 mx-1">
+                                        <form action="../../controllers/head/club_activity/delete_activity.php" method="POST" class="col-3 p-0 my-2 mx-1">
                                             <input type="hidden" name="club_id" value="<?php echo htmlspecialchars($club['id']); ?>">
                                             <button type="submit" class="btn btn-danger col-12 rounded">Delete</button>
                                         </form>
@@ -97,11 +98,10 @@ $club_activity = $club_activities->readOneColumn('club_id', $club_id);
       
         </div>
     </div>
-
     <?php if ($club_head) { ?>
-    <div class="text-end m-3 position-fixed" style="bottom: 0px; right: 0px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        <img src="../../assets/svg/plus-solid (1).svg" style="padding: 5px;" width="60px" height="60px" class="bg-dark rounded-circle" alt="">
-    </div>
+        <div class="text-end m-3 position-fixed" style="bottom: 0px; right: 0px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <img src="../../assets/svg/plus-solid (1).svg" style="padding: 5px;" width="60px" height="60px" class="bg-dark rounded-circle" alt="">
+        </div>
     <?php } ?>
 
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

@@ -12,9 +12,9 @@ try {
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     // Fetch user from database
-    $sql = "SELECT * FROM users WHERE username = ?";
+    $sql = "SELECT * FROM users WHERE username = ? AND role = ?";
     $stmt = $db->pdo->prepare($sql);
-    $stmt->execute([$username]);
+    $stmt->execute([$username, "admin"]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // Verify password
