@@ -34,7 +34,7 @@ $club_activities = new ClubActivities($db);
 $club = $clubs->read($club_id);
 
 
-$club_activity = $club_activities->readOneColumn('club_id', $club_id);
+$club_activities = $club_activities->readOneColumn('club_id', $club_id);
 
 ?>
 
@@ -64,7 +64,7 @@ $club_activity = $club_activities->readOneColumn('club_id', $club_id);
     <div class="container mt-3">
         <div class="row w-100">
 
-            <?php foreach($club_activity as $index_0 => $activity ){ ?>
+            <?php foreach($club_activities as $index_0 => $activity ){ ?>
               <div class="col-6">
                     <div class="card mb-3" style="max-width: 640px;">
                         <div class="row g-0">

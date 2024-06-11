@@ -1,11 +1,50 @@
+
+<?php
+
+include "../../controllers/database.php"; // Assuming you have this file
+include "../../controllers/utils/utils.php";
+
+
+session_start();
+
+
+$user_id = $_SESSION['user_id'];
+$club_id = filter_input(INPUT_GET, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
+$activity_id = filter_input(INPUT_GET, 'activity_id', FILTER_SANITIZE_SPECIAL_CHARS);
+
+// CHECK IF THE USER IS LOGGED IN
+if (!isset($_SESSION['user_id'])) {
+    // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
+    header("Location: ./register.php");
+    exit();
+}
+
+try {
+    $db = new Database();
+    $club_activities = new ClubActivities($db);
+    $club_activity = $club_activities->read($activity_id);
+
+    // Debug: Remove this in production
+    print_r($club_activity);
+
+} catch (Exception $e) {
+    echo "An error occurred: " . $e->getMessage();
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Group</title>
     <link rel="stylesheet" href="../../plugins/bootstrap/css/bootstrap.min.css">
 </head>
+
+
 <style>
 /* BASIC RESET */
 * {
@@ -72,10 +111,6 @@ body {
     margin-right: 10px;
 }
 
-.chat-input input:first-child {
-    margin-right: 10px;
-}
-
 .chat-input button {
     background-color: #007bff;
     color: #fff;
@@ -90,7 +125,8 @@ body {
     background-color: #0056b3;
 }
 </style>
-<body>
+
+<body class="py-4">
 <div class="chat-container">
     <div class="chat-box" id="chat-box"></div>
     <div class="chat-input">

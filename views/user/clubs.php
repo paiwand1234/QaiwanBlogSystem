@@ -211,9 +211,9 @@ if (!isset($_SESSION['user_id'])) {
 <?php
 
 $db = new Database();
-$clubs = new Clubs($db);
+$club_activities = new Clubs($db);
 
-$club_results = $clubs->readAll();
+$club_results = $club_activities->readAll();
 
 echo '<div class="container d-flex flex-column my-4">';
 for ($i = 0; $i < count($club_results); $i++) {

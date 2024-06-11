@@ -11,13 +11,14 @@ session_start();
 
 $user_id = $_SESSION['user_id'];
 $club_id = filter_input(INPUT_POST, 'club_id', FILTER_SANITIZE_NUMBER_INT);
+$activity_id = filter_input(INPUT_POST, 'activity_id', FILTER_SANITIZE_NUMBER_INT);
 
 echo $club_id;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
     $db = new Database();
     $pdo = $db->pdo;
-    $clubs = new Clubs($db);
+    $club_activities = new ClubActivities($db);
 
     try {
         // Ensure autocommit is off
@@ -25,8 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
 
         $pdo->beginTransaction();
 
-        $read_result = $clubs->read($club_id);
-        $delete_result = $clubs->delete($club_id);
+        $read_result = $club_activities->read($activity_id);
+        print_r($read_result);
+        $delete_result = $club_activities->delete($activity_id);
 
         if ($read_result && $delete_result) {
             echo $read_result['image'];
@@ -39,14 +41,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
 
         $pdo->commit();
         $success = "Transaction was successful";
-        header("Location: ../../../views/admin/clubs.php?success=" . urlencode($success));
+        header("Location: ../../../views/head/club_activities.php?club_id=".$club_id."&success=" . urlencode($success));
         exit();
     } catch (PDOException $e) {
         if ($pdo->inTransaction()) {
             $pdo->rollBack();
             $error = "Transaction rolled back due to PDOException: " . $e->getMessage();
             echo $error;
-            header("Location: ../../../views/admin/clubs.php?error=" . urlencode($error));
+            header("Location: ../../../views/head/club_activities.php?error=" . urlencode($error));
             exit();
         }
     } catch (Exception $e) {
@@ -55,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
         }
         $error = "Transaction failed: " . $e->getMessage();
         echo $error;
-        header("Location: ../../../views/admin/clubs.php?error=" . urlencode($error));
+        header("Location: ../../../views/head/club_activities.php?error=" . urlencode($error));
         exit();
     } finally {
         // Ensure autocommit is back to normal
