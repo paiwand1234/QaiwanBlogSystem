@@ -1,6 +1,6 @@
 <?php
 
-class Operators{
+class Operators {
     const OR = "OR";
     const AND = "AND";
 }
@@ -34,6 +34,7 @@ class Database {
         $stmt->execute(array_values($data));
         return $this->pdo->lastInsertId();
     }
+
     public function readAll($table) {
         $sql = "SELECT * FROM $table";
         $stmt = $this->pdo->prepare($sql);
@@ -54,7 +55,8 @@ class Database {
         $stmt->execute([$value]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function readMultipleColumns($table, $conditions, $opderator) {
+
+    public function readMultipleColumns($table, $conditions, $operator) {
         $query = "SELECT * FROM $table WHERE ";
         $params = [];
         $clauses = [];
@@ -63,12 +65,11 @@ class Database {
             $clauses[] = "$column = :$column";
             $params[$column] = $value;
         }
-        $query .= implode(' '.$opderator.' ', $clauses);
+        $query .= implode(' ' . $operator . ' ', $clauses);
         $stmt = $this->pdo->prepare($query);
         $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
 
     public function update($table, $id, $data) {
         $set = [];
@@ -89,6 +90,50 @@ class Database {
         $stmt->execute([$id]);
         return $stmt->rowCount();
     }
+
+    // New method to read with limit
+    public function readWithLimit($table, $limit, $offset = 0, $conditions = [], $column, $direction = 'ASC') {
+        // Initialize the SQL query
+        $sql = "SELECT * FROM $table";
+    
+        // Add conditions if provided
+        if (!empty($conditions)) {
+            $clauses = [];
+            $params = [];
+            foreach ($conditions as $column => $value) {
+                $clauses[] = "$column = ?";
+                $params[] = $value;
+            }
+            $sql .= ' WHERE ' . implode(' AND ', $clauses);
+        }
+    
+        // Append LIMIT and OFFSET
+        $sql .= " ORDER BY $column $direction LIMIT ? OFFSET ?";
+    
+        // Prepare the statement
+        $stmt = $this->pdo->prepare($sql);
+    
+        // Bind parameters for conditions
+        if (!empty($conditions)) {
+            $i = 1;
+            foreach ($params as $param) {
+                $stmt->bindValue($i, $param);
+                $i++;
+            }
+            // Bind the LIMIT and OFFSET parameters
+            $stmt->bindValue($i, $limit, PDO::PARAM_INT);
+            $stmt->bindValue($i + 1, $offset, PDO::PARAM_INT);
+        } else {
+            // Bind the LIMIT and OFFSET parameters if no conditions
+            $stmt->bindValue(1, $limit, PDO::PARAM_INT);
+            $stmt->bindValue(2, $offset, PDO::PARAM_INT);
+        }
+    
+        // Execute the statement
+        $stmt->execute();
+    
+        // Fetch and return the results
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     
 }
-

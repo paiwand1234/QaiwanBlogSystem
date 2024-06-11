@@ -1,5 +1,11 @@
 <?php
 
+class Direction {
+    const ASC = "ASC";
+    const DESC = "DESC";
+}
+
+
 class ClubActivityChats {
     private $db;
     private $table_name = 'club_activity_chats';
@@ -8,9 +14,10 @@ class ClubActivityChats {
         $this->db = $db;
     }
 
-    public function create($clubActivityId, $clubId, $name, $content) {
+    public function create($user_id, $clubActivityId, $clubId, $name, $content) {
         try {
             return $this->db->create($this->table_name, [
+                'user_id' => $user_id,
                 'club_activity_id' => $clubActivityId,
                 'club_id' => $clubId,
                 'name' => $name,
@@ -44,6 +51,14 @@ class ClubActivityChats {
             throw new Exception("Error reading club heads: " . $e->getMessage());
         }
     }
+    public function readWithLimit($limit, $offset, $conditions, $column, $direction) {
+        try {
+            return $this->db->readWithLimit($this->table_name, $limit, $offset, $conditions, $column, $direction);
+        } catch (PDOException $e) {
+            throw new Exception("Error reading club heads: " . $e->getMessage());
+        }
+    }
+
     public function update($chatId, $data) {
         try {
             return $this->db->update($this->table_name, $chatId, $data);

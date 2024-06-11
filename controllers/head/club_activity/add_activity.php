@@ -80,4 +80,3 @@ try {
 } finally {
     $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
 }
-?>

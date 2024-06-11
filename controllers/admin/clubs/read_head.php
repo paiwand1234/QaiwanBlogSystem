@@ -28,13 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($user_id) && $data) {
     $name = $data['name'];
     try{
         $db = new Database();
-        $users = new Users($db);
+        $club_activity_chats = new Users($db);
         $columns = array(
             'username' => $name,
             'role' => 'head'
         );
 
-        $user = $users->readMultipleColumns($columns, Operators::AND);
+        $user = $club_activity_chats->readMultipleColumns($columns, Operators::AND);
 
         if ($user) {
             echo json_encode([
