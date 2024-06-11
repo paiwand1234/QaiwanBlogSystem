@@ -50,6 +50,8 @@ try {
         );
 
         $pdo->commit(); // Commit before redirecting
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['role'] = UserRole::USER;
         header('Location: ../../views/user/home.php');
         // exit();
     } else {
