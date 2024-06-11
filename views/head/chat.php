@@ -10,7 +10,6 @@ include "../../models/users.php";
 
 session_start();
 
-
 $user_id = $_SESSION['user_id'];
 $club_id = filter_input(INPUT_GET, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
 $activity_id = filter_input(INPUT_GET, 'activity_id', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -25,7 +24,7 @@ if (!isset($_SESSION['user_id'])) {
 try {
     $db = new Database();
     $club_activities = new ClubActivities($db);
-    $users = new Users($db); 
+    $users = new Users($db);
 
     $club_activity = $club_activities->read($activity_id);
     $user = $users->read($_SESSION['user_id']);
@@ -33,14 +32,12 @@ try {
     $username = $user['username'];
     // Debug: Remove this in production
 
-
 } catch (Exception $e) {
     echo "An error occurred: " . $e->getMessage();
     exit();
 }
 
 ?>
-
 
 <head>
     <meta charset="UTF-8">
@@ -82,6 +79,7 @@ body {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
+    max-height: 80vh; /* Ensures the chat box is scrollable */
 }
 
 .message {
@@ -106,16 +104,15 @@ body {
     background-color: #fff;
 }
 
-.chat-input input {
+.chat-input textarea {
     flex: 1;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 10px;
     margin-right: 10px;
-}
-
-.chat-input input:first-child {
-    margin-right: 10px;
+    resize: none; /* Prevents resizing */
+    overflow: hidden;
+    outline:none;
 }
 
 .chat-input button {
@@ -137,13 +134,12 @@ body {
     <div class="chat-box" id="chat-box"></div>
     <div class="chat-input">
         <h6 id="name-input" class="my-auto col-2 text-center"><?php echo $username?></h6>
-        <input type="text" class="col-10" id="message-input" placeholder="Type a message...">
+        <textarea class="col-10" id="message-input" rows="1" placeholder="Type a message..."></textarea>
         <button onclick="getMessage()">Send</button>
     </div>
 </div>
 <script>
-
-let  getMessage = async () => {
+let getMessage = async () => {
     // GET THE NAME AND MESSAGE INPUT ELEMENTS
     const nameElement = document.getElementById('name-input');
     const messageInput = document.getElementById('message-input');
@@ -153,7 +149,7 @@ let  getMessage = async () => {
     
     // GET THE NAME AND MESSAGE TEXT
     const nameText = "<?php echo $username?>";
-    const messageText =  messageInput.value;
+    const messageText = messageInput.value;
     
     if(messageText.trim() !== ""){
         if(await sendMessage(messageText) === "success"){
@@ -180,10 +176,8 @@ let  getMessage = async () => {
 
         // SCROLL TO THE BOTTOM OF THE CHAT BOX
         chatBox.scrollTop = chatBox.scrollHeight;
-
         }
     }
-
 }
 
 let sendMessage = async (message) => {
@@ -209,7 +203,6 @@ let sendMessage = async (message) => {
     };
 
     try {
-
         // MAKE THE FETCH REQUEST
         const response = await fetch(url, options);
         console.log(response)
@@ -227,79 +220,85 @@ let sendMessage = async (message) => {
     }
 }
 
-
-
 let updateChat = async () => {
-        // DEFINE THE URL OF THE API ENDPOINT
-        const url = `${window.location.origin}/QaiwanBlogSystem/controllers/head/club_activity_chat/read_chat.php`;
+    // DEFINE THE URL OF THE API ENDPOINT
+    const url = `${window.location.origin}/QaiwanBlogSystem/controllers/head/club_activity_chat/read_chat.php`;
 
-        // DEFINE THE PARAMETERS
-        const params = { 
-            // name: "<?php echo $username ?>",
-            activity_id: "<?php echo $activity_id ?>",
-            club_id: "<?php echo $club_id ?>",
-            // user_id: "<?php echo $user_id ?>",
-            // message: message
-        };
+    // DEFINE THE PARAMETERS
+    const params = { 
+        activity_id: "<?php echo $activity_id ?>",
+        club_id: "<?php echo $club_id ?>",
+    };
 
-        // DEFINE THE REQUEST OPTIONS
-        const options = {
-            method: 'POST', // CAN BE 'GET', 'POST', 'PUT', 'DELETE', ETC.
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(params)
-        };
+    // DEFINE THE REQUEST OPTIONS
+    const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(params)
+    };
 
-        try {
-            // MAKE THE FETCH REQUEST
-            const response = await fetch(url, options);
+    try {
+        // MAKE THE FETCH REQUEST
+        const response = await fetch(url, options);
 
-            // CHECK IF THE RESPONSE STATUS IS OK (STATUS CODE 200-299)
-            if (!response.ok) throw new Error('Network response was not ok ' + response.statusText);
+        // CHECK IF THE RESPONSE STATUS IS OK (STATUS CODE 200-299)
+        if (!response.ok) throw new Error('Network response was not ok ' + response.statusText);
 
+        // RETURN THE RESPONSE AS JSON
+        const data = await response.json();
+        console.log(data['data'])
+        const chatBox = document.getElementById('chat-box');
+        const messageInput = document.getElementById('message-input');
 
-            // RETURN THE RESPONSE AS JSON
-            const data = await response.json();       
+        chatBox.innerHTML = "";
+
+        for(let i = 0; i < data['data'].length; i++){
+            console.log(data['data'].length)
+
+            // CREATE A NEW MESSAGE ELEMENT
+            const messageElement = document.createElement('div');
+            messageElement.className = 'message';
             
-            console.log(data['data'])
-            const chatBox = document.getElementById('chat-box');
-            const messageInput = document.getElementById('message-input');
-
-            chatBox.innerHTML = "";
-
-            for(let i = 0 ; i < data['data'].length ;i++){
-                console.log(data['data'].length)
-
-                // CREATE A NEW MESSAGE ELEMENT
-                const messageElement = document.createElement('div');
-                messageElement.className = 'message';
-                
-                // CREATE AND APPEND THE NAME ELEMENT
-                const nameDivElement = document.createElement('div');
-                nameDivElement.className = 'name';
-                nameDivElement.textContent = data['data'][i]['name'];
-                messageElement.appendChild(nameDivElement);
-                
-                // CREATE AND APPEND THE MESSAGE TEXT ELEMENT
-                const textElement = document.createElement('div');
-                textElement.textContent = data['data'][i]['content'];
-                messageElement.appendChild(textElement);
-                
-                // ADD THE MESSAGE ELEMENT TO THE CHAT BOX
-                chatBox.appendChild(messageElement);
+            // CREATE AND APPEND THE NAME ELEMENT
+            const nameDivElement = document.createElement('div');
+            nameDivElement.className = 'name';
+            nameDivElement.textContent = data['data'][i]['name'];
+            messageElement.appendChild(nameDivElement);
             
-
-                // SCROLL TO THE BOTTOM OF THE CHAT BOX
-                chatBox.scrollTop = chatBox.scrollHeight;
-
-            }
-
-
+            // CREATE AND APPEND THE MESSAGE TEXT ELEMENT
+            const textElement = document.createElement('div');
+            textElement.textContent = data['data'][i]['content'];
+            messageElement.appendChild(textElement);
             
-        } catch (error) {
-            console.error('There has been a problem with your fetch operation:', error);
+            // ADD THE MESSAGE ELEMENT TO THE CHAT BOX
+            chatBox.appendChild(messageElement);
+        
+            // SCROLL TO THE BOTTOM OF THE CHAT BOX
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
+    } catch (error) {
+        console.error('There has been a problem with your fetch operation:', error);
+    }
 }
 
+// FUNCTION TO AUTO RESIZE TEXTAREA
+const autoResizeTextarea = (textarea) => {
+    textarea.style.height = 'auto';
+    const maxRows = 4;
+    const lineHeight = parseInt(window.getComputedStyle(textarea).lineHeight);
+    const currentRows = Math.floor(textarea.scrollHeight / lineHeight);
+    
+    if (currentRows > maxRows) {
+        textarea.style.height = `${lineHeight * maxRows}px`;
+        textarea.style.overflowY = 'scroll';
+    } else {
+        textarea.style.height = `${textarea.scrollHeight}px`;
+        textarea.style.overflowY = 'hidden';
+    }
+}
+
+const messageInput = document.getElementById('message-input');
+messageInput.addEventListener('input', () => autoResizeTextarea(messageInput));
 
 setInterval(updateChat, 1500);
 
