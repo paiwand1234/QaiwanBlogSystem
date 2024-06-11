@@ -60,4 +60,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($user_id) && $data) {
         'message' => "There was an error while reading the received data"
     ]);
 }
-?>
