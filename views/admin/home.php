@@ -174,7 +174,7 @@ body {
             <ul>
                 <li><a href="home.php"><i class="fa-solid fa-house"></i> Home</a></li>
                 <li><a href="club_activities.php"><i class="fa-solid fa-medal"></i> Activity</a></li>
-                <li><a href="post.php"><i class="fa-solid fa-building"></i>Psot control</a></li>
+                <li><a href="post.php"><i class="fa-solid fa-building"></i>Post control</a></li>
                 <li><a href="clubs.php"><i class="fa-solid fa-people-group"></i> Club</a></li>
                 <li><a href="users.php"><i class="fa-solid fa-user "></i> Users</a></li>
                 <li><a href="chat.php"><i class="fa-solid fa-user "></i> chat</a></li>
