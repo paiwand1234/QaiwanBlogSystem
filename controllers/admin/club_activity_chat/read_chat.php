@@ -23,18 +23,21 @@ $data = json_decode($json, true);
 
 $user_id = $_SESSION['user_id'] ?? null;
 
+$limit = 50;
+$offset = 0;
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($user_id) && $data) {
     try {
         $db = new Database();
         $club_activity_chats = new ClubActivityChats($db);
 
-        $chat = $club_activity_chats->create(
-            $user_id, 
-            $data['activity_id'], 
-            $data['club_id'], 
-            $data['name'], 
-            $data['message']
+        $conditions = array(
+            'club_activity_id' => $data["activity_id"],
+            'club_id' => $data["club_id"],
         );
+
+        $chat = $club_activity_chats->readWithLimit($limit, $offset, $conditions, "created_at", Direction::DESC);
 
         if ($chat) {
             echo json_encode([
@@ -60,4 +63,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($user_id) && $data) {
         'message' => "There was an error while reading the received data"
     ]);
 }
-?>
