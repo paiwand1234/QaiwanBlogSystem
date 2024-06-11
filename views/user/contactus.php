@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-
-
-
 // START THE SESSION
 session_start();
 
@@ -14,20 +11,15 @@ if (!isset($_SESSION['user_id'])) {
     // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
     header("Location: ./register.php");
     exit();
-}else{
-    
+} else {
     $user_id = $_SESSION['user_id'];
-
 }
-
-
 ?>
-
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="../../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Contact Us</title>
     <link rel="stylesheet" href="../../stylesheets/contact.css">
@@ -42,12 +34,11 @@ if (!isset($_SESSION['user_id'])) {
             <div class="main">
                 <div class="content">
                     <h2>Contact Us</h2>
-                    <form action="#" method="post">
-                        <input type="text" name="name" placeholder="Enter Your Name">
-
-                        <input type="email" name="name" placeholder="Enter Your Email">
-                        <input type="tel" name="name" placeholder="Enter Your Number">
-                        <textarea name="message" placeholder="Your Message"></textarea>
+                    <form action="process_contact.php" method="post">
+                        <input type="text" name="name" placeholder="Enter Your Name" required>
+                        <input type="email" name="email" placeholder="Enter Your Email" required>
+                        <input type="tel" name="phone" placeholder="Enter Your Number" required>
+                        <textarea name="message" placeholder="Your Message" required></textarea>
                         <button type="submit" class="btn" id="btn">Send <i class="fas fa-paper-plane"></i></button>
                     </form>
                 </div>
