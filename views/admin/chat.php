@@ -14,7 +14,7 @@ session_start();
 $user_id = null;
 
 // CHECK IF THE USER IS LOGGED IN
-if (!isset($_SESSION['user_id']) && $_SESSION['role'] !== 'admin') {
+if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'admin') {
     // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
     header("Location: ./login.php");
     exit();

@@ -13,7 +13,7 @@ session_start();
 $user_id = null;
 
 // CHECK IF THE USER IS LOGGED IN
-if (!isset($_SESSION['user_id']) && $_SESSION['role'] !== 'user') {
+if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
     // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
     header("Location: ./register.php");
     exit();
@@ -23,6 +23,7 @@ if (!isset($_SESSION['user_id']) && $_SESSION['role'] !== 'user') {
 
 }
 
+print("this is the role".$_SESSION['role']);
 
 ?>
 
