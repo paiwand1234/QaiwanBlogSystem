@@ -23,29 +23,29 @@ $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 
 $user_id = $_SESSION['user_id'] ?? null;
+$role = $_SESSION['role'] ?? null;
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($user_id) && $data) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($user_id) && $data && $role = "admin") {
     $name = $data['name'];
+    $limit = $data['limit'];
+    $offset = $data['offset'];
+
     try{
         $db = new Database();
         $users = new Users($db);
-        $columns = array(
-            'username' => $name,
-            'role' => 'head'
-        );
 
-        $user = $users->readMultipleColumns($columns, Operators::AND);
-
+        $user = $users->readWithLimit($limit, $offset);
+        
         if ($user) {
             echo json_encode([
                 'status' => 'success',
-                'message' => "head exists",
+                'message' => "Data has been sent back",
                 'data' => $user
             ]);
         } else {
             echo json_encode([
                 'status' => 'error',
-                'message' => "head doesn't exist"
+                'message' => "Data doesn't exist"
             ]);
         }
     }catch(Exception $e){

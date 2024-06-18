@@ -26,7 +26,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($user_id)){
 
             $db = new Database();
             $club_head = new ClubHeads($db);
-            $club_activity_chats = new Users($db); 
+            $users = new Users($db); 
 
             $club_head->create($club_id, $head_id);
             $success = "Head added successfuly";

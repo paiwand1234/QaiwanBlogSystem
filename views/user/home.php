@@ -23,8 +23,6 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
 
 }
 
-print("this is the role".$_SESSION['role']);
-
 ?>
 
 

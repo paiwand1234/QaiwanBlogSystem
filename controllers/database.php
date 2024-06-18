@@ -92,7 +92,7 @@ class Database {
     }
 
     // New method to read with limit
-    public function readWithLimit($table, $limit, $offset = 0, $conditions = [], $column, $direction = 'ASC') {
+    public function readWithLimit($table, $limit, $offset, $conditions , $orderbycolumn, $direction) {
         // Initialize the SQL query
         $sql = "SELECT * FROM $table";
     
@@ -108,7 +108,7 @@ class Database {
         }
     
         // Append LIMIT and OFFSET
-        $sql .= " ORDER BY $column $direction LIMIT ? OFFSET ?";
+        $sql .= " ORDER BY $orderbycolumn $direction LIMIT ? OFFSET ?";
     
         // Prepare the statement
         $stmt = $this->pdo->prepare($sql);
