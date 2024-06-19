@@ -14,7 +14,9 @@ $studentIds = new StudentIds($db);
 
 // $studentIds->create("aaque324343");
 
-$user = $userModel->create('alana', 'alan', 'alana@gmail.com','admin', 2);
+$hashed_password = password_hash("alan", PASSWORD_DEFAULT);
+
+$user = $userModel->create('alana', $hashed_password, 'alana@gmail.com','admin', 2);
 
 
 
