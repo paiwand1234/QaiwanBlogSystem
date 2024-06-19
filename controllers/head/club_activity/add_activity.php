@@ -20,14 +20,14 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_SESSION['user_id'])) {
 }
 
 $db = new Database();
-$club_activities = new ClubActivities($db);
+$users = new ClubActivities($db);
 $pdo = $db->pdo;
 
 try {
     echo "Reached here in try-catch block\n";
 
     $user_id = $_SESSION['user_id'];
-    $club_id = filter_input(INPUT_POST, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
+    $delete_id = filter_input(INPUT_POST, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
     $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_SPECIAL_CHARS);
 
@@ -56,10 +56,10 @@ try {
             throw new Exception("Failed to upload image.");
         }
 
-        $club_activities->create($club_id, $name, $description, $image_dir . $image_name);
+        $users->create($delete_id, $name, $description, $image_dir . $image_name);
         echo "\nActivity image created\n";
         $success = "Activity created";
-        header("Location: ../../../views/head/club_activities.php?club_id=".$club_id."&success=" . urlencode($success));
+        header("Location: ../../../views/head/club_activities.php?club_id=".$delete_id."&success=" . urlencode($success));
     } else {
         throw new Exception("Sorry, there was an error while reading the image.");
     }
@@ -70,13 +70,13 @@ try {
         $pdo->rollBack();
     }
     $error = "Transaction rolled back due to PDOException: " . $e->getMessage();
-    header("Location: ../../../views/head/club_activities.php?club_id=".$club_id."&error=" . urlencode($error));
+    header("Location: ../../../views/head/club_activities.php?club_id=".$delete_id."&error=" . urlencode($error));
 } catch (Exception $e) {
     if ($pdo->inTransaction()) {
         $pdo->rollBack();
     }
     $error = "Transaction failed: " . $e->getMessage();
-    header("Location: ../../../views/head/club_activities.php?club_id=".$club_id."&error=" . urlencode($error));
+    header("Location: ../../../views/head/club_activities.php?club_id=".$delete_id."&error=" . urlencode($error));
 } finally {
     $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
 }

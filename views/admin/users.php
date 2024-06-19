@@ -119,7 +119,10 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'admin') {
 
             user_container.innerHTML = "";
             
-            user_data = data['data']
+            let delete_id_name = "user_id_";
+
+            user_data = data['data'];
+
             for(let i = 0 ; i < user_data.length ;i++){
                 user_container.innerHTML += `
                       <div class="col-lg-4">
@@ -133,6 +136,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'admin') {
                             </div>
                           </div>
                           <form class="card-footer" action="${window.location.origin}/QaiwanBlogSystem/controllers/admin/users/delete_users.php" method="POST">
+                            <input type="hidden" name="${delete_id_name}" value="${user_data[i]['id']}"/>
                             <button type="submit" class="btn btn-danger  col-12 ">Delete</button>
                           </div>
                         </div>

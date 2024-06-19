@@ -10,15 +10,15 @@ ini_set('display_errors', 1);
 session_start();
 
 $user_id = $_SESSION['user_id'];
-$club_id = filter_input(INPUT_POST, 'club_id', FILTER_SANITIZE_NUMBER_INT);
+$delete_id = filter_input(INPUT_POST, 'club_id', FILTER_SANITIZE_NUMBER_INT);
 $activity_id = filter_input(INPUT_POST, 'activity_id', FILTER_SANITIZE_NUMBER_INT);
 
-echo $club_id;
+echo $delete_id;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
     $db = new Database();
     $pdo = $db->pdo;
-    $club_activities = new ClubActivities($db);
+    $users = new ClubActivities($db);
 
     try {
         // Ensure autocommit is off
@@ -26,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
 
         $pdo->beginTransaction();
 
-        $read_result = $club_activities->read($activity_id);
+        $read_result = $users->read($activity_id);
         print_r($read_result);
-        $delete_result = $club_activities->delete($activity_id);
+        $delete_result = $users->delete($activity_id);
 
         if ($read_result && $delete_result) {
             echo $read_result['image'];
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
 
         $pdo->commit();
         $success = "Transaction was successful";
-        header("Location: ../../../views/head/club_activities.php?club_id=".$club_id."&success=" . urlencode($success));
+        header("Location: ../../../views/head/club_activities.php?club_id=".$delete_id."&success=" . urlencode($success));
         exit();
     } catch (PDOException $e) {
         if ($pdo->inTransaction()) {

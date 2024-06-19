@@ -20,24 +20,24 @@ try {
         $sql = "SELECT * FROM users WHERE email = ?";
         $stmt = $db->pdo->prepare($sql);
         $stmt->execute([$username_or_email]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $users = $stmt->fetch(PDO::FETCH_ASSOC);
         echo "it was an email \n";
     } else {
         // Handle the input as a username
         $sql = "SELECT * FROM users WHERE username = ?";
         $stmt = $db->pdo->prepare($sql);
         $stmt->execute([$username_or_email]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $users = $stmt->fetch(PDO::FETCH_ASSOC);
         echo "it was a username \n";
 
     }
 
     echo "password: ". $password . "\n";
-    print_r($user);
+    print_r($users);
     // Verify password
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['role'] = $user['role'];
+    if ($users && password_verify($password, $users['password'])) {
+        $_SESSION['user_id'] = $users['id'];
+        $_SESSION['role'] = $users['role'];
         // Password is correct
         header("Location: ../../views/head/home.php?login=1");
         exit(); // Ensure no further code is executed
