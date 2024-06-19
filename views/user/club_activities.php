@@ -71,7 +71,7 @@ try {
         </div>
         <?php include 'nav.html'; ?>
     </div>
-
+  
     <div class="container mt-3">
         <div class="row w-100">
             <?php foreach($club_activities as $activity) { ?>
@@ -103,7 +103,35 @@ try {
             <?php } ?>
         </div>
     </div>
+    <div class="text-end m-3 position-fixed" style="bottom: 0px; right: 0px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        <button type="button" class="btn btn-outline-info">Register</button>
+    </div>
 
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <form class="modal-content" action="../../controllers/user/club_activity/add_activity.php" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="club_id" value="<?php echo htmlspecialchars($club_id); ?>">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Adding Club Activity</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">User Name:</label>
+                        <input type="text" class="form-control" id="recipient-name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Department Name:</label>
+                        <input type="text" class="form-control" id="recipient-name" name="name" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
