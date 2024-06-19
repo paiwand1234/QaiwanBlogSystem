@@ -30,14 +30,14 @@ $offset = 0;
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($user_id) && $data) {
     try {
         $db = new Database();
-        $club_activity_chats = new ClubActivityChats($db);
+        $users = new ClubActivityChats($db);
 
         $conditions = array(
             'club_activity_id' => $data["activity_id"],
             'club_id' => $data["club_id"],
         );
 
-        $chat = $club_activity_chats->readWithLimit($limit, $offset, $conditions, "created_at", Direction::DESC);
+        $chat = $users->readWithLimit($limit, $offset, $conditions, "created_at", Direction::DESC);
 
         if ($chat) {
             echo json_encode([

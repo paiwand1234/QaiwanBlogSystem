@@ -41,7 +41,7 @@ try {
         $result[0]['head_is_active'] = 1;
         $studentIds->update($result[0]['id'], $result[0]);
         echo "reached here after the student id update\n";
-        $user->create(
+        $user_id = $user->create(
             $username,        
             $hashed_password,
             $email,
@@ -50,6 +50,9 @@ try {
         );
 
         $pdo->commit(); // Commit before redirecting
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['role'] = UserRole::HEAD;
+        
         header('Location: ../../views/head/home.php');
         // exit();
     } else {

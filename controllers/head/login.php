@@ -37,6 +37,7 @@ try {
     // Verify password
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = $user['id'];
+        $_SESSION['role'] = $user['role'];
         // Password is correct
         header("Location: ../../views/head/home.php?login=1");
         exit(); // Ensure no further code is executed

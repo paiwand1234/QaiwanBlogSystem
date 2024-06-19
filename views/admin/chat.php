@@ -11,16 +11,20 @@ include "../../models/users.php";
 session_start();
 
 
-$user_id = $_SESSION['user_id'];
+$user_id = null;
+
+// CHECK IF THE USER IS LOGGED IN
+if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'admin') {
+    // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
+    header("Location: ./login.php");
+    exit();
+} else {
+    $user_id = $_SESSION['user_id'];
+}
+
 $club_id = filter_input(INPUT_GET, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
 $activity_id = filter_input(INPUT_GET, 'activity_id', FILTER_SANITIZE_SPECIAL_CHARS);
 
-// CHECK IF THE USER IS LOGGED IN
-if (!isset($_SESSION['user_id'])) {
-    // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
-    header("Location: ./register.php");
-    exit();
-}
 
 try {
     $db = new Database();

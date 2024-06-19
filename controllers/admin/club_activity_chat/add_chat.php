@@ -26,9 +26,9 @@ $user_id = $_SESSION['user_id'] ?? null;
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($user_id) && $data) {
     try {
         $db = new Database();
-        $club_activity_chats = new ClubActivityChats($db);
+        $users = new ClubActivityChats($db);
 
-        $chat = $club_activity_chats->create(
+        $chat = $users->create(
             $user_id, 
             $data['activity_id'], 
             $data['club_id'], 

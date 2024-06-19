@@ -50,6 +50,16 @@ class Users {
             throw new Exception("Error reading club heads: " . $e->getMessage());
         }
     }
+
+    public function readWithLimit($limit, $offset = 0, $conditions = [], $orderbycolumn = "id", $direction = "ASC") {
+        try {
+            return $this->db->readWithLimit($this->table_name, $limit, $offset, $conditions, $orderbycolumn, $direction);
+        } catch (PDOException $e) {
+            throw new Exception("Error reading club heads: " . $e->getMessage());
+        }
+    }
+
+
     public function update($userId, $data) {
         try {
             // Check if password needs to be hashed before updating

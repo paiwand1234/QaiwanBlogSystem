@@ -13,14 +13,18 @@ ini_set('display_errors', 1);
 
 session_start();
 
+$user_id = null;
 // CHECK IF THE USER IS LOGGED IN
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
     // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
     header("Location: ./register.php");
     exit();
+}else{
+    
+    $user_id = $_SESSION['user_id'];
+
 }
 
-$user_id = $_SESSION['user_id'];
 $club_id = filter_input(INPUT_GET, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
 
 try {

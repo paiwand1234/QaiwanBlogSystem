@@ -14,9 +14,8 @@ include "../../controllers/database.php";
 session_start();
 
 $user_id = null;
-
 // CHECK IF THE USER IS LOGGED IN
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'head') {
     // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
     header("Location: ./register.php");
     exit();
@@ -25,7 +24,6 @@ if (!isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
 
 }
-
 
 ?>
 
