@@ -24,17 +24,17 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'admin') {
     $user_id = $_SESSION['user_id'];
 }
 
-$club_id = filter_input(INPUT_GET, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
+$delete_id = filter_input(INPUT_GET, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
 
 $db = new Database();
 $clubs = new Clubs($db);
 $club_heads = new ClubHeads($db);
-$club_activities = new ClubActivities($db);
+$users = new ClubActivities($db);
 
-$club = $clubs->read($club_id);
+$club = $clubs->read($delete_id);
 
 
-$club_activities = $club_activities->readOneColumn('club_id', $club_id);
+$users = $users->readOneColumn('club_id', $delete_id);
 
 ?>
 
@@ -64,7 +64,7 @@ $club_activities = $club_activities->readOneColumn('club_id', $club_id);
     <div class="container mt-3">
         <div class="row w-100">
 
-            <?php foreach($club_activities as $index_0 => $activity ){ ?>
+            <?php foreach($users as $index_0 => $activity ){ ?>
               <div class="col-6">
                     <div class="card mb-3" style="max-width: 640px;">
                         <div class="row g-0">
