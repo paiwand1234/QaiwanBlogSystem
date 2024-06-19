@@ -25,23 +25,23 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
 
 }
 
-$club_id = filter_input(INPUT_GET, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
+$delete_id = filter_input(INPUT_GET, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
 
 try {
     $db = new Database();
     $clubs = new Clubs($db);
     $club_heads = new ClubHeads($db);
-    $club_activities = new ClubActivities($db);
+    $users = new ClubActivities($db);
 
-    $club = $clubs->read($club_id);
+    $club = $clubs->read($delete_id);
 
     $data = array(
         "user_id" => $user_id,
-        "club_id" => $club_id
+        "club_id" => $delete_id
     );
 
     $club_head = $club_heads->readMultipleColumns($data, Operators::AND);
-    $club_activities = $club_activities->readOneColumn('club_id', $club_id);
+    $users = $users->readOneColumn('club_id', $delete_id);
 } catch (Exception $e) {
     echo "An error occurred: " . $e->getMessage();
     exit();
@@ -74,7 +74,7 @@ try {
   
     <div class="container mt-3">
         <div class="row w-100">
-            <?php foreach($club_activities as $activity) { ?>
+            <?php foreach($users as $activity) { ?>
               <div class="col-6">
                     <div class="card mb-3" style="max-width: 640px;">
                         <div class="row g-0">

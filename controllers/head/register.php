@@ -28,7 +28,7 @@ try {
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     $studentIds = new StudentIds($db); // Assuming StudentIds and Users classes use the Database instance
-    $user = new Users($db);
+    $users = new Users($db);
 
     // Check if the student ID exists
     $result = $db->readOneColumn("student_ids", "student_id", $student_id);
@@ -41,7 +41,7 @@ try {
         $result[0]['head_is_active'] = 1;
         $studentIds->update($result[0]['id'], $result[0]);
         echo "reached here after the student id update\n";
-        $user_id = $user->create(
+        $user_id = $users->create(
             $username,        
             $hashed_password,
             $email,

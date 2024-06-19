@@ -23,19 +23,19 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'head') {
 
 }
 
-$club_id = filter_input(INPUT_GET, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
+$delete_id = filter_input(INPUT_GET, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
 $activity_id = filter_input(INPUT_GET, 'activity_id', FILTER_SANITIZE_SPECIAL_CHARS);
 
 
 try {
     $db = new Database();
-    $club_activities = new ClubActivities($db);
+    $users = new ClubActivities($db);
     $users = new Users($db);
 
-    $club_activity = $club_activities->read($activity_id);
-    $user = $users->read($_SESSION['user_id']);
+    $club_activity = $users->read($activity_id);
+    $users = $users->read($_SESSION['user_id']);
     
-    $username = $user['username'];
+    $username = $users['username'];
     // Debug: Remove this in production
 
 } catch (Exception $e) {
@@ -194,7 +194,7 @@ let sendMessage = async (message) => {
     const params = { 
         name: "<?php echo $username ?>",
         activity_id: "<?php echo $activity_id ?>",
-        club_id: "<?php echo $club_id ?>",
+        club_id: "<?php echo $delete_id ?>",
         user_id: "<?php echo $user_id ?>",
         message: message
     };
@@ -233,7 +233,7 @@ let updateChat = async () => {
     // DEFINE THE PARAMETERS
     const params = { 
         activity_id: "<?php echo $activity_id ?>",
-        club_id: "<?php echo $club_id ?>",
+        club_id: "<?php echo $delete_id ?>",
     };
 
     // DEFINE THE REQUEST OPTIONS

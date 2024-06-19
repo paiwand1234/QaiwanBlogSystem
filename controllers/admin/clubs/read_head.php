@@ -34,13 +34,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($user_id) && $data) {
             'role' => 'head'
         );
 
-        $user = $users->readMultipleColumns($columns, Operators::AND);
+        $users = $users->readMultipleColumns($columns, Operators::AND);
 
-        if ($user) {
+        if ($users) {
             echo json_encode([
                 'status' => 'success',
                 'message' => "head exists",
-                'data' => $user
+                'data' => $users
             ]);
         } else {
             echo json_encode([
