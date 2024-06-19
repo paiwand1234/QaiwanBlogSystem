@@ -73,25 +73,25 @@
             <img src="../../assets/image/background.png" alt="Project Image 1" class="project-image">
             <h2 class="project-name">Project Name 1</h2>
             <p class="project-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime dolor autem perferendis voluptate obcaecati sequi sint sed accusantium accusamus possimus ratione, ea veritatis beatae! Laboriosam impedit nemo eius deserunt ut.</p>
-            <a href="download-link1" class="download-btn">Download</a>
+            <a href="download-link1" class="download-btn col-6 mx-auto">Download</a>
         </div>
         <div class="card">
             <img src="../../assets/image/background.png" alt="Project Image 2" class="project-image">
             <h2 class="project-name">Project Name 2</h2>
             <p class="project-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime dolor autem perferendis voluptate obcaecati sequi sint sed accusantium accusamus possimus ratione, ea veritatis beatae! Laboriosam impedit nemo eius deserunt ut.</p>
-            <a href="download-link2" class="download-btn">Download</a>
+            <a href="download-link2" class="download-btn col-6 mx-auto">Download</a>
         </div>
         <div class="card">
             <img src="../../assets/image/background.png" alt="Project Image 3" class="project-image">
             <h2 class="project-name">Project Name 3</h2>
             <p class="project-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime dolor autem perferendis voluptate obcaecati sequi sint sed accusantium accusamus possimus ratione, ea veritatis beatae! Laboriosam impedit nemo eius deserunt ut.</p>
-            <a href="download-link3" class="download-btn">Download</a>
+            <a href="download-link3" class="download-btn col-6 mx-auto">Download</a>
         </div>
         <div class="card">
             <img src="../../assets/image/background.png" alt="Project Image 4" class="project-image">
             <h2 class="project-name">Project Name 4</h2>
             <p class="project-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime dolor autem perferendis voluptate obcaecati sequi sint sed accusantium accusamus possimus ratione, ea veritatis beatae! Laboriosam impedit nemo eius deserunt ut.</p>
-            <a href="download-link4" class="download-btn">Download</a>
+            <a href="download-link4" class="download-btn col-6 mx-auto">Download</a>
         </div>
     </div>
 </body>
