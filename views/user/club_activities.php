@@ -112,7 +112,7 @@ try {
             <form class="modal-content" action="../../controllers/user/club_activity/add_activity.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="club_id" value="<?php echo htmlspecialchars($club_id); ?>">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Adding Club Activity</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">club Register</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
