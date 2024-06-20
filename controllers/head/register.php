@@ -33,9 +33,9 @@ try {
     // Check if the student ID exists
     $result = $db->readOneColumn("student_ids", "student_id", $student_id);
 
-    echo "Result: " . print_r($result, true). "\n";
+    // echo "Result: " . print_r($result, true). "\n";
 
-    if ($result && $result['head_is_active'] != 1) {
+    if ($result && $result[0]['head_is_active'] != 1) {
         echo "reached here\n";
         // Student ID exists, proceed to create user
         $result[0]['head_is_active'] = 1;
@@ -54,17 +54,21 @@ try {
         $_SESSION['role'] = UserRole::HEAD;
         
         header('Location: ../../views/head/home.php');
-        // exit();
+        exit();
     } else {
         $pdo->rollBack(); // Rollback before redirecting
         header('Location: ../../views/head/register.php');
-        // exit();
+        exit();
     }
 
 } catch (PDOException $e) {
     $pdo->rollBack();
     echo "Transaction failed: " . $e->getMessage();
+    header('Location: ../../views/head/register.php');
+    exit();
 } catch (Exception $e) {
     $pdo->rollBack();
     echo "Transaction failed: " . $e->getMessage();
+    header('Location: ../../views/head/register.php');
+    exit();
 }

@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 include "../database.php";
 include "../../models/student_ids.php";
@@ -33,14 +35,14 @@ try {
     // Check if the student ID exists
     $result = $studentIds->readOneColumn("student_id", $student_id);
 
-    echo "Result: " . print_r($result, true). "\n";
+    // echo "Result: " . print_r($result, true). "\n";
 
-    if ($result && $result['user_is_active'] != 1) {
+    if ($result && $result[0]['user_is_active'] != 1) {
         echo "reached here\n";
         // Student ID exists, proceed to create user
         $result[0]['user_is_active'] = 1;
         $studentIds->update($result[0]['id'], $result[0]);
-        echo "reached here after the student id update\n";
+        // echo "reached here after the student id update\n";
         $users->create(
             $username,        
             $hashed_password,
@@ -53,17 +55,21 @@ try {
         $_SESSION['user_id'] = $user_id;
         $_SESSION['role'] = UserRole::USER;
         header('Location: ../../views/user/home.php');
-        // exit();
+        exit();
     } else {
         $pdo->rollBack(); // Rollback before redirecting
         header('Location: ../../views/user/register.php');
-        // exit();
+        exit();
     }
 
 } catch (PDOException $e) {
     $pdo->rollBack();
     echo "Transaction failed: " . $e->getMessage();
+    header('Location: ../../views/user/register.php');
+    exit();
 } catch (Exception $e) {
     $pdo->rollBack();
     echo "Transaction failed: " . $e->getMessage();
+    header('Location: ../../views/user/register.php');
+    exit();
 }
