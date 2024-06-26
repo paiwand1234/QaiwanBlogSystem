@@ -46,7 +46,7 @@ class ProjectContent {
             throw new Exception("Error updating project content: " . $e->getMessage());
         }
     }
-
+    
     public function delete($project_content_id) {
         try {
             return $this->db->delete($this->table_name, $project_content_id);

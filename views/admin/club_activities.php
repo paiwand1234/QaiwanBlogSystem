@@ -31,7 +31,7 @@ $clubs = new Clubs($db);
 $club_heads = new ClubHeads($db);
 $users = new ClubActivities($db);
 
-$club = $clubs->read($delete_id);
+$project = $clubs->read($delete_id);
 
 
 $users = $users->readOneColumn('club_id', $delete_id);
@@ -46,7 +46,7 @@ $users = $users->readOneColumn('club_id', $delete_id);
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../../stylesheets/sport.css">
 
-    <title><?php echo htmlspecialchars($club['name']); ?></title>
+    <title><?php echo htmlspecialchars($project['name']); ?></title>
 </head>
 <style>
 /* Add your custom styles here */
@@ -54,9 +54,9 @@ $users = $users->readOneColumn('club_id', $delete_id);
 
 <body>
     <div class="video-container">
-        <img src="<?php echo htmlspecialchars($club['image']); ?>" alt="" class="img">
+        <img src="<?php echo htmlspecialchars($project['image']); ?>" alt="" class="img">
         <div class="video-text">
-            <h1><?php echo htmlspecialchars($club['name']); ?></h1>
+            <h1><?php echo htmlspecialchars($project['name']); ?></h1>
         </div>
         <?php include 'nav.html'; ?>
     </div>
@@ -78,7 +78,7 @@ $users = $users->readOneColumn('club_id', $delete_id);
                                     <div class="w-100 d-flex justify-content-start align-content-center">
                                         <button type="button" class="btn btn-outline-success col-3 p-0 my-2 mx-1" onclick="window.location.href='chat.php?club_id=<?php echo $activity['club_id'] ?>&activity_id=<?php echo $activity['id'] ?>'">Chat</button>
                                         <form action="../../controllers/head/club_activity/delete_activity.php" method="POST" class="col-3 p-0 my-2 mx-1">
-                                            <input type="hidden" name="club_id" value="<?php echo htmlspecialchars($club['id']); ?>">
+                                            <input type="hidden" name="club_id" value="<?php echo htmlspecialchars($project['id']); ?>">
                                             <button type="submit" class="btn btn-danger col-12 rounded">Delete</button>
                                         </form>
                                     </div>
