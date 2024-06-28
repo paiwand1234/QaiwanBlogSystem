@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
                         echo "PDO driver does not support transactions\n";
                     }
 
-                    $club = new Projects($db);
+                    $project = new Projects($db);
                     $project_contents = new ProjectContent($db);
             
                     echo "Initialized database and project instances\n";
@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
                     echo "\nTransaction started\n";
             
                     // Creating project and retrieving the ID
-                    $result = $club->create($user_id, $project_name, $description);
+                    $result = $project->create($user_id, $project_name, $description);
                     echo "\nProject created with ID: $result\n";
             
                     // Creating project contents

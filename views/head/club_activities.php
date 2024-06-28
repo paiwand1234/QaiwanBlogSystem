@@ -33,7 +33,7 @@ try {
     $club_heads = new ClubHeads($db);
     $users = new ClubActivities($db);
 
-    $club = $clubs->read($delete_id);
+    $project = $clubs->read($delete_id);
 
     $data = array(
         "user_id" => $user_id,
@@ -56,7 +56,7 @@ try {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../../stylesheets/sport.css">
-    <title><?php echo htmlspecialchars($club['name']); ?></title>
+    <title><?php echo htmlspecialchars($project['name']); ?></title>
 </head>
 
 <style>
@@ -65,9 +65,9 @@ try {
 
 <body>
     <div class="video-container">
-        <img src="<?php echo htmlspecialchars($club['image']); ?>" alt="" class="img">
+        <img src="<?php echo htmlspecialchars($project['image']); ?>" alt="" class="img">
         <div class="video-text">
-            <h1><?php echo htmlspecialchars($club['name']); ?></h1>
+            <h1><?php echo htmlspecialchars($project['name']); ?></h1>
         </div>
         <?php include 'nav.html'; ?>
     </div>

@@ -21,6 +21,15 @@ class Projects {
         }
     }
 
+
+    public function readAll() {
+        try {
+            return $this->db->readAll($this->table_name);
+        } catch (PDOException $e) {
+            throw new Exception("Error reading project: " . $e->getMessage());
+        }
+    }
+
     public function read($project_id) {
         try {
             return $this->db->read($this->table_name, $project_id);
