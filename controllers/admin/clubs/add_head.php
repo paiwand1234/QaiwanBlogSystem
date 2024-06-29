@@ -12,7 +12,7 @@ include "../../../models/users.php";
 session_start();
 
 $user_id = $_SESSION['user_id'];
-$delete_id = filter_input(INPUT_POST, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
+$club_id = filter_input(INPUT_POST, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
 $head_id = filter_input(INPUT_POST, 'head_id', FILTER_SANITIZE_SPECIAL_CHARS);
 $head_exists = filter_input(INPUT_POST, 'head_exists', FILTER_SANITIZE_SPECIAL_CHARS);
 $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -26,9 +26,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($user_id)){
 
             $db = new Database();
             $club_head = new ClubHeads($db);
-            $users = new Users($db); 
+            $activities = new Users($db); 
 
-            $club_head->create($delete_id, $head_id);
+            $club_head->create($club_id, $head_id);
             $success = "Head added successfuly";
             header("Location: ../../../views/admin/clubs.php?success=" . urlencode($success));
             exit();

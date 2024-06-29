@@ -22,20 +22,20 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
 
 }
 
-$delete_id = filter_input(INPUT_GET, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
+$club_id = filter_input(INPUT_GET, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
 $activity_id = filter_input(INPUT_GET, 'activity_id', FILTER_SANITIZE_SPECIAL_CHARS);
 
 
 
 try {
     $db = new Database();
-    $users = new ClubActivities($db);
-    $users = new Users($db); 
+    $activities = new ClubActivities($db);
+    $activities = new Users($db); 
 
-    $club_activity = $users->read($activity_id);
-    $users = $users->read($_SESSION['user_id']);
+    $club_activity = $activities->read($activity_id);
+    $activities = $activities->read($_SESSION['user_id']);
     
-    $username = $users['username'];
+    $username = $activities['username'];
     // Debug: Remove this in production
 
 
@@ -199,7 +199,7 @@ let sendMessage = async (message) => {
     const params = { 
         name: "<?php echo $username ?>",
         activity_id: "<?php echo $activity_id ?>",
-        club_id: "<?php echo $delete_id ?>",
+        club_id: "<?php echo $club_id ?>",
         user_id: "<?php echo $user_id ?>",
         message: message
     };
@@ -242,7 +242,7 @@ let updateChat = async () => {
         const params = { 
             // name: "<?php echo $username ?>",
             activity_id: "<?php echo $activity_id ?>",
-            club_id: "<?php echo $delete_id ?>",
+            club_id: "<?php echo $club_id ?>",
             // user_id: "<?php echo $user_id ?>",
             // message: message
         };

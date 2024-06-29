@@ -11,14 +11,14 @@ ini_set('display_errors', 1);
 session_start();
 
 $user_id = $_SESSION['user_id'];
-$delete_id = filter_input(INPUT_POST, 'user_id_', FILTER_SANITIZE_NUMBER_INT);
+$club_id = filter_input(INPUT_POST, 'user_id_', FILTER_SANITIZE_NUMBER_INT);
 
-echo $delete_id;
+echo $club_id;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
     $db = new Database();
     $pdo = $db->pdo;
-    $users = new Users($db);
+    $activities = new Users($db);
 
     try {
         // Ensure autocommit is off
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
 
         $pdo->beginTransaction();
 
-        $delete_result = $users->delete($delete_id);
+        $delete_result = $activities->delete($club_id);
 
         $pdo->commit();
         $success = "Transaction was successful";

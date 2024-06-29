@@ -28,19 +28,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($user_id) && $data) {
     $name = $data['name'];
     try{
         $db = new Database();
-        $users = new Users($db);
+        $activities = new Users($db);
         $columns = array(
             'username' => $name,
             'role' => 'head'
         );
 
-        $users = $users->readMultipleColumns($columns, Operators::AND);
+        $activities = $activities->readMultipleColumns($columns, Operators::AND);
 
-        if ($users) {
+        if ($activities) {
             echo json_encode([
                 'status' => 'success',
                 'message' => "head exists",
-                'data' => $users
+                'data' => $activities
             ]);
         } else {
             echo json_encode([
