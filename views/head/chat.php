@@ -30,12 +30,12 @@ $activity_id = filter_input(INPUT_GET, 'activity_id', FILTER_SANITIZE_SPECIAL_CH
 try {
     $db = new Database();
     $activities = new ClubActivities($db);
-    $activities = new Users($db);
+    $users = new Users($db);
 
     $club_activity = $activities->read($activity_id);
-    $activities = $activities->read($_SESSION['user_id']);
+    $users = $users->read($_SESSION['user_id']);
     
-    $username = $activities['username'];
+    $username = $user['username'];
     // Debug: Remove this in production
 
 } catch (Exception $e) {
