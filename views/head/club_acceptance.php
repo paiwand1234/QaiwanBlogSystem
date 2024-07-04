@@ -3,16 +3,27 @@
 
 <?php
 
-    include "../../models/clubs.php";
-    include "../../models/club_user_registration.php";
-    include "../../controllers/database.php";
+include "../../models/clubs.php";
+include "../../models/club_user_registration.php";
+include "../../models/club_heads.php";
+include "../../controllers/database.php";
 
-    $db = new Database();
-    $club_user_registration = new ClubUserRegistration($db);
+session_start();  // Ensure the session is started
 
-    $user_id = $_SESSION['user_id'];
-    $users_statuses = $club_user_registration->readOneColumn("status", "pending"); 
-    
+$db = new Database();
+$user_id = $_SESSION['user_id'];
+
+// Prepare the query
+$query = "SELECT * FROM club_user_registration WHERE club_id IN (SELECT club_id FROM club_heads WHERE user_id = :user_id)";
+
+// Prepare the statement
+$stmt = $db->pdo->prepare($query);
+
+// Execute the statement with the user_id parameter
+$stmt->execute([':user_id' => $user_id]);
+
+// Fetch all results
+$users_statuses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -34,7 +45,10 @@
         <h1>Club Registrations</h1>
         <div class="row">
 
-        <?php foreach ($users_statuses as $user_status) {?>
+        <?php foreach ($users_statuses as $user_status) {
+            if($user_status["status"] == "pending"){
+            ?>
+            
             <!-- Card 1 -->
             <div class="card col-lg-3 col-md-6 col-sm-12">
                 <div class="card-body">
@@ -61,6 +75,7 @@
                     </div>
                 </div>
             </div>
+            <?php }?>
         <?php } ?>
         </div>
     </div>

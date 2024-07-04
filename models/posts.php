@@ -37,6 +37,14 @@ class Posts {
             throw new Exception("Error reading posts: " . $e->getMessage());
         }
     }
+    
+    public function readMultipleColumns($conditions, $operator) {
+        try {
+            return $this->db->readMultipleColumns($this->table_name, $conditions, $operator);
+        } catch (PDOException $e) {
+            throw new Exception("Error reading club heads: " . $e->getMessage());
+        }
+    }
 
     public function update($postId, $data) {
         try {
