@@ -25,23 +25,23 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'head') {
 
 }
 
-$delete_id = filter_input(INPUT_GET, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
+$club_id = filter_input(INPUT_GET, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
 
 try {
     $db = new Database();
     $clubs = new Clubs($db);
     $club_heads = new ClubHeads($db);
-    $users = new ClubActivities($db);
+    $activities = new ClubActivities($db);
 
-    $project = $clubs->read($delete_id);
+    $project = $clubs->read($club_id);
 
     $data = array(
         "user_id" => $user_id,
-        "club_id" => $delete_id
+        "club_id" => $club_id
     );
 
     $club_head = $club_heads->readMultipleColumns($data, Operators::AND);
-    $users = $users->readOneColumn('club_id', $delete_id);
+    $activities = $activities->readOneColumn('club_id', $club_id);
 } catch (Exception $e) {
     echo "An error occurred: " . $e->getMessage();
     exit();
@@ -74,7 +74,7 @@ try {
 
     <div class="container mt-3">
         <div class="row w-100">
-            <?php foreach($users as $activity) { ?>
+            <?php foreach($activities as $activity) { ?>
               <div class="col-6">
                     <div class="card mb-3" style="max-width: 640px;">
                         <div class="row g-0">
@@ -86,7 +86,9 @@ try {
                                     <h5 class="card-title"><?php echo htmlspecialchars($activity['name']); ?></h5>
                                     <p class="card-text"><?php echo htmlspecialchars($activity['description']); ?></p>
                                     <div class="w-100 d-flex justify-content-start align-content-center">
-                                        <button type="button" class="btn btn-outline-success col-3 p-0 my-2 mx-1" onclick="window.location.href='chat.php?club_id=<?php echo $activity['club_id']; ?>&activity_id=<?php echo $activity['id']; ?>'">Chat</button>
+                                        <button type="button" class="btn btn-outline-success col-3 p-0 my-2 mx-1" onclick="window.location.href='chat.php?club_id=<?php echo $activity['club_id']; ?>&activity_id=<?php echo $activity['id']; ?>'">
+                                            Chat
+                                        </button>
                                         <?php if ($club_head) { ?>
                                             <form action="../../controllers/head/club_activity/delete_activity.php" method="POST" class="col-3 p-0 my-2 mx-1">
                                                 <input type="hidden" name="club_id" value="<?php echo htmlspecialchars($activity['club_id']); ?>">
@@ -112,7 +114,7 @@ try {
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <form class="modal-content" action="../../controllers/head/club_activity/add_activity.php" method="POST" enctype="multipart/form-data">
-                <input type="hidden" name="club_id" value="<?php echo htmlspecialchars($delete_id); ?>">
+                <input type="hidden" name="club_id" value="<?php echo htmlspecialchars($club_id); ?>">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Adding Club Activity</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

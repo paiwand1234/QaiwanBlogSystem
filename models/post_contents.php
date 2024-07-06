@@ -11,7 +11,6 @@ class ContentTypes{
 class PostContents {
     private $db;
     private $table_name = 'post_contents';
-
     public function __construct(Database $db) {
         $this->db = $db;
     }
@@ -43,6 +42,13 @@ class PostContents {
             return $this->db->readOneColumn($this->table_name, $columnname, $value);
         } catch (PDOException $e) {
             throw new Exception("Error reading post_content: " . $e->getMessage());
+        }
+    }
+    public function readMultipleColumns($conditions, $operator) {
+        try {
+            return $this->db->readMultipleColumns($this->table_name, $conditions, $operator);
+        } catch (PDOException $e) {
+            throw new Exception("Error reading club heads: " . $e->getMessage());
         }
     }
 

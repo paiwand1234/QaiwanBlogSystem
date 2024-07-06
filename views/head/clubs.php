@@ -82,9 +82,9 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'head') {
 <?php
 
 $db = new Database();
-$users = new Clubs($db);
+$activities = new Clubs($db);
 
-$club_results = $users->readAll();
+$club_results = $activities->readAll();
 
 echo '<div class="container d-flex flex-column my-4">';
 for ($i = 0; $i < count($club_results); $i++) {

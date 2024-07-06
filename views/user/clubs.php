@@ -211,9 +211,9 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
 <?php
 
 $db = new Database();
-$users = new Clubs($db);
+$activities = new Clubs($db);
 
-$club_results = $users->readAll();
+$club_results = $activities->readAll();
 
 echo '<div class="container d-flex flex-column my-4">';
 for ($i = 0; $i < count($club_results); $i++) {
@@ -226,15 +226,16 @@ for ($i = 0; $i < count($club_results); $i++) {
 
     $delete_file = "../../controllers/head/clubs/delete_club.php";
     echo '<div class="col-4 mb-4">
-    <div class="card shadow-lg border-0">
-        <div class="card-container">
-            <img src="' . $club_results[$i]['image'] . '" class="img-fluid rounded" alt="">
-            <div class="d-flex justify-content-center">
-                <a class="btn btn-primary col-5 rounded my-2" href="./club_activities.php?club_id=' . $club_results[$i]['id'] . '" role="button">View</a>
+            <div class="card shadow-lg border-0">
+                <div class="card-container">
+                    <img src="' . $club_results[$i]['image'] . '" class="img-fluid rounded" alt="">
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-primary col-5 rounded my-2" href="./club_activities.php?club_id=' . $club_results[$i]['id'] . '" role="button">View</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>';
+';
 
 
 }

@@ -32,15 +32,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($user_id) && $data && $role = 
 
     try{
         $db = new Database();
-        $users = new Users($db);
+        $activities = new Users($db);
 
-        $users = $users->readWithLimit($limit, $offset);
+        $activities = $activities->readWithLimit($limit, $offset);
         
-        if ($users) {
+        if ($activities) {
             echo json_encode([
                 'status' => 'success',
                 'message' => "Data has been sent back",
-                'data' => $users
+                'data' => $activities
             ]);
         } else {
             echo json_encode([
