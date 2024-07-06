@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Jun 11, 2024 at 07:54 PM
+-- Generation Time: Jul 06, 2024 at 01:12 PM
 -- Server version: 5.7.39
 -- PHP Version: 7.4.33
 
@@ -41,7 +41,7 @@ CREATE TABLE `clubs` (
 --
 
 INSERT INTO `clubs` (`id`, `name`, `description`, `image`, `created_at`, `updated_at`) VALUES
-(10, 'some clube name', 'some description', '../../uploads/clubs/84631.jpg', '2024-06-08 13:00:24', '2024-06-08 13:00:24');
+(11, 'art', 'this is art club', '../../uploads/clubs/DALLE2024-05-3123.14.19-Avibrantcyberpunkcityscapeilluminatedbyneonsignsunderafullmoon.Thestreetsarelinedwithbuildingscoveredinmirroredglassreflecting-ezgif.com-webp-to-jpg-converter.jpg', '2024-06-28 12:03:03', '2024-06-28 12:03:03');
 
 -- --------------------------------------------------------
 
@@ -65,7 +65,7 @@ CREATE TABLE `club_activities` (
 --
 
 INSERT INTO `club_activities` (`id`, `club_id`, `name`, `description`, `is_accepted`, `image`, `created_at`, `updated_at`) VALUES
-(5, 10, 'some name', 'some description', 0, '../../uploads/club_activity/298425.jpg', '2024-06-11 09:02:56', '2024-06-11 09:02:56');
+(6, 11, 'Creating monaliza again', 'creating a new image', 0, '../../uploads/club_activity/29720.jpg', '2024-06-28 12:04:06', '2024-06-28 12:04:06');
 
 -- --------------------------------------------------------
 
@@ -83,22 +83,6 @@ CREATE TABLE `club_activity_chats` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `club_activity_chats`
---
-
-INSERT INTO `club_activity_chats` (`id`, `club_activity_id`, `club_id`, `name`, `content`, `created_at`, `updated_at`, `user_id`) VALUES
-(1, 5, 10, 'someone', ' ASDasdaSF', '2024-06-11 18:45:10', '2024-06-11 18:45:10', 5),
-(2, 5, 10, 'someone', 'a sdfasdf asdf asd', '2024-06-11 18:46:00', '2024-06-11 18:46:00', 5),
-(3, 5, 10, 'someone', 'some text here', '2024-06-11 18:47:46', '2024-06-11 18:47:46', 5),
-(4, 5, 10, 'someone', 'a sdf asd fasdf asdf', '2024-06-11 19:23:59', '2024-06-11 19:23:59', 5),
-(5, 5, 10, 'someone', ' asdfa sdf asdf', '2024-06-11 19:26:33', '2024-06-11 19:26:33', 5),
-(6, 5, 10, 'someone', ' asdf asdf asdf asdf', '2024-06-11 19:27:58', '2024-06-11 19:27:58', 5),
-(7, 5, 10, 'someone', 'as dfas dfasdfasdf asd fasdf', '2024-06-11 19:37:26', '2024-06-11 19:37:26', 5),
-(8, 5, 10, 'someone', 'a sdfl asldk fjalksjdf', '2024-06-11 19:37:43', '2024-06-11 19:37:43', 5),
-(9, 5, 10, 'someone', 'hello worl dit\'s me', '2024-06-11 19:37:51', '2024-06-11 19:37:51', 5),
-(10, 5, 10, 'someone', 'hellow world', '2024-06-11 19:39:58', '2024-06-11 19:39:58', 5);
 
 -- --------------------------------------------------------
 
@@ -134,7 +118,31 @@ CREATE TABLE `club_heads` (
 --
 
 INSERT INTO `club_heads` (`id`, `club_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(1, 10, 5, '2024-06-08 20:51:12', '2024-06-08 20:51:12');
+(2, 11, 5, '2024-06-28 12:03:15', '2024-06-28 12:03:15');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `club_user_registration`
+--
+
+CREATE TABLE `club_user_registration` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `club_id` int(11) NOT NULL,
+  `status` enum('pending','accepted','rejected') NOT NULL DEFAULT 'pending',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `username` varchar(256) DEFAULT 'Unkown',
+  `department` varchar(256) DEFAULT 'Unkown'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `club_user_registration`
+--
+
+INSERT INTO `club_user_registration` (`id`, `user_id`, `club_id`, `status`, `created_at`, `updated_at`, `username`, `department`) VALUES
+(1, 6, 11, 'accepted', '2024-06-29 19:05:36', '2024-06-29 21:13:30', 'Unkown', 'Unkown');
 
 -- --------------------------------------------------------
 
@@ -184,6 +192,13 @@ CREATE TABLE `projects` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `projects`
+--
+
+INSERT INTO `projects` (`id`, `user_id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 6, 'someproject name', 'this project description', '2024-06-26 19:26:58', '2024-06-26 19:26:58');
+
 -- --------------------------------------------------------
 
 --
@@ -200,6 +215,14 @@ CREATE TABLE `project_contents` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `project_contents`
+--
+
+INSERT INTO `project_contents` (`id`, `project_id`, `file_name`, `file_dir`, `file_type`, `file_size`, `created_at`, `updated_at`) VALUES
+(1, 1, '20-2024 Master Program of Software Engineeringú¿Nankai Universityú⌐.pdf', '../../uploads/projects/files/', 'application/pdf', 258566, '2024-06-26 19:26:58', '2024-06-26 19:26:58'),
+(2, 1, 'DALLE2024-05-3123.14.19-Avibrantcyberpunkcityscapeilluminatedbyneonsignsunderafullmoon.Thestreetsarelinedwithbuildingscoveredinmirroredglassreflecting-ezgif.com-webp-to-jpg-converter.jpg', '../../uploads/projects/images/', 'image/jpeg', 892928, '2024-06-26 19:26:58', '2024-06-26 19:26:58');
 
 -- --------------------------------------------------------
 
@@ -244,10 +267,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `created_at`, `updated_at`, `student_id`) VALUES
-(1, 'alan', 'alan@gmail.com', '$2y$10$Ulpbx39EmFKAZmnrCxe0IubPMUE7aeGNoY7dC/u51Mv2pel6o085.', 'admin', '2024-05-13 22:48:34', '2024-05-13 22:48:34', NULL),
 (5, 'someone', 'aalan376@gmail.com', '$2y$10$93yTkjNdx9XYzAB1F.KAZuV748qf9HV1NDTKG9TXSLqjoxpFqwqiy', 'head', '2024-05-17 16:01:25', '2024-05-17 16:01:25', 2),
 (6, 'me', 'aaalan376@gmail.com', '$2y$10$5GgqNgQ8vSAkk08p5lH7nu9Zu97M0gRflUbMQ3wIXsqyL0OQD7XWW', 'user', '2024-05-17 19:26:19', '2024-05-17 19:26:19', 2),
-(7, 'karo', 'karo@gmail.com', '$2y$10$JBWY9AUfAuTZRpFJhc.cJ.VQjk9IiK7bEs6/SVZ2DTGkUXcK.pQ7W', 'user', '2024-06-04 23:57:20', '2024-06-04 23:57:20', 23);
+(7, 'karo', 'karo@gmail.com', '$2y$10$JBWY9AUfAuTZRpFJhc.cJ.VQjk9IiK7bEs6/SVZ2DTGkUXcK.pQ7W', 'user', '2024-06-04 23:57:20', '2024-06-04 23:57:20', 23),
+(58, 'alana', 'alana@gmail.com', '$2y$10$sJiA6cXK7L0dxaHGWoLASu3Y1TtWaEVzKH/tHbwXGkPtzynGuxFwG', 'admin', '2024-06-19 15:28:55', '2024-06-19 15:28:55', 2);
 
 --
 -- Indexes for dumped tables
@@ -290,6 +313,14 @@ ALTER TABLE `club_heads`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `club_id` (`club_id`,`user_id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `club_user_registration`
+--
+ALTER TABLE `club_user_registration`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `club_id` (`club_id`);
 
 --
 -- Indexes for table `posts`
@@ -342,19 +373,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `clubs`
 --
 ALTER TABLE `clubs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `club_activities`
 --
 ALTER TABLE `club_activities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `club_activity_chats`
 --
 ALTER TABLE `club_activity_chats`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `club_activity_images`
@@ -366,6 +397,12 @@ ALTER TABLE `club_activity_images`
 -- AUTO_INCREMENT for table `club_heads`
 --
 ALTER TABLE `club_heads`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `club_user_registration`
+--
+ALTER TABLE `club_user_registration`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -402,7 +439,7 @@ ALTER TABLE `student_ids`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- Constraints for dumped tables
@@ -435,6 +472,13 @@ ALTER TABLE `club_activity_images`
 ALTER TABLE `club_heads`
   ADD CONSTRAINT `club_heads_ibfk_1` FOREIGN KEY (`club_id`) REFERENCES `clubs` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `club_heads_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `club_user_registration`
+--
+ALTER TABLE `club_user_registration`
+  ADD CONSTRAINT `club_user_registration_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `club_user_registration_ibfk_2` FOREIGN KEY (`club_id`) REFERENCES `clubs` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `posts`
