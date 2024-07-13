@@ -94,7 +94,7 @@ try {
                                     <div class="w-100 d-flex justify-content-start align-content-center">
 
 
-                                    <?php if(isset($user_registered)){ ?>
+                                    <?php if(isset($user_registered[0])){ ?>
         
                                         <?php if(($user_registered[0]['status'] == "pending" or $user_registered[0]['status'] == "rejected" or $user_registered[0]['status'] == "accepted")){ ?>
 
@@ -126,7 +126,7 @@ try {
         </div>
     </div>
 
-    <?php if(isset($user_registered)){ ?>
+    <?php if(isset($user_registered[0])){ ?>
         
         <?php if($user_registered[0]['status'] == "pending" or $user_registered[0]['status'] == "rejected" or $user_registered[0]['status'] == "accepted"){ ?>
 
