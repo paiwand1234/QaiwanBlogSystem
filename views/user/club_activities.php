@@ -45,7 +45,7 @@ try {
     $activities = $club_activities->readOneColumn('club_id', $club_id);
 
     $user_registered = $club_user_registration->readMultipleColumns($data, Operators::AND);
-
+    // print_r($user_registered);
 
 
 } catch (Exception $e) {
@@ -94,17 +94,16 @@ try {
                                     <div class="w-100 d-flex justify-content-start align-content-center">
 
 
-                                    <?php if($user_registered && ($user_registered['status'] == "pending" or $user_registered['status'] == "rejected" or $user_registered['status'] == "accepted")){ ?>
+                                    <?php if(isset($user_registered)){ ?>
         
-                                        <?php if($user_registered){ ?>
+                                        <?php if(($user_registered[0]['status'] == "pending" or $user_registered[0]['status'] == "rejected" or $user_registered[0]['status'] == "accepted")){ ?>
 
-                                            <?php if ($user_registered['status'] == "accepted") { ?>
+                                            <?php if ($user_registered[0]['status'] == "accepted") { ?>
 
                                                 <button type="button" class="btn btn-outline-success col-3 p-0 my-2 mx-1" onclick="window.location.href='chat.php?club_id=<?php echo $activity['club_id']; ?>&activity_id=<?php echo $activity['id']; ?>'">Chat</button>
 
                                             <?php } ?>
            
-
                                         <?php } ?>
 
                                     <?php }?>
@@ -127,21 +126,21 @@ try {
         </div>
     </div>
 
-    <?php if($user_registered && ($user_registered['status'] == "pending" or $user_registered['status'] == "rejected" or $user_registered['status'] == "accepted")){ ?>
+    <?php if(isset($user_registered)){ ?>
         
-        <?php if($user_registered){ ?>
+        <?php if($user_registered[0]['status'] == "pending" or $user_registered[0]['status'] == "rejected" or $user_registered[0]['status'] == "accepted"){ ?>
 
-            <?php if ($user_registered['status'] == "pending") { ?>
-                <div class="outline-warning col-3 p-0 my-2 mx-1">
-                    Pending
+            <?php if ($user_registered[0]['status'] == "pending") { ?>
+                <div class="text-end m-3 position-fixed" style="bottom: 0px; right: 0px; cursor: pointer;">
+                    <button type="button" class="btn btn-outline-info">Pending</button>
                 </div>
-            <?php } else if($user_registered['status'] == "rejected") { ?>
-                <div class="outline-danger col-3 p-0 my-2 mx-1">
-                    Rejected
+            <?php } else if($user_registered[0]['status'] == "rejected") { ?>
+                <div class="text-end m-3 position-fixed" style="bottom: 0px; right: 0px; cursor: pointer;">
+                    <button type="button" class="btn btn-outline-info">Rejected</button>
                 </div>
             <?php } else { ?>
-                <div class="outline-success col-3 p-0 my-2 mx-1">
-                    Accepted
+                <div class="text-end m-3 position-fixed" style="bottom: 0px; right: 0px; cursor: pointer;">
+                    <button type="button" class="btn btn-outline-info">Accepted</button>
                 </div>
             <?php } ?>
 
