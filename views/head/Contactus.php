@@ -17,7 +17,7 @@ session_start();
 $user_id = null;
 
 // CHECK IF THE USER IS LOGGED IN
-if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
+if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'head') {
     // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
     header("Location: ./register.php");
     exit();
@@ -45,12 +45,12 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
                 <div class="content">
                     <h2>Contact Us</h2>
                     <form action="process_contact.php" method="post">
-    <input type="text" name="name" id="name" placeholder="Enter Your Name" required>
-    <input type="email" name="email" id="email" placeholder="Enter Your Email" required>
-    <input type="tel" name="phone" id="phone" placeholder="Enter Your Number" required>
-    <textarea name="message" id="message" placeholder="Your Message" required></textarea>
-    <button type="submit" class="btn" id="btn">Send <i class="fas fa-paper-plane"></i></button>
-    </form>
+                        <input type="text" name="name" id="name" placeholder="Enter Your Name" required>
+                        <input type="email" name="email" id="email" placeholder="Enter Your Email" required>
+                        <input type="tel" name="phone" id="phone" placeholder="Enter Your Number" required>
+                        <textarea name="message" id="message" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn" id="btn">Send <i class="fas fa-paper-plane"></i></button>
+                    </form>
                 </div>
                 <div class="form-img">
                     <img src="../../assets/svg/Contact%20us-amico.svg" alt="contact">
