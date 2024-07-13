@@ -1,26 +1,22 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
-<?php
-
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1);
-
+<?php 
 // START THE SESSION
 session_start();
 
 $user_id = null;
+
 // CHECK IF THE USER IS LOGGED IN
 if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'head') {
     // USER IS NOT LOGGED IN, REDIRECT TO LOGIN PAGE
     header("Location: ./register.php");
     exit();
-}else{
-    
+} else {
     $user_id = $_SESSION['user_id'];
-
 }
-
 ?>
+
+
 
 <head>
     <meta charset="UTF-8">
@@ -30,9 +26,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'head') {
      rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Document</title>
 </head>
-
 <body>
-    
 <?php require 'nav.html'; ?>
 
 
@@ -46,7 +40,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'head') {
                     </div>
                     <div class="col-9 my-auto">
                         <h4>Medical Imaging</h4>
-                        <h6 class="col-12 my-auto text-primary">See More</h6>
+                        <h6 class="col-12 my-auto text-primary"><a href="../user/departments/MI.php">See More</a></h6>
                     </div>
                 </div>
             </div>
@@ -60,7 +54,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'head') {
                     </div>
                     <div class="col-9 my-auto">
                         <h4>M L T</h4>
-                        <h6 class="col-12 my-auto text-primary">See More</h6>
+                        <h6 class="col-12 my-auto text-primary"><a href="../user/departments/MLT.php">See More</a></h6>
                     </div>
                 </div>
             </div>
@@ -74,7 +68,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'head') {
                     </div>
                     <div class="col-9 my-auto">
                         <h4>Information Technology</h4>
-                        <h6 class="col-12 my-auto text-primary">See More</h6>
+                        <h6 class="col-12 my-auto text-primary"><a href="../user/departments/IT.php">See More</a></h6>
                     </div>
                 </div>
             </div>
@@ -91,7 +85,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'head') {
                     </div>
                     <div class="col-9 my-auto">
                         <h4>Optometry</h4>
-                        <h6 class="col-12 my-auto text-primary">See More</h6>
+                        <h6 class="col-12 my-auto text-primary"><a href="../user/departments/optometry.php">See More</a></h6>
                     </div>
                 </div>
             </div>
@@ -105,7 +99,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'head') {
                     </div>
                     <div class="col-9 my-auto">
                         <h4>Biomedical Engineering</h4>
-                        <h6 class="col-12 my-auto text-primary">See More</h6>
+                        <h6 class="col-12 my-auto text-primary"><a href="../user/departments/biomedical.php">See More</a></h6>
                     </div>
                 </div>
             </div>
@@ -119,7 +113,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'head') {
                     </div>
                     <div class="col-9 my-auto">
                         <h4>Network Security</h4>
-                        <h6 class="col-12 my-auto text-primary">See More</h6>
+                        <h6 class="col-12 my-auto text-primary"><a href="../user/departments/network.php">See More</a></h6>
                     </div>
                 </div>
             </div>
@@ -136,7 +130,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'head') {
                     </div>
                     <div class="col-9 my-auto">
                         <h4>Medical Laboratory</h4>
-                        <h6 class="col-12 my-auto text-primary">See More</h6>
+                        <h6 class="col-12 my-auto text-primary"><a href="../user/departments/MLT.php">See More</a></h6>
                     </div>
                 </div>
             </div>
@@ -150,7 +144,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'head') {
                     </div>
                     <div class="col-9 my-auto">
                         <h4>International Business</h4>
-                        <h6 class="col-12 my-auto text-primary">See More</h6>
+                        <h6 class="col-12 my-auto text-primary"><a href="../user/departments/Business.php">See More</a></h6>
                     </div>
                 </div>
             </div>
@@ -164,7 +158,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'head') {
                     </div>
                     <div class="col-9 my-auto">
                         <h4>Human Resource</h4>
-                        <h6 class="col-12 my-auto text-primary">See More</h6>
+                        <h6 class="col-12 my-auto text-primary"><a href="../user/departments/HR.php">See More</a></h6>
                     </div>
                 </div>
             </div>
@@ -175,4 +169,5 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'head') {
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </html>
