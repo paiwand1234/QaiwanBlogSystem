@@ -196,7 +196,7 @@ let sendMessage = async (message) => {
     const url = `${window.location.origin}/QaiwanBlogSystem/controllers/head/club_activity_chat/add_chat.php`;
 
     // DEFINE THE PARAMETERS
-    const params = { 
+    const params = {
         name: "<?php echo $username ?>",
         activity_id: "<?php echo $activity_id ?>",
         club_id: "<?php echo $club_id ?>",
