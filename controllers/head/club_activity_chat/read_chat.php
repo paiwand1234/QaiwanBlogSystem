@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($user_id) && $data) {
             'club_id' => $data["club_id"],
         );
 
-        $chat = $activities->readWithLimit($limit, $offset, $conditions, "created_at", Direction::DESC);
+        $chat = $activities->readWithLimit($limit, $offset, $conditions, "created_at", Direction::ASC);
 
         if ($chat) {
             echo json_encode([
@@ -63,4 +63,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($user_id) && $data) {
         'message' => "There was an error while reading the received data"
     ]);
 }
-?>
+
+

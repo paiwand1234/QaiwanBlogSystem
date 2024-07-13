@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:8889
--- Generation Time: Jul 06, 2024 at 01:12 PM
--- Server version: 5.7.39
--- PHP Version: 7.4.33
+-- Host: 127.0.0.1
+-- Generation Time: Jul 13, 2024 at 09:29 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,11 +30,11 @@ SET time_zone = "+00:00";
 CREATE TABLE `clubs` (
   `id` int(11) NOT NULL,
   `name` varchar(256) NOT NULL,
-  `description` text,
+  `description` text DEFAULT NULL,
   `image` varchar(256) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `clubs`
@@ -53,12 +53,12 @@ CREATE TABLE `club_activities` (
   `id` int(11) NOT NULL,
   `club_id` int(11) NOT NULL,
   `name` varchar(256) NOT NULL,
-  `description` text,
-  `is_accepted` tinyint(1) DEFAULT '0',
+  `description` text DEFAULT NULL,
+  `is_accepted` tinyint(1) DEFAULT 0,
   `image` varchar(256) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `club_activities`
@@ -79,10 +79,10 @@ CREATE TABLE `club_activity_chats` (
   `club_id` int(11) NOT NULL,
   `name` varchar(256) NOT NULL,
   `content` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -95,9 +95,9 @@ CREATE TABLE `club_activity_images` (
   `club_activity_id` int(11) DEFAULT NULL,
   `club_id` int(11) DEFAULT NULL,
   `image` varchar(256) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -109,9 +109,9 @@ CREATE TABLE `club_heads` (
   `id` int(11) NOT NULL,
   `club_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `club_heads`
@@ -131,18 +131,19 @@ CREATE TABLE `club_user_registration` (
   `user_id` int(11) NOT NULL,
   `club_id` int(11) NOT NULL,
   `status` enum('pending','accepted','rejected') NOT NULL DEFAULT 'pending',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `username` varchar(256) DEFAULT 'Unkown',
   `department` varchar(256) DEFAULT 'Unkown'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `club_user_registration`
 --
 
 INSERT INTO `club_user_registration` (`id`, `user_id`, `club_id`, `status`, `created_at`, `updated_at`, `username`, `department`) VALUES
-(1, 6, 11, 'accepted', '2024-06-29 19:05:36', '2024-06-29 21:13:30', 'Unkown', 'Unkown');
+(1, 6, 11, 'accepted', '2024-06-29 19:05:36', '2024-06-29 21:13:30', 'Unkown', 'Unkown'),
+(2, 7, 11, 'pending', '2024-07-06 13:23:59', '2024-07-06 13:23:59', 'Unkown', 'Unkown');
 
 -- --------------------------------------------------------
 
@@ -154,9 +155,9 @@ CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `title` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -168,14 +169,14 @@ CREATE TABLE `post_contents` (
   `id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
   `content_type` enum('text','file','image','video') NOT NULL,
-  `content` text,
+  `content` text DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `file_size` int(11) DEFAULT NULL,
   `file_format` varchar(50) DEFAULT NULL,
   `file_extension` varchar(10) DEFAULT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -187,10 +188,10 @@ CREATE TABLE `projects` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` text,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `description` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `projects`
@@ -211,10 +212,10 @@ CREATE TABLE `project_contents` (
   `file_name` varchar(1024) NOT NULL,
   `file_dir` varchar(2048) NOT NULL,
   `file_type` varchar(256) NOT NULL,
-  `file_size` int(11) NOT NULL DEFAULT '0',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `file_size` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `project_contents`
@@ -233,9 +234,9 @@ INSERT INTO `project_contents` (`id`, `project_id`, `file_name`, `file_dir`, `fi
 CREATE TABLE `student_ids` (
   `id` int(11) NOT NULL,
   `student_id` varchar(50) NOT NULL,
-  `user_is_active` tinyint(1) DEFAULT '0',
-  `head_is_active` tinyint(1) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `user_is_active` tinyint(1) DEFAULT 0,
+  `head_is_active` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `student_ids`
@@ -243,7 +244,16 @@ CREATE TABLE `student_ids` (
 
 INSERT INTO `student_ids` (`id`, `student_id`, `user_is_active`, `head_is_active`) VALUES
 (2, 'aaqu8008623', 1, 1),
-(23, 'aaqu110010', 1, 0);
+(23, 'aaqu110010', 1, 0),
+(24, 'kk180040', 1, 0),
+(26, 'kk180041', 1, 0),
+(27, 'kk180042', 1, 0),
+(28, 'kk180043', 1, 0),
+(29, 'kk180044', 1, 0),
+(30, 'kk180045', 1, 0),
+(31, 'kk180046', 1, 0),
+(32, 'kk180047', 0, 0),
+(33, 'kk180048', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -257,10 +267,10 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` enum('admin','head','user') NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `student_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
@@ -270,7 +280,14 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `created_at`
 (5, 'someone', 'aalan376@gmail.com', '$2y$10$93yTkjNdx9XYzAB1F.KAZuV748qf9HV1NDTKG9TXSLqjoxpFqwqiy', 'head', '2024-05-17 16:01:25', '2024-05-17 16:01:25', 2),
 (6, 'me', 'aaalan376@gmail.com', '$2y$10$5GgqNgQ8vSAkk08p5lH7nu9Zu97M0gRflUbMQ3wIXsqyL0OQD7XWW', 'user', '2024-05-17 19:26:19', '2024-05-17 19:26:19', 2),
 (7, 'karo', 'karo@gmail.com', '$2y$10$JBWY9AUfAuTZRpFJhc.cJ.VQjk9IiK7bEs6/SVZ2DTGkUXcK.pQ7W', 'user', '2024-06-04 23:57:20', '2024-06-04 23:57:20', 23),
-(58, 'alana', 'alana@gmail.com', '$2y$10$sJiA6cXK7L0dxaHGWoLASu3Y1TtWaEVzKH/tHbwXGkPtzynGuxFwG', 'admin', '2024-06-19 15:28:55', '2024-06-19 15:28:55', 2);
+(58, 'alana', 'alana@gmail.com', '$2y$10$sJiA6cXK7L0dxaHGWoLASu3Y1TtWaEVzKH/tHbwXGkPtzynGuxFwG', 'admin', '2024-06-19 15:28:55', '2024-06-19 15:28:55', 2),
+(59, 'didan', 'didan@gmail.com', '$2y$10$.gHxnob9di8OYFvjk9tgmOLRPB9fBc3hJJbFLRpqyECXBptvpO6Tq', 'user', '2024-07-06 13:28:41', '2024-07-06 13:28:41', 24),
+(60, 'paiwand', 'paiwand@gmail.com', '$2y$10$mC08QjZQdQvcTm5F2cKXVevbBNIVIpwc87lAXDmh/aex1wLPdyE1i', 'user', '2024-07-06 13:29:04', '2024-07-06 13:29:04', 26),
+(61, 'alan', 'alan@gmail.com', '$2y$10$/P17bhWyblwxP.k1qxKhleTbLHlvMiheX6Xj0UDz4RSarONvY/45e', 'user', '2024-07-06 13:29:19', '2024-07-06 13:29:19', 27),
+(62, 'diray', 'Diary23dana@gmail.com', '$2y$10$EiaqNeX90gRMcYjcSwRou.CeL5m5VeAg7DniZvyIYKVelzMC4Vya6', 'user', '2024-07-06 13:29:51', '2024-07-06 13:29:51', 28),
+(63, 'musa', 'muas@gmail.com', '$2y$10$4cmhtnVCRudmAa1FFTROSOz3Ufh9Uxjg3UCw3wyW9bSNrmKX.f7cC', 'user', '2024-07-06 13:30:24', '2024-07-06 13:30:24', 29),
+(64, 'braw', 'braw@gmail.com', '$2y$10$ix6zR2Q995wbOAbwoWQwHOAfIGHQlozm/OL9wp0VLvQ8bbZnCSeSW', 'user', '2024-07-06 13:31:18', '2024-07-06 13:31:18', 30),
+(65, 'shakar', 'shakar@gmail.com', '$2y$10$MIuhqNNjgBeyDwCF1dWzbOwaZAiinKTLDC4C/Lv7iyYcycMFpy8cq', 'user', '2024-07-06 13:31:52', '2024-07-06 13:31:52', 31);
 
 --
 -- Indexes for dumped tables
@@ -403,7 +420,7 @@ ALTER TABLE `club_heads`
 -- AUTO_INCREMENT for table `club_user_registration`
 --
 ALTER TABLE `club_user_registration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `posts`
@@ -433,13 +450,13 @@ ALTER TABLE `project_contents`
 -- AUTO_INCREMENT for table `student_ids`
 --
 ALTER TABLE `student_ids`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- Constraints for dumped tables
