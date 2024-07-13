@@ -16,11 +16,13 @@ class ClubUserRegistration {
         $this->db = $db;
     }
 
-    public function create($userId, $clubId, $status) {
+    public function create($userId, $clubId, $userName, $departmentName, $status) {
         try {
             return $this->db->create($this->table_name, [
                 'user_id' => $userId,
                 'club_id' => $clubId,
+                'username' => $userName,
+                'department' => $departmentName, 
                 'status' => $status,
             ]);
         } catch (PDOException $e) {

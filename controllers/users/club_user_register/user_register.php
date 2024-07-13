@@ -31,11 +31,14 @@ try {
 
     $user_id =  filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_SPECIAL_CHARS);
     $club_id = filter_input(INPUT_POST, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
+    $user_name =  filter_input(INPUT_POST, 'user_name', FILTER_SANITIZE_SPECIAL_CHARS);
+    $department_name = filter_input(INPUT_POST, 'department_name', FILTER_SANITIZE_SPECIAL_CHARS);
+    
 
     $pdo->beginTransaction();
     $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
     
-    $club_user_registration->create($user_id, $club_id, Status::PENDING);
+    $club_user_registration->create($user_id, $club_id, $user_name, $department_name, Status::PENDING);
     echo "\nCreated the registration\n";
     $success = "Regristration created";
     

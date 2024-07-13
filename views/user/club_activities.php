@@ -165,11 +165,11 @@ try {
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">User Name:</label>
-                        <input type="text" class="form-control" id="recipient-name" name="name" required>
+                        <input type="text" class="form-control" id="recipient-name" name="user_name" required>
                     </div>
                     <div class="mb-3">
                         <label for="recipient-name" class="col-form-label">Department Name:</label>
-                        <input type="text" class="form-control" id="recipient-name" name="name" required>
+                        <input type="text" class="form-control" id="recipient-name" name="department_name" required>
                     </div>
                 </div>
                 <div class="modal-footer">
