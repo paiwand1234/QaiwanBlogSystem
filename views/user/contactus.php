@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "LXHJK4XTHTA--P7_9",
+      });
+   })();
+</script>
 <?php 
 // START THE SESSION
 session_start();
@@ -35,12 +45,12 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
                 <div class="content">
                     <h2>Contact Us</h2>
                     <form action="process_contact.php" method="post">
-                        <input type="text" name="name" placeholder="Enter Your Name" required>
-                        <input type="email" name="email" placeholder="Enter Your Email" required>
-                        <input type="tel" name="phone" placeholder="Enter Your Number" required>
-                        <textarea name="message" placeholder="Your Message" required></textarea>
-                        <button type="submit" class="btn" id="btn">Send <i class="fas fa-paper-plane"></i></button>
-                    </form>
+    <input type="text" name="name" id="name" placeholder="Enter Your Name" required>
+    <input type="email" name="email" id="email" placeholder="Enter Your Email" required>
+    <input type="tel" name="phone" id="phone" placeholder="Enter Your Number" required>
+    <textarea name="message" id="message" placeholder="Your Message" required></textarea>
+    <button type="submit" class="btn" id="btn">Send <i class="fas fa-paper-plane"></i></button>
+    </form>
                 </div>
                 <div class="form-img">
                     <img src="../../assets/svg/Contact%20us-amico.svg" alt="contact">
@@ -49,6 +59,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
         </div>
     </div>
 </body>
+<script src="contact.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
