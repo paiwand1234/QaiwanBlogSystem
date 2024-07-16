@@ -3,6 +3,7 @@
 include "../../database.php"; // Assuming you have this file
 include "../../../models/clubs.php";
 include "../../../models/admin_chats.php";
+include "../../../models/club_activity_chats.php";
 
 session_start();
 
@@ -29,9 +30,9 @@ $offset = 0;
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($user_id) && $data) {
     try {
         $db = new Database();
-        $adminChats = new AdminChats($db);
+        $admin_chats = new AdminChats($db);
         
-        $chat = $adminChats->readWithLimit($limit, $offset, [], "created_at", Direction::ASC);
+        $chat = $admin_chats->readWithLimit($limit, $offset, [], "created_at", Direction::ASC);
 
         if ($chat) {
             echo json_encode([

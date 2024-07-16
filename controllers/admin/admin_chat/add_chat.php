@@ -2,8 +2,7 @@
 
 include "../../database.php"; // Assuming you have this file
 include "../../../models/clubs.php";
-include "../../../models/club_activity.php";
-include "../../../models/club_activity_chats.php";
+include "../../../models/admin_chats.php";
 
 session_start();
 
@@ -26,12 +25,10 @@ $user_id = $_SESSION['user_id'] ?? null;
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($user_id) && $data) {
     try {
         $db = new Database();
-        $activities = new ClubActivityChats($db);
+        $admin_chats = new AdminChats($db);
 
-        $chat = $activities->create(
+        $chat = $admin_chats->create(
             $user_id, 
-            $data['activity_id'], 
-            $data['club_id'], 
             $data['name'], 
             $data['message']
         );

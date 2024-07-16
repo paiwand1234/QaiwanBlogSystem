@@ -22,10 +22,6 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'admin') {
     $user_id = $_SESSION['user_id'];
 }
 
-$club_id = filter_input(INPUT_GET, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
-$activity_id = filter_input(INPUT_GET, 'activity_id', FILTER_SANITIZE_SPECIAL_CHARS);
-
-
 try {
     $db = new Database();
     $club_activities = new ClubActivities($db);
@@ -192,13 +188,11 @@ let  getMessage = async () => {
 
 let sendMessage = async (message) => {
     // DEFINE THE URL OF THE API ENDPOINT
-    const url = `${window.location.origin}/QaiwanBlogSystem/controllers/head/club_activity_chat/add_chat.php`;
+    const url = `${window.location.origin}/QaiwanBlogSystem/controllers/admin/admin_chat/add_chat.php`;
 
     // DEFINE THE PARAMETERS
     const params = { 
         name: "<?php echo $username ?>",
-        activity_id: "<?php echo $activity_id ?>",
-        club_id: "<?php echo $club_id ?>",
         user_id: "<?php echo $user_id ?>",
         message: message
     };
@@ -240,9 +234,7 @@ let updateChat = async () => {
         // DEFINE THE PARAMETERS
         const params = { 
             // name: "<?php echo $username ?>",
-            activity_id: "<?php echo $activity_id ?>",
-            club_id: "<?php echo $club_id ?>",
-            // user_id: "<?php echo $user_id ?>",
+            user_id: "<?php echo $user_id ?>",
             // message: message
         };
 

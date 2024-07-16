@@ -9,7 +9,7 @@ class AdminChats {
         $this->db = $db;
     }
 
-    public function create($user_id, $clubActivityId, $clubId, $name, $content) {
+    public function create($user_id, $name, $content) {
         try {
             return $this->db->create($this->table_name, [
                 'user_id' => $user_id,
