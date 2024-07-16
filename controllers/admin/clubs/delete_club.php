@@ -61,5 +61,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
         // Ensure autocommit is back to normal
         $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
     }
-    exit();
 }

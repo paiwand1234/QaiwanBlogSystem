@@ -15,13 +15,13 @@ try {
     $sql = "SELECT * FROM users WHERE username = ? AND role = ?";
     $stmt = $db->pdo->prepare($sql);
     $stmt->execute([$username, "admin"]);
-    $activities = $stmt->fetch(PDO::FETCH_ASSOC);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // Verify password
-    if ($activities && password_verify($password, $activities['password'])) {
+    if ($user && password_verify($password, $user['password'])) {
 
-        $_SESSION['user_id'] = $activities['id'];
-        $_SESSION['role'] = $activities['role'];
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['role'] = $user['role'];
         
         // Password is correct
         header("Location: ../../views/admin/home.php?");
