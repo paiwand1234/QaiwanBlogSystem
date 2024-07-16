@@ -176,7 +176,7 @@ body {
                 <li><a href="post.php"><i class="fa-solid fa-building"></i>Post control</a></li>
                 <li><a href="clubs.php"><i class="fa-solid fa-people-group"></i> Club</a></li>
                 <li><a href="users.php"><i class="fa-solid fa-user "></i> Users</a></li>
-                <li><a href="chat.php"><i class="fa-solid fa-user "></i> chat</a></li>
+                <li><a href="admin_chat.php"><i class="fa-solid fa-user "></i> chat</a></li>
                 <li><a href="login.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
             </ul>
         </nav>

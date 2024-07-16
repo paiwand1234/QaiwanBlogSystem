@@ -17,7 +17,7 @@ echo $club_id;
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
     $db = new Database();
     $pdo = $db->pdo;
-    $activities = new Clubs($db);
+    $clubs = new Clubs($db);
 
     try {
         // Ensure autocommit is off
@@ -25,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
 
         $pdo->beginTransaction();
 
-        $read_result = $activities->read($club_id);
-        $delete_result = $activities->delete($club_id);
+        $read_result = $clubs->read($club_id);
+        $delete_result = $clubs->delete($club_id);
 
         if ($read_result && $delete_result) {
             echo $read_result['image'];

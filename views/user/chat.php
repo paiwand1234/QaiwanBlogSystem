@@ -17,7 +17,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
     header("Location: ./register.php");
     exit();
 }else{
-    
+
     $user_id = $_SESSION['user_id'];
 
 }
@@ -29,13 +29,13 @@ $activity_id = filter_input(INPUT_GET, 'activity_id', FILTER_SANITIZE_SPECIAL_CH
 
 try {
     $db = new Database();
-    $activities = new ClubActivities($db);
-    $activities = new Users($db); 
+    $club_activities = new ClubActivities($db);
+    $users = new Users($db); 
 
-    $club_activity = $activities->read($activity_id);
-    $activities = $activities->read($_SESSION['user_id']);
+    $club_activity = $club_activities->read($activity_id);
+    $user = $users->read($_SESSION['user_id']);
     
-    $username = $activities['username'];
+    $username = $user['username'];
     // Debug: Remove this in production
 
 

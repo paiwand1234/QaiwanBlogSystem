@@ -108,7 +108,6 @@ try {
 
                                     <?php }?>
 
-
                                     <?php if ($club_head) { ?>
                                         <form action="../../controllers/head/club_activity/delete_activity.php" method="POST" class="col-3 p-0 my-2 mx-1">
                                             <input type="hidden" name="club_id" value="<?php echo htmlspecialchars($activity['club_id']); ?>">
@@ -116,6 +115,7 @@ try {
                                             <button type="submit" class="btn btn-danger col-12 rounded">Delete</button>
                                         </form>
                                     <?php } ?>
+
                                     </div>
                                 </div>
                             </div>

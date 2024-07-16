@@ -18,7 +18,7 @@ echo $club_id;
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
     $db = new Database();
     $pdo = $db->pdo;
-    $activities = new Users($db);
+    $users = new Users($db);
 
     try {
         // Ensure autocommit is off
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
 
         $pdo->beginTransaction();
 
-        $delete_result = $activities->delete($club_id);
+        $delete_result = $users->delete($club_id);
 
         $pdo->commit();
         $success = "Transaction was successful";

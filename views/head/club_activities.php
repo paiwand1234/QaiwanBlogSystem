@@ -31,7 +31,7 @@ try {
     $db = new Database();
     $clubs = new Clubs($db);
     $club_heads = new ClubHeads($db);
-    $activities = new ClubActivities($db);
+    $club_activities = new ClubActivities($db);
 
     $project = $clubs->read($club_id);
 
@@ -41,7 +41,7 @@ try {
     );
 
     $club_head = $club_heads->readMultipleColumns($data, Operators::AND);
-    $activities = $activities->readOneColumn('club_id', $club_id);
+    $activities = $club_activities->readOneColumn('club_id', $club_id);
 } catch (Exception $e) {
     echo "An error occurred: " . $e->getMessage();
     exit();
