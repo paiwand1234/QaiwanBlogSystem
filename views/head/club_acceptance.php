@@ -4,7 +4,7 @@
 <?php
 
 include "../../models/clubs.php";
-include "../../models/club_user_registration.php";
+include "../../models/club_user_registeration.php";
 include "../../models/club_heads.php";
 include "../../controllers/database.php";
 

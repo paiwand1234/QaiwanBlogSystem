@@ -4,7 +4,8 @@ ini_set('display_errors', 1);
 
 include "../../../models/users.php";
 include "../../../models/club_activity.php";
-include "../../../models/club_user_registration.php";
+include "../../../models/club_user_registeration.php";
+include "../../../models/club_activity_registeration.php";
 include "../../database.php";
 include "../../utils/utils.php";
 
@@ -22,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_SESSION['user_id'])) {
 
 $db = new Database();
 $activities = new ClubActivities($db);
-$club_user_registration = new ClubUserRegistration($db);
+$club_user_registration = new ClubActivityRegisteration($db);
 $pdo = $db->pdo;
 
 try {
@@ -53,17 +54,21 @@ try {
 
    
 } catch (PDOException $e) {
+
     if ($pdo->inTransaction()) {
         $pdo->rollBack();
     }
     $error = "Transaction rolled back due to PDOException: " . $e->getMessage();
     header("Location: ../../../views/head/club_acceptance.php?club_id=".$club_id."&error=" . urlencode($error));
+
 } catch (Exception $e) {
+
     if ($pdo->inTransaction()) {
         $pdo->rollBack();
     }
     $error = "Transaction failed: " . $e->getMessage();
     header("Location: ../../../views/head/club_acceptance.php?club_id=".$club_id."&error=" . urlencode($error));
+
 } finally {
     $pdo->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
 }

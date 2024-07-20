@@ -7,6 +7,8 @@ include "../../controllers/database.php";
 include "../../models/clubs.php";
 include "../../models/club_heads.php";
 include "../../models/club_activity.php";
+include "../../models/club_user_registeration.php";
+include "../../models/club_activity_registeration.php";
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -32,6 +34,7 @@ try {
     $clubs = new Clubs($db);
     $club_heads = new ClubHeads($db);
     $club_activities = new ClubActivities($db);
+    $activity_registerations = new ClubActivityRegisteration($db);
 
     $project = $clubs->read($club_id);
 
@@ -42,6 +45,9 @@ try {
 
     $club_head = $club_heads->readMultipleColumns($data, Operators::AND);
     $activities = $club_activities->readOneColumn('club_id', $club_id);
+    $activity_registeration = $activity_registerations->readOneColumn("status", Status::PENDING);
+
+    
 } catch (Exception $e) {
     echo "An error occurred: " . $e->getMessage();
     exit();
@@ -96,6 +102,31 @@ try {
                                                 <button type="submit" class="btn btn-danger col-12 rounded">Delete</button>
                                             </form>
                                         <?php } ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+
+            <?php foreach($activity_registeration as $activity) { ?>
+                <div class="col-6">
+                    <div class="card mb-3" style="max-width: 640px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="<?php echo htmlspecialchars($activity['image_dir']); ?>" class="img-fluid object-fit-cover rounded-start w-100 h-100" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo htmlspecialchars($activity['title']); ?></h5>
+                                    <p class="card-text"><?php echo htmlspecialchars($activity['description']); ?></p>
+                                    <div class="w-100 d-flex justify-content-start align-content-center">
+                                        
+                                        <div type="button" class="btn btn-outline-success col-3 p-0 py-1 my-2 mx-1" >
+                                            <?php echo htmlspecialchars($activity["status"]) ?>
+                                        </div>
+                            
                                     </div>
                                 </div>
                             </div>

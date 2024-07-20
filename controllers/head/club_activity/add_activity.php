@@ -3,7 +3,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 include "../../../models/users.php";
-include "../../../models/club_activity.php";
+include "../../../models/club_user_registeration.php";
+include "../../../models/club_activity_registeration.php";
 include "../../database.php";
 include "../../utils/utils.php";
 
@@ -20,7 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_SESSION['user_id'])) {
 }
 
 $db = new Database();
-$activities = new ClubActivities($db);
+// $activities = new ClubActivities($db);
+$activity_registeration = new ClubActivityRegisteration($db);
 $pdo = $db->pdo;
 
 try {
@@ -28,7 +30,7 @@ try {
 
     $user_id = $_SESSION['user_id'];
     $club_id = filter_input(INPUT_POST, 'club_id', FILTER_SANITIZE_SPECIAL_CHARS);
-    $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
+    $title = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
     $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_SPECIAL_CHARS);
 
     $pdo->beginTransaction();
@@ -51,15 +53,17 @@ try {
             throw new Exception("Invalid image type.");
         }
 
-        $image_uploaded = handle_file_upload($_FILES['image'], "../" . $image_dir);
+        $new_image_name = uniqid('img_', true) . '.' . $image_ext;
+        $image_uploaded = handle_file_upload_with_name($_FILES['image'], "../" . $image_dir, $new_image_name);
         if (!$image_uploaded) {
             throw new Exception("Failed to upload image.");
         }
 
-        $activities->create($club_id, $name, $description, $image_dir . $image_name);
+        $activity_registeration->create($user_id, $club_id, $image_dir . $new_image_name, $title, $description, Status::PENDING);
         echo "\nActivity image created\n";
         $success = "Activity created";
         header("Location: ../../../views/head/club_activities.php?club_id=".$club_id."&success=" . urlencode($success));
+
     } else {
         throw new Exception("Sorry, there was an error while reading the image.");
     }

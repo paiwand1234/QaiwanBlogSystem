@@ -171,13 +171,13 @@ body {
     <div class="container">
         <nav class="sidebar">
             <ul>
-                <li><a href="home.php"><i class="fa-solid fa-house"></i> Home</a></li>
-                <li><a href="club_activities.php"><i class="fa-solid fa-medal"></i> Activity</a></li>
-                <li><a href="post.php"><i class="fa-solid fa-building"></i>Post control</a></li>
-                <li><a href="clubs.php"><i class="fa-solid fa-people-group"></i> Club</a></li>
-                <li><a href="users.php"><i class="fa-solid fa-user "></i> Users</a></li>
-                <li><a href="admin_chat.php"><i class="fa-solid fa-user "></i> chat</a></li>
-                <li><a href="login.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
+                <li><a href="home.php"><i class="fa-solid fa-house"></i>Home</a></li>
+                <li><a href="club_activities.php"><i class="fa-solid fa-medal"></i>Activity</a></li>
+                <li><a href="activity_control.php"><i class="fa-solid fa-building"></i>Activity Control</a></li>
+                <li><a href="clubs.php"><i class="fa-solid fa-people-group"></i>Club</a></li>
+                <li><a href="users.php"><i class="fa-solid fa-user "></i>Users</a></li>
+                <li><a href="admin_chat.php"><i class="fa-solid fa-user "></i>Chat</a></li>
+                <li><a href="login.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a></li>
             </ul>
         </nav>
         <main class="content">

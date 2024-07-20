@@ -31,3 +31,18 @@ function handle_file_delete($dir, $file_name = null) {
         return false;
     }
 }
+
+function handle_file_upload_with_name($file, $dir, $new_image_name) {
+    if (file_exists($dir . $file['name'])) {
+        echo $file['name'] . " already exists.<br>";
+        return false;
+    }
+    if (move_uploaded_file($file['tmp_name'], $dir . $new_image_name)) {
+        echo "Your " . $file['name'] . " was uploaded successfully.<br>";
+        return true;
+    } else {
+        echo "Error uploading " . $file['name'] . ".<br>";
+        return false;
+    }
+}
+

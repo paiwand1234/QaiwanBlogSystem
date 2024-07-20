@@ -7,7 +7,7 @@ include "../../controllers/database.php";
 include "../../models/clubs.php";
 include "../../models/club_heads.php";
 include "../../models/club_activity.php";
-include "../../models/club_user_registration.php";
+include "../../models/club_user_registeration.php";
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
