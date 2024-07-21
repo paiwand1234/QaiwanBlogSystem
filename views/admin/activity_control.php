@@ -43,7 +43,7 @@ $all_registrations = $activity_registerations->readOneColumn("status", Status::P
   <!-- Custom CSS -->
   <style>
     body{
-        background:linear-gradient(320deg,rgb(20,54,123)0%,rgb(255,255,255)100%) ;
+        /* background:linear-gradient(320deg,rgb(20,54,123)0%,rgb(255,255,255)100%) ; */
     }
     .post-card {
       margin-bottom: 20px;

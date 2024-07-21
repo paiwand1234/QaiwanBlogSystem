@@ -45,7 +45,13 @@ try {
 
     $club_head = $club_heads->readMultipleColumns($data, Operators::AND);
     $activities = $club_activities->readOneColumn('club_id', $club_id);
-    $activity_registeration = $activity_registerations->readOneColumn("status", Status::PENDING);
+    $data = array(
+        "user_id" => $user_id,
+        "club_id" => $club_id,
+        "status" => Status::PENDING
+    );
+
+    $activity_registeration = $activity_registerations->readMultipleColumns($data, Operators::AND);
 
     
 } catch (Exception $e) {
