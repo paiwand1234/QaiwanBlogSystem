@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_SESSION['user_id'])) {
 
 $db = new Database();
 $activities = new ClubActivities($db);
-$club_user_registration = new ClubActivityRegisteration($db);
+$club_user_registration = new ClubUserRegisteration($db);
 $pdo = $db->pdo;
 
 try {

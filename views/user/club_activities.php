@@ -33,7 +33,7 @@ try {
     $clubs = new Clubs($db);
     $club_heads = new ClubHeads($db);
     $club_activities = new ClubActivities($db);
-    $club_user_registration = new ClubUserRegistration($db);
+    $club_user_registration = new ClubUserRegisteration($db);
     $project = $clubs->read($club_id);
 
     $data = array(

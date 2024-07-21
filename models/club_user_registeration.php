@@ -8,7 +8,7 @@ class Status {
 }
 
 
-class ClubUserRegistration {
+class ClubUserRegisteration {
     private $db;
     private $table_name = 'club_user_registration';
     
