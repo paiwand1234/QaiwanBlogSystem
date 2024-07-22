@@ -56,7 +56,7 @@ $all_registrations = $activity_registerations->readOneColumn("status", Status::P
 
   <!-- Content -->
   <div class="container mt-4">
-    <h2 class="mb-3">Posts from Head of Department</h2>
+    <h2 class="mb-3">Activity Control</h2>
     <div class="row">
       <!-- Post Card -->
       <?php foreach ($all_registrations as $registeration ){  ?>

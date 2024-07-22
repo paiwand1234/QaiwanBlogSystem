@@ -166,13 +166,20 @@ body {
         max-width: 100%;
     }
 }
+  a {
+            color: white !important; /* ENSURES THE TEXT COLOR IS WHITE */
+            text-decoration: none;   /* REMOVES UNDERLINE */
+        }
+        a:hover {
+            color: white !important; /* KEEPS THE TEXT COLOR WHITE ON HOVER */
+        }
 </style>
 <body>
     <div class="container">
         <nav class="sidebar">
             <ul>
                 <li><a href="home.php"><i class="fa-solid fa-house"></i>Home</a></li>
-                <li><a href="club_activities.php"><i class="fa-solid fa-medal"></i>Activity</a></li>
+                <!-- <li><a href="club_activities.php"><i class="fa-solid fa-medal"></i>Activity</a></li> -->
                 <li><a href="activity_control.php"><i class="fa-solid fa-building"></i>Activity Control</a></li>
                 <li><a href="clubs.php"><i class="fa-solid fa-people-group"></i>Club</a></li>
                 <li><a href="users.php"><i class="fa-solid fa-user "></i>Users</a></li>
@@ -182,41 +189,53 @@ body {
         </nav>
         <main class="content">
             <div class="cards">
-                <div class="card card-activate">
+                <div class="card card-activate cursor-pointer">
+                <a href="activity_control.php" class="d-block p-3 bg-dark text-center">
                     <i class="fa-solid fa-bolt card-icon"></i>
-                    <div>
-                        <h3>Activate</h3>
-                        <p>Quick access to activation.</p>
+                     <div>
+                        <h3 class="text-white">Activity Control</h3>
+                        <p class="text-white">Quick access to activation.</p>
                     </div>
+                </a>
                 </div>
-                <div class="card card-department">
+                
+                <div class="card card-department cursor-pointer">
+                <a href="chat.php" class="d-block p-3 bg-dark text-center">
                     <i class="fa-solid fa-building card-icon"></i>
-                    <div>
-                        <h3>Department</h3>
-                        <p>Quick access to departments.</p>
+                     <div>
+                     <h3>Chat</h3>
+                     <p>Quick access to departments.</p>
                     </div>
+                </a>
                 </div>
-                <div class="card card-club">
-                    <i class="fa-solid fa-users card-icon"></i>
+                <div class="card card-club cursor-pointer">
+                <a href="clubs.php" class="d-block p-3 bg-dark text-center">
+                <i class="fa-solid fa-users card-icon"></i>
                     <div>
                         <h3>Club</h3>
                         <p>Quick access to clubs.</p>
                     </div>
+                </a>
+                
                 </div>
-                <div class="card card-club">
+                <div class="card card-club cursor-pointer">
+                <a href="users.php" class="d-block p-3 bg-dark text-center">
                 <i class="fa-solid fa-user card-icon" style="color: #ffffff;"></i>
                     <div>
                         <h3>Users Controls</h3>
                         <p>Quick access to clubs.</p>
                     </div>
+                </a>
                 </div>
-                <div class="card card-add-club">
+                <!-- <div class="card card-add-club ">
+                <a href="chat.php" class="d-block p-3 bg-dark text-center">
                 <i class="fa-solid fa-user-plus card-icon"></i>
                     <div>
                         <h3>Add club </h3>
                         <p>Quick access to clubs.</p>
                     </div>
-                </div>
+                </a>
+                </div> -->
             </div>
         </main>
     </div>

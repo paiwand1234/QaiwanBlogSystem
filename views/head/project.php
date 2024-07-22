@@ -68,7 +68,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'head') {
             </form>
             </div>
             <div class="col-5 mx-auto">
-                <img src="../assets/svg/Work time-amico.svg" alt="">
+                <img style="width: 800px;" src="../../assets/image/DALL·E 2024-06-12 00.12.52 - A simple, flat illustration of a diverse group of college students working together on a project. They are sitting around a table, which shows various.webp" alt="">
             </div>
         </div>
     </div>

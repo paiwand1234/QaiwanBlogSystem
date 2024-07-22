@@ -30,6 +30,26 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'admin') {
 </head>
 <style>
     /* Your CSS here */
+    .card-text {
+            position: absolute;
+            top: 80%;
+            left: 20%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8); /* Optional: to make the text more readable */
+            padding: 10px;
+            border-radius: 5px;
+        }
+       
+        .card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .card img {
+            flex-grow: 1;
+            object-fit: cover;
+            height: 300px;
+        }
 </style>
 
 <body>
