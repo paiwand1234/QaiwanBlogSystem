@@ -40,7 +40,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
                     </div>
                     <div class="col-9 my-auto">
                         <h4>Medical Imaging</h4>
-                        <h6 class="col-12 my-auto text-primary"><a href="../user/departments/MI.php">See More</a></h6>
+                        <h6 class="col-12 my-auto text-primary"><a href="../user/all-departments/MI.php">See More</a></h6>
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
                     </div>
                     <div class="col-9 my-auto">
                         <h4>M L T</h4>
-                        <h6 class="col-12 my-auto text-primary"><a href="../user/departments/MLT.php">See More</a></h6>
+                        <h6 class="col-12 my-auto text-primary"><a href="../user/all-departments/MLT.php">See More</a></h6>
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
                     </div>
                     <div class="col-9 my-auto">
                         <h4>Information Technology</h4>
-                        <h6 class="col-12 my-auto text-primary"><a href="../user/departments/IT.php">See More</a></h6>
+                        <h6 class="col-12 my-auto text-primary"><a href="../user/all-departments/IT.php">See More</a></h6>
                     </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
                     </div>
                     <div class="col-9 my-auto">
                         <h4>Optometry</h4>
-                        <h6 class="col-12 my-auto text-primary"><a href="../user/departments/optometry.php">See More</a></h6>
+                        <h6 class="col-12 my-auto text-primary"><a href="../user/all-departments/optometry.php">See More</a></h6>
                     </div>
                 </div>
             </div>
@@ -99,7 +99,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
                     </div>
                     <div class="col-9 my-auto">
                         <h4>Biomedical Engineering</h4>
-                        <h6 class="col-12 my-auto text-primary"><a href="../user/departments/biomedical.php">See More</a></h6>
+                        <h6 class="col-12 my-auto text-primary"><a href="../user/all-departments/biomedical.php">See More</a></h6>
                     </div>
                 </div>
             </div>
@@ -113,7 +113,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
                     </div>
                     <div class="col-9 my-auto">
                         <h4>Network Security</h4>
-                        <h6 class="col-12 my-auto text-primary"><a href="../user/departments/network.php">See More</a></h6>
+                        <h6 class="col-12 my-auto text-primary"><a href="../user/all-departments/network.php">See More</a></h6>
                     </div>
                 </div>
             </div>
@@ -130,7 +130,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
                     </div>
                     <div class="col-9 my-auto">
                         <h4>Medical Laboratory</h4>
-                        <h6 class="col-12 my-auto text-primary"><a href="../user/departments/MLT.php">See More</a></h6>
+                        <h6 class="col-12 my-auto text-primary"><a href="../user/all-departments/MLT.php">See More</a></h6>
                     </div>
                 </div>
             </div>
@@ -144,7 +144,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
                     </div>
                     <div class="col-9 my-auto">
                         <h4>International Business</h4>
-                        <h6 class="col-12 my-auto text-primary"><a href="../user/departments/Business.php">See More</a></h6>
+                        <h6 class="col-12 my-auto text-primary"><a href="../user/all-departments/Business.php">See More</a></h6>
                     </div>
                 </div>
             </div>
@@ -158,7 +158,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
                     </div>
                     <div class="col-9 my-auto">
                         <h4>Human Resource</h4>
-                        <h6 class="col-12 my-auto text-primary"><a href="../user/departments/HR.php">See More</a></h6>
+                        <h6 class="col-12 my-auto text-primary"><a href="../user/all-departments/HR.php">See More</a></h6>
                     </div>
                 </div>
             </div>
