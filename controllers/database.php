@@ -7,13 +7,13 @@ class Operators {
 
 class Database {
     private $host = 'localhost';
-    // private $dbname = 'u304011287_qaiwan_blog';
-    // private $username = 'u304011287_paiwand';
-    // private $password = '7KabZ^*qUdx=';
-    private $dbname = 'qaiwan_blog_system';
-    private $username = 'root';
-    private $password = '';
-    private $port = 3306;
+    private $dbname = 'u304011287_qaiwan_blog';
+    private $username = 'u304011287_paiwand';
+    private $password = '7KabZ^*qUdx=';
+    // private $dbname = 'qaiwan_blog_system';
+    // private $username = 'root';
+    // private $password = '';
+    // private $port = 3306;
     private $options = [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // Enable exceptions for errors
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC // Set default fetch mode
@@ -22,7 +22,7 @@ class Database {
 
     public function __construct() {
         try {
-            $this->pdo = new PDO("mysql:host={$this->host}:{$this->port};dbname={$this->dbname}", $this->username, $this->password, $this->options);
+            $this->pdo = new PDO("mysql:host={$this->host};dbname={$this->dbname}", $this->username, $this->password, $this->options);
         } catch (PDOException $e) {
             die("Connection failed: " . $e->getMessage());
         }
