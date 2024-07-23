@@ -135,7 +135,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
 <body>
     <?php include "nav.html" ?>
     <div class="container">
-
+    <?php if ($projects_array){ ?>
         <?php foreach( $projects_array as $index => $project) {?>
             <div class="card">
                 <img src="<?php echo $project[2]['file_dir'].$project[2]['file_name'] ?>" alt="Project Image 1" class="project-image">
@@ -145,6 +145,7 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
                 <a href="<?php echo $project[1]['file_dir'].$project[1]['file_name'] ?>" class="download-btn col-6 mx-auto"  download="<?php echo "project-".$project[0]['id']; ?>" >Download</a>
             </div>
         <?php }?>
+    <?php }?>
 
     </div>
 </body>
