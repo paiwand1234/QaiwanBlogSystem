@@ -41,6 +41,7 @@ $users_statuses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 <body>
+    <?php require 'nav.html'; ?>
     <div class="container mt-5">
         <h1>Club Registrations</h1>
         <div class="row">
