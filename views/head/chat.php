@@ -34,7 +34,7 @@ try {
 
     $club_activity = $activities->read($activity_id);
     $users = $users->read($_SESSION['user_id']);
-    
+    print_r($users);
     $username = $user['username'];
     print("this is the username: ".$username);
     // Debug: Remove this in production
