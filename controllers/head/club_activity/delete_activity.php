@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
             $pdo->rollBack();
             $error = "Transaction rolled back due to PDOException: " . $e->getMessage();
             echo $error;
-            header("Location: ../../../views/head/club_activities.php?error=" . urlencode($error));
+            header("Location: ../../../views/head/club_activities.php?club_id=".$club_id."&error=" . urlencode($error));
             exit();
         }
     } catch (Exception $e) {
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
         }
         $error = "Transaction failed: " . $e->getMessage();
         echo $error;
-        header("Location: ../../../views/head/club_activities.php?error=" . urlencode($error));
+        header("Location: ../../../views/head/club_activities.php?club_id=".$club_id."&error=" . urlencode($error));
         exit();
     } finally {
         // Ensure autocommit is back to normal
