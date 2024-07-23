@@ -18,7 +18,8 @@ echo $club_id;
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
     $db = new Database();
     $pdo = $db->pdo;
-    $activities = new ClubActivities($db);
+    $activity_registerations = new ClubActivityRegisteration($db);
+
 
     try {
         // Ensure autocommit is off
@@ -26,9 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
 
         $pdo->beginTransaction();
 
-        $read_result = $activities->read($activity_id);
+        $read_result = $activity_registerations->read($activity_id);
         print_r($read_result);
-        $delete_result = $activities->delete($activity_id);
+        $delete_result = $activity_registerations->delete($activity_id);
 
         if ($read_result && $delete_result) {
             echo $read_result['image'];
@@ -43,12 +44,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
         $success = "Transaction was successful";
         header("Location: ../../../views/head/club_activities.php?club_id=".$club_id."&success=" . urlencode($success));
         exit();
+
+
     } catch (PDOException $e) {
         if ($pdo->inTransaction()) {
             $pdo->rollBack();
             $error = "Transaction rolled back due to PDOException: " . $e->getMessage();
             echo $error;
-            header("Location: ../../../views/head/club_activities.php?error=" . urlencode($error));
+            header("Location: ../../../views/head/club_activities.php?club_id=".$club_id."&error=" . urlencode($error));
             exit();
         }
     } catch (Exception $e) {
@@ -57,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
         }
         $error = "Transaction failed: " . $e->getMessage();
         echo $error;
-        header("Location: ../../../views/head/club_activities.php?error=" . urlencode($error));
+        header("Location: ../../../views/head/club_activities.php?club_id=".$club_id."&error=" . urlencode($error));
         exit();
     } finally {
         // Ensure autocommit is back to normal

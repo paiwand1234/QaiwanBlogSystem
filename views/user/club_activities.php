@@ -100,7 +100,9 @@ try {
 
                                             <?php if ($user_registered[0]['status'] == "accepted") { ?>
 
-                                                <button type="button" class="btn btn-outline-success col-3 p-0 my-2 mx-1" onclick="window.location.href='chat.php?club_id=<?php echo $activity['club_id']; ?>&activity_id=<?php echo $activity['id']; ?>'">Chat</button>
+                                                <button type="button" class="btn btn-outline-success col-3 p-0 my-2 mx-1" onclick="window.location.href='chat.php?club_id=<?php echo $activity['club_id']; ?>&activity_id=<?php echo $activity['id']; ?>'">
+                                                    Chat
+                                                </button>
 
                                             <?php } ?>
            
