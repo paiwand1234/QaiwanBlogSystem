@@ -41,22 +41,18 @@ try {
     $data = array(
         "user_id" => $user_id,
         "club_id" => $club_id
-        
     );
 
     $club_head = $club_heads->readMultipleColumns($data, Operators::AND);
-
+    $activities = $club_activities->readOneColumn('club_id', $club_id);
     $data = array(
-        "club_id" => $club_id,
-        "status" => Status::ACCEPTED
-    );
-    $activity_registeration_accepted = $activity_registerations->readMultipleColumns($data, Operators::AND);
-
-    $data = array(
+        "user_id" => $user_id,
         "club_id" => $club_id,
         "status" => Status::PENDING
     );
-    $activity_registeration_pending = $activity_registerations->readMultipleColumns($data, Operators::AND);
+
+    $activity_registeration = $activity_registerations->readMultipleColumns($data, Operators::AND);
+
     
 } catch (Exception $e) {
     echo "An error occurred: " . $e->getMessage();
@@ -90,23 +86,21 @@ try {
 
     <div class="container mt-3">
         <div class="row w-100">
-            <?php foreach($activity_registeration_accepted as $activity) { ?>
+            <?php foreach($activities as $activity) { ?>
               <div class="col-6">
                     <div class="card mb-3" style="max-width: 640px;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="<?php echo htmlspecialchars($activity['image_dir']); ?>" class="img-fluid object-fit-cover rounded-start w-100 h-100" alt="...">
+                                <img src="<?php echo htmlspecialchars($activity['image']); ?>" class="img-fluid object-fit-cover rounded-start w-100 h-100" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title"><?php echo htmlspecialchars($activity['title']); ?></h5>
+                                    <h5 class="card-title"><?php echo htmlspecialchars($activity['name']); ?></h5>
                                     <p class="card-text"><?php echo htmlspecialchars($activity['description']); ?></p>
                                     <div class="w-100 d-flex justify-content-start align-content-center">
-                                        
                                         <button type="button" class="btn btn-outline-success col-3 p-0 my-2 mx-1" onclick="window.location.href='chat.php?club_id=<?php echo $activity['club_id']; ?>&activity_id=<?php echo $activity['id']; ?>'">
                                             Chat
                                         </button>
-
                                         <?php if ($club_head) { ?>
                                             <form action="../../controllers/head/club_activity/delete_activity.php" method="POST" class="col-3 p-0 my-2 mx-1">
                                                 <input type="hidden" name="club_id" value="<?php echo htmlspecialchars($activity['club_id']); ?>">
@@ -122,7 +116,7 @@ try {
                 </div>
             <?php } ?>
 
-            <?php foreach($activity_registeration_pending as $activity) { ?>
+            <?php foreach($activity_registeration as $activity) { ?>
                 <div class="col-6">
                     <div class="card mb-3" style="max-width: 640px;">
                         <div class="row g-0">
@@ -134,11 +128,11 @@ try {
                                     <h5 class="card-title"><?php echo htmlspecialchars($activity['title']); ?></h5>
                                     <p class="card-text"><?php echo htmlspecialchars($activity['description']); ?></p>
                                     <div class="w-100 d-flex justify-content-start align-content-center">
-                                    
-                                    <div type="button" class="btn btn-outline-success col-3 p-0 py-1 my-2 mx-1" >
-                                        <?php echo htmlspecialchars($activity["status"]) ?>
-                                    </div>
-                        
+                                        
+                                        <div type="button" class="btn btn-outline-success col-3 p-0 py-1 my-2 mx-1" >
+                                            <?php echo htmlspecialchars($activity["status"]) ?>
+                                        </div>
+                            
                                     </div>
                                 </div>
                             </div>
