@@ -36,6 +36,7 @@ try {
     $users = $users->read($_SESSION['user_id']);
     
     $username = $user['username'];
+    print("this is the username: ".$username);
     // Debug: Remove this in production
 
 } catch (Exception $e) {
