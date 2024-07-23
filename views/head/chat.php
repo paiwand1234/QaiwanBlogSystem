@@ -33,10 +33,8 @@ try {
     $users = new Users($db);
 
     $club_activity = $activities->read($activity_id);
-    $users = $users->read($_SESSION['user_id']);
-    print_r($users);
+    $user = $users->read($_SESSION['user_id']);
     $username = $user['username'];
-    print("this is the username: ".$username);
     // Debug: Remove this in production
 
 } catch (Exception $e) {
