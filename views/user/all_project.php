@@ -30,15 +30,15 @@ if (!isset($_SESSION['user_id']) or $_SESSION['role'] !== 'user') {
    // THIS PART IS FOR ADDING THE FILES IN THE LIST
    $file_array = array('application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
    $image_array = array('image/jpg', 'image/jpeg', 'image/png');
-
+    // CREATING THE PROJECTS ARRAY
+    $projects_array = array();
+    
    $db = new Database();
    $projects = new Projects($db);
    $project_contents = new ProjectContent($db);
    $projects = $projects->readAll();
 
    if (count($projects) != 0) {
-       // CREATING THE PROJECTS ARRAY
-       $projects_array = array();
 
        foreach ($projects as $index_0 => $project) {
            // INITIALIZE PROJECT ARRAY
