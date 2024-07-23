@@ -3,6 +3,7 @@
 include "../../database.php"; // Assuming you have this file
 include "../../utils/utils.php";
 include "../../../models/club_activity.php";
+include "../../../models/club_activity_registeration.php";
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
